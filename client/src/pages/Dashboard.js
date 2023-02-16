@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Chart, registerables } from "chart.js";
 import { BsFilterSquare } from "react-icons/bs";
+import BarChart from "../Components/Bar";
+import PieChart from "../Components/pie";
 
 Chart.register(...registerables);
 // import { useState } from "react";
-import { Bar } from "react-chartjs-2";
 
 const channels = [
 	{
@@ -70,42 +71,18 @@ const channels = [
 ];
 
 const Dashboard = () => {
-	// const [chart, setChart] = useState();
+	const [isBar, setIsBar] = useState(true);
+	const pieOrBar = () => {
+		isBar ? setIsBar(false) : setIsBar(true);
+	};
 	return (
 		<div>
 			<div>
-				<BsFilterSquare size={50}></BsFilterSquare>
+				<BsFilterSquare size ={50} onClick = {pieOrBar}></BsFilterSquare>
 				<h2>Dashboard</h2>
 				<div></div>
 			</div>
-			<Bar
-				data={{
-					labels: channels.map((data) => data.name),
-					datasets: [
-						{
-							label: "Messages per channel",
-							data: channels.map((data) => data.messages),
-							backgroundColor: [
-								"rgba(75,192,192,1)",
-								"#ecf0f1",
-								"#50AF95",
-								"#f3ba2f",
-								"#2a71d0",
-							],
-							borderColor: "black",
-							borderWidth: 2,
-						},
-					],
-				}}
-				options={{
-					plugins: {
-						title: {
-							display: true,
-							text: "Number of messages from participants per channel",
-						},
-					},
-				}}
-			/>
+			{isBar? <BarChart channels={channels} /> : <PieChart channels = {channels} />}
 		</div>
 	);
 };
