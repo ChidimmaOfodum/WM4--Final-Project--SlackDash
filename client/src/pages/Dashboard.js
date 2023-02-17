@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Chart, registerables } from "chart.js";
 import "./Dashboard.css";
-import Nav from "../Components/Nav";
-import Title from "../Components/Title";
-import BarChart from "../Components/Bar";
-import PieChart from "../Components/pie";
-import MsgStats from "../Components/MsgStats";
-import Footer from "../Components/Footer";
+import Nav from "../Components/Dashboard/Nav";
+import Title from "../Components/Dashboard/Title";
+import BarChart from "../Components/Dashboard/Bar";
+import PieChart from "../Components/Dashboard/Pie";
+import MsgStats from "../Components/Dashboard/MsgStats";
+import Footer from "../Components/Dashboard/Footer";
 Chart.register(...registerables);
 
 const channels = [
