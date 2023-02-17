@@ -1,10 +1,10 @@
 import React from "react";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 
 const PieChart = ({ channels }) => {
   return (
 		<div className="test">
-			<Pie
+			<Doughnut
 				data={{
 					labels: channels.map((data) => data.name),
 					datasets: [

@@ -7,6 +7,7 @@ import { AiTwotoneHome } from "react-icons/ai";
 import BarChart from "../Components/Bar";
 import PieChart from "../Components/pie";
 import "./Dashboard.css";
+import { Link } from "react-router-dom";
 Chart.register(...registerables);
 
 const channels = [
@@ -91,25 +92,27 @@ const Dashboard = () => {
 			<div className="title">
 				<h2>Weekly Overview</h2>
 			</div>
-				{isBar ? (
-					<BarChart channels={channels} />
-				) : (
-					<PieChart channels={channels} />
-				)}
+			{isBar ? (
+				<BarChart channels={channels} />
+			) : (
+				<PieChart channels={channels} />
+			)}
 			<div className="msg-stats">
 				<div className="icons">
 					<TiMessages size={80} color={"green"} />
 					<p>20</p>
 				</div>
 				<div className="icons">
-				<BsTelephoneFill size={70} color={"#28cef4"} />
+					<BsTelephoneFill size={70} color={"#28cef4"} />
 					<p>14</p>
 				</div>
 			</div>
 			<footer>
-				<div className="homebtn-wrapper">
+				<Link to= "/">
+				<button className="homebtn-wrapper">
 					<AiTwotoneHome size={40} color={"red"}></AiTwotoneHome>
-				</div>
+				</button>
+				</Link>
 			</footer>
 		</div>
 	);
