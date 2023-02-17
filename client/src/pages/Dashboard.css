@@ -21,17 +21,33 @@ body {
   grid-area: nav;
   height: 8vh;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: red;
+}
+
+.toggle {
+  margin-left: 0.5rem;
+}
+
+.profile-pics {
+  background-image: url("https://i.stack.imgur.com/frlIf.png");
+  background-size: contain;
+  height: 50px;
+  width: 50px;
+  margin-right: 0.8rem;
 }
 .msg-stats {
   grid-area: stats;
-  height: 20vh;
+  height: 26.5vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  margin-left: 1rem;
 }
 .weekly {
   grid-area: weekly;
-  height: 5vh;
+  height: 7.5vh;
   text-align: center;
   margin: 0;
 }
@@ -40,7 +56,6 @@ body {
 
 .test{
   grid-area: test;
-  /* position:relative; */
   height: 50vh;
   width: 98vw;
 }

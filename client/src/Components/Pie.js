@@ -3,13 +3,12 @@ import { Pie } from "react-chartjs-2";
 
 const PieChart = ({ channels }) => {
   return (
-		<div>
+		<div className="test">
 			<Pie
 				data={{
 					labels: channels.map((data) => data.name),
 					datasets: [
 						{
-							label: "Messages per channel",
 							data: channels.map((data) => data.messages),
 							backgroundColor: [
 								"rgba(75,192,192,1)",
@@ -32,7 +31,6 @@ const PieChart = ({ channels }) => {
 					},
 				}}
 			/>
-			;
 		</div>
 	);
 };

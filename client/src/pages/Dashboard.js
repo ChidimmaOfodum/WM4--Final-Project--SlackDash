@@ -80,12 +80,18 @@ const Dashboard = () => {
 	return (
 		<div className="Dashboard">
 			<div className="nav">
-				<BsFilterSquare size={50} onClick={pieOrBar}></BsFilterSquare>
+				<BsFilterSquare
+					className="toggle"
+					size={50}
+					onClick={pieOrBar}
+				></BsFilterSquare>
 				<h2>Dashboard</h2>
-				<div></div>
+				<div className="profile-pics"></div>
 			</div>
-			<h2 className="weekly">Weekly Overview</h2>
-			<div className="chart">
+			<div className="weekly">
+				<h2>Weekly Overview</h2>
+			</div>
+			<div>
 				{isBar ? (
 					<BarChart channels={channels} />
 				) : (
@@ -93,13 +99,12 @@ const Dashboard = () => {
 				)}
 			</div>
 			<div className="msg-stats">
-				<TiMessages className="color" size={90} color = {"green"} />
-				<BsTelephoneFill size = {80} color = {"#28cef4"} />
+				<TiMessages className="color" size={80} color={"green"} />
+				<BsTelephoneFill size={70} color={"#28cef4"} />
 			</div>
 			<footer>
 				<div className="homebtn-wrapper">
-				{/* <RiHome8Line size={50}></RiHome8Line> */}
-				<AiTwotoneHome size = {40} color = {"red"}></AiTwotoneHome>
+					<AiTwotoneHome size={40} color={"red"}></AiTwotoneHome>
 				</div>
 			</footer>
 		</div>

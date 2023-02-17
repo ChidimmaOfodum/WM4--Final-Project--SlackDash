@@ -35,7 +35,6 @@ const BarChart = ({ channels }) => {
 					maintainAspectRatio: false,
 				}}
 			/>
-			;
 		</div>
 	);
 };
