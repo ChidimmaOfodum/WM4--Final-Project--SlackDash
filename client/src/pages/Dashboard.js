@@ -85,22 +85,26 @@ const Dashboard = () => {
 					size={50}
 					onClick={pieOrBar}
 				></BsFilterSquare>
-				<h2>Dashboard</h2>
+				<h2>DASHBOARD</h2>
 				<div className="profile-pics"></div>
 			</div>
-			<div className="weekly">
+			<div className="title">
 				<h2>Weekly Overview</h2>
 			</div>
-			<div>
 				{isBar ? (
 					<BarChart channels={channels} />
 				) : (
 					<PieChart channels={channels} />
 				)}
-			</div>
 			<div className="msg-stats">
-				<TiMessages className="color" size={80} color={"green"} />
+				<div className="icons">
+					<TiMessages size={80} color={"green"} />
+					<p>20</p>
+				</div>
+				<div className="icons">
 				<BsTelephoneFill size={70} color={"#28cef4"} />
+					<p>14</p>
+				</div>
 			</div>
 			<footer>
 				<div className="homebtn-wrapper">
