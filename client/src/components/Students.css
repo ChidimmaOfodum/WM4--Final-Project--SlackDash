@@ -1,5 +1,9 @@
 @import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
 
+.student-view{
+    text-align: center;
+}
+
 .student-search{
     font-family: FontAwesome;
     border-radius: 10em;
@@ -37,4 +41,8 @@ td {
     border-right-style:solid;
     border-bottom-right-radius:11em;
     border-top-right-radius:11em;
+ }
+
+ .student-img {
+    border-radius: 50%;
  }

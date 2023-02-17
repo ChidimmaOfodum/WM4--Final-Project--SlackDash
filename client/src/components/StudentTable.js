@@ -19,6 +19,7 @@ const StudentTable = () => {
 
   return (
     <table>
+      <thead>
 			<tr>
 				<th>Image</th>
 				<th>Name</th>
@@ -26,6 +27,7 @@ const StudentTable = () => {
 				<th>Days since last message</th>
 				<th>Total Messages</th>
 			</tr>
+      </thead>
       <Student students={students} />
       </table>
   );

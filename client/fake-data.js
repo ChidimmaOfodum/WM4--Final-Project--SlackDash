@@ -8,10 +8,10 @@ const getLastMessage = (epochTime) => {
 
 getLastMessage();
 
-const students = [
+const members = [
 	{
 		user_id: "U04PHFRULUT",
-		profile_picture: "img.jpg",
+		image_32: "https://a.slack-edge.com/80588/img/slackbot_32.png",
 		real_name: "Farzad Nazif",
 		is_email_confirmed: true,
 		is_admin: true,
@@ -21,7 +21,7 @@ const students = [
 	},
 	{
 		user_id: "U04PEMGLF53",
-		profile_picture: "img.jpg",
+		image_32: "https://a.slack-edge.com/80588/img/slackbot_32.png",
 		real_name: "Michelle Janay",
 		is_email_confirmed: true,
 		is_admin: true,
@@ -31,7 +31,7 @@ const students = [
 	},
 	{
 		user_id: "U04PHG7K48K",
-		profile_picture: "img.jpg",
+		image_32: "https://a.slack-edge.com/80588/img/slackbot_32.png",
 		real_name: "Chidimma",
 		is_email_confirmed: true,
 		is_admin: true,
@@ -41,7 +41,7 @@ const students = [
 	},
 	{
 		user_id: "U04PEMGLF53",
-		profile_picture: "img.jpg",
+		image_32: "https://a.slack-edge.com/80588/img/slackbot_32.png",
 		real_name: "John Doe",
 		is_email_confirmed: false,
 		is_admin: false,
@@ -51,7 +51,7 @@ const students = [
 	},
 	{
 		user_id: "U04PEMGLF65",
-		profile_picture: "img.jpg",
+		image_32: "https://a.slack-edge.com/80588/img/slackbot_32.png",
 		real_name: "Sally Frog",
 		is_email_confirmed: true,
 		is_admin: false,
@@ -61,7 +61,7 @@ const students = [
 	},
 	{
 		user_id: "U04PAMGLF43",
-		profile_picture: "img.jpg",
+		image_32: "https://a.slack-edge.com/80588/img/slackbot_32.png",
 		real_name: "Garrett Smith",
 		is_email_confirmed: true,
 		is_admin: false,
@@ -71,7 +71,7 @@ const students = [
 	},
 	{
 		user_id: "U12PEMGLF32",
-		profile_picture: "img.jpg",
+		image_32: "https://a.slack-edge.com/80588/img/slackbot_32.png",
 		real_name: "Lucy Diamond",
 		is_email_confirmed: true,
 		is_admin: true,
@@ -81,7 +81,7 @@ const students = [
 	},
 	{
 		user_id: "U04RMDGF52",
-		profile_picture: "img.jpg",
+		image_32: "https://a.slack-edge.com/80588/img/slackbot_32.png",
 		real_name: "Marta",
 		is_email_confirmed: true,
 		is_admin: false,
@@ -91,7 +91,7 @@ const students = [
 	},
 	{
 		user_id: "U04PEMGLF34",
-		profile_picture: "img.jpg",
+		image_32: "https://a.slack-edge.com/80588/img/slackbot_32.png",
 		real_name: "Chioma",
 		is_email_confirmed: true,
 		is_admin: false,
@@ -101,7 +101,7 @@ const students = [
 	},
 	{
 		user_id: "U66PEMGLF77",
-		profile_picture: "img.jpg",
+		image_32: "https://a.slack-edge.com/80588/img/slackbot_32.png",
 		real_name: "Michelle Janay",
 		is_email_confirmed: true,
 		is_admin: false,
@@ -110,5 +110,9 @@ const students = [
 		total_messages: 741,
 	},
 ];
+
+const students = members.filter((student) => student.is_email_confirmed && !student.is_admin);
+
+// students.last_message.sort((a,b) => a-b);
 
 export default students;
