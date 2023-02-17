@@ -1,0 +1,65 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+.Dashboard {
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  grid-template-areas:
+  "nav nav nav nav nav"
+  "weekly weekly weekly weekly weekly"
+  "test test test test test"
+  "stats stats stats stats stats"
+  "footer footer footer footer footer";
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.nav {
+  grid-area: nav;
+  height: 8vh;
+  display: flex;
+  background-color: red;
+}
+.msg-stats {
+  grid-area: stats;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+}
+.weekly {
+  grid-area: weekly;
+  height: 5vh;
+  text-align: center;
+  margin: 0;
+}
+
+
+
+.test{
+  grid-area: test;
+  /* position:relative; */
+  height: 50vh;
+  width: 98vw;
+}
+.homebtn-wrapper{
+  background-color: white;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+footer {
+  grid-area: footer;
+  background-color: red;
+  height: 8vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+

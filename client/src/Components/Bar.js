@@ -4,7 +4,7 @@ import { Bar } from "react-chartjs-2";
 
 const BarChart = ({ channels }) => {
 	return (
-		<div>
+		<div className="test">
 			<Bar
 				data={{
 					labels: channels.map((data) => data.name),
@@ -31,6 +31,8 @@ const BarChart = ({ channels }) => {
 							text: "Number of messages from participants per channel",
 						},
 					},
+					responsive: true,
+					maintainAspectRatio: false,
 				}}
 			/>
 			;
