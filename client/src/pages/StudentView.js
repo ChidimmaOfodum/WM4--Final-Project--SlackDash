@@ -1,5 +1,5 @@
-import StudentSearch from "../components/StudentSearch";
-import StudentTable from "../components/StudentTable";
+import StudentSearch from "../Components/StudentView/StudentSearch";
+import StudentTable from "../Components/StudentView/StudentTable";
 
 
 const StudentView = () => {
