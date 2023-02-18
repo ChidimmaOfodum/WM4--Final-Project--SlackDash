@@ -1,0 +1,104 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.Dashboard {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-areas:
+  "nav nav nav nav nav"
+  "title title title title title"
+  "test test test test test"
+  ". stats stats stats ."
+  "footer footer footer footer footer";
+  grid-template-columns: 20% 20% 20% 20% 21%;
+  grid-template-rows: 9% 8% 53.1% 22.8% 1fr;
+}
+
+.nav {
+  grid-area: nav;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: red;
+}
+
+.nav > h2 {
+  color: white;
+}
+
+.toggle {
+  margin-left: 0.5rem;
+  color: white;
+}
+
+.profile-pics {
+  background-image: url("https://i.stack.imgur.com/frlIf.png");
+  background-size: contain;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 0.8rem;
+}
+.msg-stats {
+  grid-area: stats;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+.title {
+  grid-area: title;
+  height: 8vh;
+  text-align: center;
+  margin: 0;
+}
+
+.icons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  height: 25%;
+}
+
+ p {
+  font-size: 3rem;
+  color: #059ec0;
+  font-style: italic;
+}
+.test{
+  grid-area: test;
+  height: 51vh;
+  width: 95vw;
+  margin-left: 1rem;
+}
+
+.test1{
+  border: 2px solid green;
+}
+
+.homebtn-wrapper{
+  background-color: white;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+footer {
+  grid-area: footer;
+  background-color: red;
+  height: 8vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+

@@ -2,7 +2,7 @@
 services:
   - type: web
     plan: free
-    name: starter-kit
+    name: slack-dash
     region: frankfurt
     env: node
     buildCommand: npm ci --include dev; npm run build; npm prune --omit dev
