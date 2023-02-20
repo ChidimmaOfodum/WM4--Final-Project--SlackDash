@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Student from "./Student";
-import fakeData from "../../fake-data";
+import fakeData from "../../../fake-data";
 
 
 const StudentTable = () => {
