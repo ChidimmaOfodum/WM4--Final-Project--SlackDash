@@ -23,9 +23,9 @@ const StudentTable = () => {
 			<tr>
 				<th>Image</th>
 				<th>Name</th>
-				<th>Most active channel</th>
-				<th>Days since last message</th>
+				<th>Time of Last Message</th>
 				<th>Total Messages</th>
+				<th>Total Calls</th>
 			</tr>
       </thead>
       <Student students={students} />
