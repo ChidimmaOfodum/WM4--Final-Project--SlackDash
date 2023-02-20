@@ -1,5 +1,6 @@
 import "dotenv/config";
 
+
 export default {
 	dbUrl: createDatabaseUrl(),
 	logLevel: process.env.LOG_LEVEL ?? "info",
@@ -12,9 +13,9 @@ function createDatabaseUrl() {
 		return process.env.DATABASE_URL;
 	}
 	const host = process.env.DB_HOST ?? "localhost";
-	const name = process.env.DB_NAME ?? "cyf_ecommerce";
-	const password = process.env.DB_PASS ?? process.env.DB_PASSWORD ?? "Mirian1996";
+	const name = process.env.DB_NAME ?? process.env.LOCAL_DB;
+	const password = process.env.DB_PASS ?? process.env.DB_PASSWORD ?? process.env.LOCAL_PASSWORD;
 	const port = process.env.DB_PORT ?? "5432";
-	const username = process.env.DB_USER ?? process.env.DB_USERNAME ?? "postgres";
+	const username = process.env.DB_USER ?? process.env.DB_USERNAME ?? process.env.LOCAL_USER;
 	return `postgres://${username}:${password}@${host}:${port}/${name}`;
 }
