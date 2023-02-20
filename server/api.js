@@ -1,17 +1,11 @@
 import { Router } from "express";
-
+import getSlackClient from "./slackClient";
 import logger from "./utils/logger";
 
-const { WebClient, LogLevel } = require("@slack/web-api");
-
 const router = Router();
+const client = getSlackClient();
 
-const client = new WebClient(
-	"",
-	{
-		logLevel: LogLevel.DEBUG,
-	}
-);
+// 
 
 // Giving all channels informations
 async function allChannelsInfo() {
@@ -67,12 +61,13 @@ router.get("/memberPresence/:id", async(req, res) => {
 });
 
 // History of conversation in a channel, it shows who involved the chat
-async function channelConversationHistory(req) {
+async function channelConversationHistory() {
 	try {
 		// Call the conversations.list method using the built-in WebClient
 		return await client.conversations.history({
 			token: process.env.TOKEN,
-			user: req.params.id,
+			channel: process.env.CHANNEL_ID,
+			//user: req.params.id,
 			// The token you used to initialize your app
 		});
 	} catch (error) {
