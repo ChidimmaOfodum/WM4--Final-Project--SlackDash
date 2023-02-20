@@ -17,9 +17,9 @@ const getMessages = async (_, res) => {
 		return el;
 	});
 
-   const formattedResult = result.reduce((x, y) => {
-			(x[y.name] = x[y.name] || []).push(y);
-			return x;
+   const formattedResult = result.reduce((acc, curr) => {
+			(acc[curr.name] = acc[curr.name] || []).push(curr);
+			return acc;
 		}, {});
 
 	res.json(formattedResult);
