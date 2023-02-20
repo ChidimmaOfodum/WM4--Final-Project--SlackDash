@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import StudentView from "./pages/StudentView";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 const App = () => (
 	<Routes>
@@ -13,6 +14,7 @@ const App = () => (
 		<Route path="/students/table/view" element={<StudentView />} />
 		<Route path= "/dashboard" element = {<Dashboard /> } />
 		<Route path= "/login" element = {<Login /> } />
+		<Route path= "/signup" element = {<SignUp /> } />
 	</Routes>
 );
 
