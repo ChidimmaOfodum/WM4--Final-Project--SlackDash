@@ -38,3 +38,14 @@ export async function getChannelMessages() {
 		console.error(error);
 	}
 }
+
+export async function getChannelCalls() {
+	try {
+		return await client.conversations.history({
+			token: process.env.TOKEN,
+			channel: process.env.CHANNEL_ID,
+		});
+	} catch(error){
+		console.log(error);
+	}
+}
