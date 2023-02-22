@@ -3,7 +3,7 @@ import "./Students.css";
 const Student = ( { students } ) => {
 
 	return (
-			<tbody>{students.map((student, i) => (
+			<tbody>{Object.keys(students).map((student, i) => {
 				<tr className="student-table-view" key={i}>
 					<td><img src={student.image_32} alt={student.real_name} className="student-img" /></td>
 					<td>{student.real_name}</td>
@@ -11,7 +11,7 @@ const Student = ( { students } ) => {
 					<td>{student.last_message}</td>
 					<td>{student.total_messages}</td>
 				</tr>
-			))}
+			})}
 		</tbody>
 	);
 
