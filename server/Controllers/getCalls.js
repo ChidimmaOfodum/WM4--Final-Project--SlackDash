@@ -1,14 +1,23 @@
-import { getChannelCalls, getChannelMembers, getUserInfo } from "../slackMethods";
+import { getChannelData, getUserInfo } from "../slackMethods";
 
 const getCalls = async (_, res) => {
-    let { messages } = await getChannelCalls();
+    let { messages } = await getChannelData();
+    let calls = messages.filter((call) => call.room);
+    let callers = calls.map((c) => c.room).map((p) => p.participant_history).flat();
 
-    const huddles = messages.filter((call) => call.room); //gets conversations that are huddles
+    const callersInfo = await Promise.all(
+		callers.map(async (userId) => {
+			return await getUserInfo(userId);
+		})
+	);
 
-    let members = huddles.map((h) => h.room).map((p) => p.participant_history); //find the participants in a huddle
+    const callerName = callersInfo.map(({ user }) => user.real_name);
 
-    console.log(members);
-    res.json(huddles);
+    const callersData = {};
+
+    callerName.forEach((el) => callersData[el] = (callersData[el] || 0) + 1);
+
+    res.json(callersData);
 };
 
 export default getCalls;
