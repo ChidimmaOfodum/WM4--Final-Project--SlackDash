@@ -14,6 +14,7 @@ const getMessages = async (_, res) => {
 	const result = messages.map((el) => {
 		const temp = membersInfo.find((item) => item.user.id === el.user);
 		el.name = temp.user.real_name;
+		el.image_32 = temp.user.profile.image_32;
 		return el;
 	});
 
