@@ -31,10 +31,21 @@ export async function getChannelMessages() {
 		return await client.conversations.history({
 			token: process.env.TOKEN,
 			channel: process.env.CHANNEL_ID,
-      // oldest: 1676377207.351409,
-      // latest:1676897346.238299, 
+      //oldest: 1676377207.351409,
 		});
 	} catch (error) {
 		console.error(error);
+	}
+}
+
+export async function getChannelData() {
+	try {
+		return await client.conversations.history({
+			token: process.env.TOKEN,
+			channel: process.env.CHANNEL_ID,
+			oldest: 1676377207.351409,
+		});
+	} catch(error){
+		console.log(error);
 	}
 }
