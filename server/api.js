@@ -1,7 +1,6 @@
 import { Router } from "express";
 import logger from "./utils/logger";
-import getMessages from "./Controllers/getMessages";
-import getCalls from "./Controllers/getCalls";
+import getData from "./Controllers/getData";
 
 const router = Router();
 
@@ -10,8 +9,6 @@ router.get("/", (_, res) => {
 	res.json({ message: "Hello, world!" });
 });
 
-router.get("/messages", getMessages);
-
-router.get("/calls", getCalls);
+router.get("/data", getData);
 
 export default router;

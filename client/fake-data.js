@@ -1,9 +1,7 @@
 const getLastMessage = (epochTime) => {
-	const msPerDay = 1000 * 60 * 60 * 24;
-	const today = new Date();
+	const options = { weekday: "short", year: "numeric", month: "short", day: "numeric" };
 	const dOLM = new Date(epochTime * 1000);
-	let diff = Math.abs(today.getTime() - dOLM.getTime());
-	return Math.trunc(diff / msPerDay);
+	return `${dOLM.toLocaleDateString("en-GB", options)}, ${dOLM.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`;
 };
 
 getLastMessage();
@@ -113,6 +111,7 @@ const members = [
 
 const students = members.filter((student) => student.is_email_confirmed && !student.is_admin);
 
+console.log(getLastMessage(1677163283));
 // students.last_message.sort((a,b) => a-b);
 
-export default students;
+// export default students;
