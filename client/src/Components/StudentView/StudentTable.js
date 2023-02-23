@@ -1,21 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Student from "./Student";
-import fakeData from "../../../fake-data";
-
 
 const StudentTable = () => {
-  const [students, setStudents] = useState(fakeData);
+  const [students, setStudents] = useState([]);
 
-  // const getStudents = () => {
-	// 	fetch("/students", {
-	// 		method: "GET",
-	// 	})
-	// 		.then((res) => res.json())
-	// 		.then((users) => setStudents(users))
-	// 		.catch((err) => console.log(err));
-	// };
-
-	// getStudents();
+  useEffect(() => {
+	fetch("/api/data")
+	.then((res) => res.json())
+	.then((data) => setStudents(data))
+	.catch((err) => console.log(err));
+}, []);
 
   return (
     <table>

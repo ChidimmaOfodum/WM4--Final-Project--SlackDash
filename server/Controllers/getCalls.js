@@ -1,6 +1,6 @@
 import { getChannelData, getUserInfo } from "../slackMethods";
 
-const getCalls = async (_, res) => {
+const getCalls = async () => {
     let { messages } = await getChannelData();
     let calls = messages.filter((call) => call.room);
     let callers = calls.map((c) => c.room).map((p) => p.participant_history).flat();
@@ -17,7 +17,7 @@ const getCalls = async (_, res) => {
 
     callerName.forEach((el) => callersData[el] = (callersData[el] || 0) + 1);
 
-    res.json(callersData);
+    return callersData;
 };
 
 export default getCalls;
