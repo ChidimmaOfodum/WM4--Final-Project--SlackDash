@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Student from "./Student";
 
 const StudentTable = () => {

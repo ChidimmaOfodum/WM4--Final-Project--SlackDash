@@ -20,7 +20,6 @@ const Student = ( { students } ) => {
 			))}
 		</tbody>
 	);
-
 };
 
 export default Student;
