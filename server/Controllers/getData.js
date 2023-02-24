@@ -5,15 +5,16 @@ import {
 } from "../slackMethods";
 import getCalls from "./getCalls";
 
-
 const getData = async (_, res) => {
 	const { members } = await getChannelMembers();
 	const calls = await getCalls();
+
 	const membersInfo = await Promise.all(
 		members.map(async (userId) => {
 			return await getUserInfo(userId);
 		})
 	);
+
 
 	//const trainees = memberInfo.filter((el) => el.user.profile.title.toLowerCase().includes("trainee"));
 
