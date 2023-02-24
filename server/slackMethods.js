@@ -26,17 +26,6 @@ export async function getUserInfo(userId) {
 }
 
 //returns all messages in a particular channel
-export async function getChannelMessages() {
-	try {
-		return await client.conversations.history({
-			token: process.env.TOKEN,
-			channel: process.env.CHANNEL_ID,
-      //oldest: 1676377207.351409,
-		});
-	} catch (error) {
-		console.error(error);
-	}
-}
 
 export async function getChannelData() {
 	try {
