@@ -1,6 +1,6 @@
 import {
+	getChannelData,
 	getChannelMembers,
-	getChannelMessages,
 	getUserInfo,
 } from "../slackMethods";
 import getCalls from "./getCalls";
@@ -18,7 +18,7 @@ const getData = async (_, res) => {
 
 	//const trainees = memberInfo.filter((el) => el.user.profile.title.toLowerCase().includes("trainee"));
 
-	let { messages } = await getChannelMessages();
+	let { messages } = await getChannelData();
 	messages = messages.filter((el) => el.client_msg_id); //filter out bot messages
 	const result = messages.map((el) => {
 		const temp = membersInfo.find((item) => item.user.id === el.user);
