@@ -33,16 +33,13 @@ const getData = async (_, res) => {
 
 			if(Object.keys(calls).includes(el.user.real_name)) {
 				el.totalCalls = calls[el.user.real_name];
-			} else {
-				el.messages = msg;
-				el.totalCalls = 0;
 			}
 		}
 		return {
 			ok: el.ok,
 			user: el.user,
-			messages: el.messages,
-			totalCalls: el.totalCalls,
+			messages: el.messages || [],
+			totalCalls: el.totalCalls || 0,
 		};
 	});
 
