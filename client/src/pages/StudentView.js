@@ -3,6 +3,7 @@ import StudentTable from "../Components/StudentView/StudentTable";
 import StudentSearch from "../Components/StudentView/StudentSearch";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
+import ChannelSelect from '../Components/StudentView/ChannelSelect';
 import Modal from "react-bootstrap/Modal";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -44,6 +45,7 @@ const StudentView = () => {
 		</Modal>
 		<Header />
 			<main className="student-view">
+				<ChannelSelect />
 				<StudentSearch handleShow={handleShow}/>
 				<StudentTable />
 			</main>

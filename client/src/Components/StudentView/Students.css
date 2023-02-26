@@ -8,6 +8,11 @@
     margin: 2em 1.5em 2em 1.5em;
 }
 
+#channels{
+    width: 25%;
+    margin: 1em 0;
+}
+
 .student-search{
     font-family: FontAwesome;
     border-radius: 10em;
@@ -23,6 +28,7 @@ table {
     border-collapse: separate;
     border-spacing:0 11px;
     margin-top:-11px;
+    max-width: 100%;
 }
 
 th {
