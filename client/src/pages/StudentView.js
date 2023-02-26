@@ -1,9 +1,16 @@
+<<<<<<< HEAD
+import { useState } from "react";
+=======
 import {useState} from 'react';
+>>>>>>> dev
 import StudentTable from "../Components/StudentView/StudentTable";
 import StudentSearch from "../Components/StudentView/StudentSearch";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
+<<<<<<< HEAD
+=======
 import ChannelSelect from '../Components/StudentView/ChannelSelect';
+>>>>>>> dev
 import Modal from "react-bootstrap/Modal";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -45,7 +52,10 @@ const StudentView = () => {
 		</Modal>
 		<Header />
 			<main className="student-view">
+<<<<<<< HEAD
+=======
 				<ChannelSelect />
+>>>>>>> dev
 				<StudentSearch handleShow={handleShow}/>
 				<StudentTable />
 			</main>
