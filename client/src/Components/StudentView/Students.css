@@ -8,6 +8,11 @@
     margin: 2em 1.5em 2em 1.5em;
 }
 
+.search-sort-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
 .student-search{
     font-family: FontAwesome;
     border-radius: 10em;
@@ -54,3 +59,8 @@ td {
  .search-sort-buttons {
     padding: 0em 0 1.5em 0;
  }
+
+ .form-control:focus{
+    border-color:lightgrey !important;
+    box-shadow: 0 0 0 0.1rem lightgrey !important;
+  }
