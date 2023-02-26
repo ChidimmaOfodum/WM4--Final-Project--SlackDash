@@ -12,7 +12,8 @@ router.get("/", (_, res) => {
 router.get("/data", getData);
 
 router.get("/channels", async(req, res) => {
-	const data = await db.query(`SELECT * FROM public.channel`)
+	let data = await db.query(`SELECT * FROM public.channel`)
+	data = data.rows.map((el) => el.channel_name)
 	res.json(data)
 })
 export default router;
