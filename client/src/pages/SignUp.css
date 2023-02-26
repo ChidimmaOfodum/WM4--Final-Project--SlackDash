@@ -9,19 +9,8 @@
 }
 
 /* Login Logo */
-.LoginLogo {
-	height: 15vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-.LoginLogo p {
-	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-	color: black;
-}
-.signUpMsg {
-	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-	color: black;
+.slackdash-logo{
+	width: 20%;
 }
 
 /* Details section */

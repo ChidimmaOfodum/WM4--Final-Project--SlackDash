@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SignUpForm from "../Components/SignUpPage/SignUpForm";
+import SlackDashLogo from '../Components/LandingPage/SlackDashLogo.png'
 
 function SignUp() {
 	return (
+		<>
+		<Link to="/landingpage"></Link><img src={SlackDashLogo} alt="SlackDash" className="slackdash-logo"/>
 		<main className="SignUpPage">
 			<div className="signup-header">
 				<h1>Welcome</h1>
@@ -16,6 +19,7 @@ function SignUp() {
 			</div>
 			<SignUpForm />
 		</main>
+		</>
 	);
 }
 
