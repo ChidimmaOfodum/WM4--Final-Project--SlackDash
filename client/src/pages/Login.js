@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import MainNav from '../Components/LoginPage/MainNav';
+import { Link } from "react-router-dom"
 import LoginForm from '../Components/LoginPage/LoginForm';
+import SlackDashLogo from '../Components/LandingPage/SlackDashLogo.png'
+
 
 function Login() {
   return (
-    <div className='loginPage'>
-      <MainNav />
+    <>
+    <Link to="/landingpage"></Link><img src={SlackDashLogo} alt="SlackDash" className="slackdash-logo"/>
+    <main className='loginPage'>
       <div className='LoginLogo'>
-          <p>Login</p>
+          <h1>Login</h1>
       </div>
       <LoginForm />
-    </div>
+    </main>
+    </>
   )
 }
 

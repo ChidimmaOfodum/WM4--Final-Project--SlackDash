@@ -1,6 +1,6 @@
 import { BsFilterSquare } from "react-icons/bs";
 
-const Nav = (props) => {
+const NavOld = (props) => {
   return (
 		<div className="nav">
 			<BsFilterSquare
@@ -14,4 +14,4 @@ const Nav = (props) => {
 	);
 };
 
-export default Nav;
+export default NavOld;
