@@ -47,6 +47,7 @@ export function Home() {
 				<div>
 				<Link to = "/signup">Create a new account</Link>
 				</div>
+				<Link to="/landingpage">Landing Page</Link>
 			</div>
 		</main>
 	);

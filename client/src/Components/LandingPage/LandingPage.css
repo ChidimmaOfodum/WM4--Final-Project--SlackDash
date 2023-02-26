@@ -1,0 +1,22 @@
+.landing-main{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../LandingPage/SlackDashLandingPageBg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.slackdash-logo{
+    max-width: 100%;
+}
+
+.landing-main section {
+    margin-top: 2em;
+}
+
+.landing-main section button{
+    margin: 1em;
+}
