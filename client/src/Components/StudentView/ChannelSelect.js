@@ -13,7 +13,6 @@ const ChannelSelect = () => {
 
 	return (
 		<select name="channels" id="channels">
-			<option>Select a channel</option>
 		{channels.map((channel, i) => <option value={i}>{channel}</option>)}
 		</select>
 	);

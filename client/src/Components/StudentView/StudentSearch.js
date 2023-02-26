@@ -1,16 +1,5 @@
 import { BsSortDown } from "react-icons/bs";
 import { BsSortUpAlt } from "react-icons/bs";
-<<<<<<< HEAD
-import {BsPlusLg} from 'react-icons/bs'
-
-const StudentSearch = ({handleShow}) => {
-
-	return (
-		<div className="search-sort-buttons">
-			<BsSortDown />
-			{/* <BsSortUpAlt /> */}
-			<span>Add a channel <BsPlusLg onClick={handleShow}/></span>
-=======
 import { BsPlusLg } from "react-icons/bs";
 
 const StudentSearch = ({ handleShow }) => {
@@ -22,7 +11,6 @@ const StudentSearch = ({ handleShow }) => {
 			<span>
 				Add a channel <BsPlusLg onClick={handleShow} />
 			</span>
->>>>>>> dev
 		</div>
 	);
 };
