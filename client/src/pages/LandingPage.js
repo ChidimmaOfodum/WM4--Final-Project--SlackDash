@@ -7,6 +7,7 @@ const LandingPage = () => {
 	return (
 		<main className="landing-main">
 			<img src={SlackDashLogo} alt="SlackDash" className="slackdash-logo" />
+      <h6>An app for tracking trainee communication data in CYF Slack Workspace</h6>
 			<section>
 				<Link to="/login">
 					<button className="btn btn-danger">Login</button>
