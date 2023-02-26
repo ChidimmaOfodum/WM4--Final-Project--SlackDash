@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import MainNav from '../Components/LoginPage/MainNav';
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import SignUpForm from '../Components/SignUpPage/SignUpForm';
-
+import SignUpForm from "../Components/SignUpPage/SignUpForm";
 
 function SignUp() {
-
-  return (
-    <div className='SignUpPage' >
-      <MainNav />
-      <div className='LoginLogo'>
-          <p>Welcome</p>
-      </div>
-      <p className='signUpMsg'>Already have a account? <strong><Link to="/login">Sign in </Link></strong> </p>
-      <SignUpForm />
-    </div>
-  )
+	return (
+		<main className="SignUpPage">
+			<div className="signup-header">
+				<h1>Welcome</h1>
+				<p className="signUpMsg">
+					Already have a account?{" "}
+					<strong>
+						<Link to="/login">Sign in </Link>
+					</strong>{" "}
+				</p>
+			</div>
+			<SignUpForm />
+		</main>
+	);
 }
 
-export default SignUp
+export default SignUp;

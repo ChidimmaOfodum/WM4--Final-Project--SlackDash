@@ -1,26 +1,12 @@
 /* Page */
 .loginPage{
     display: flex;
+    height: 100vh;
     flex-direction: column;
+    justify-content: center;
+    align-self: center;
 }
 
-/* Nav Bar */
-.NavBar{
-    height: 10vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-}
-.hamburgerMenu{
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: #333;
-     
-}
 .CYFIcon{
     height: 5vh;  
 }
@@ -75,20 +61,14 @@ padding-top: 0;
 }
 
 /* Desktop version */
-@media screen and (min-width: 700px) and (max-width: 1000px) {
+/* @media screen and (min-width: 700px) and (max-width: 1000px) {
 .userDetail{
 width: 65%;
 justify-self: center;
 align-self: center;
  }
- .NavBar{
-    padding: 3rem;
-}  
-.CYFIcon{
-    height: 7vh;
-}   
-}
-@media  (min-width:1000px){
+} */
+/* @media  (min-width:1000px){
 .userDetail{
     width: 45%;
     justify-self: center;
@@ -100,4 +80,4 @@ align-self: center;
 .CYFIcon{
     height: 8vh;
 }  
-}
+} */

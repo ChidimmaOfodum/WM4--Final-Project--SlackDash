@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import MainNav from '../Components/LoginPage/MainNav';
 import LoginForm from '../Components/LoginPage/LoginForm';
 
 function Login() {
   return (
-    <div className='loginPage'>
-      <MainNav />
+    <main className='loginPage'>
       <div className='LoginLogo'>
-          <p>Login</p>
+          <h1>Login</h1>
       </div>
       <LoginForm />
-    </div>
+    </main>
   )
 }
 
