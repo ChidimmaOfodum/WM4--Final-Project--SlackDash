@@ -1,6 +1,4 @@
 body {
-  /* height: 100vh;
-  width: 100vw; */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10,28 +8,7 @@ body {
   width: 100vw;
   height: 100vh;
   margin-top: 6em;
-  /* display: grid;
-  grid-template-areas:
-  "nav nav nav nav nav"
-  "title title title title title"
-  "test test test test test"
-  ". stats stats stats ."
-  "footer footer footer footer footer";
-  grid-template-columns: 20% 20% 20% 20% 21%;
-  grid-template-rows: 9% 8% 53.1% 22.8% 1fr; */
 }
-
-/* .nav {
-  grid-area: nav;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: red;
-}
-
-.nav > h2 {
-  color: white;
-} */
 
 .toggle {
   margin-left: 0.5rem;
