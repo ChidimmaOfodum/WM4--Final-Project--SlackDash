@@ -7,7 +7,6 @@ import ChannelSelect from '../Components/StudentView/ChannelSelect';
 import Modal from "react-bootstrap/Modal";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import PaginationBtns from '../Components/StudentView/PaginationBtns';
 
 const StudentView = () => {
 	const [show, setShow] = useState(false);
@@ -50,7 +49,6 @@ const StudentView = () => {
 				<StudentSearch handleShow={handleShow}/>
 				<StudentTable />
 			</main>
-			<PaginationBtns />
 			<Footer />
 		</>
 	);
