@@ -4,7 +4,7 @@ import { BsSortUpAlt } from "react-icons/bs";
 const StudentSearch = () => {
 
 	return (
-		<div>
+		<div className="search-sort-buttons">
 			<input className="student-search" type="text" placeholder="&#61442;" />
 			<BsSortDown />
 			<BsSortUpAlt />

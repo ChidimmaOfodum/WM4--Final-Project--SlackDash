@@ -1,15 +1,17 @@
-import StudentSearch from "../Components/StudentView/StudentSearch";
 import StudentTable from "../Components/StudentView/StudentTable";
-import Nav from "../Components/Nav/Nav";
+import StudentSearch from "../Components/StudentView/StudentSearch";
+import Header from "../Components/Header/Header";
+import Footer from "../Components/Footer/Footer";
 
 const StudentView = () => {
 	return (
 		<>
-		<Nav />
+		<Header />
 			<main className="student-view">
 				<StudentSearch />
 				<StudentTable />
 			</main>
+			<Footer />
 		</>
 	);
 };

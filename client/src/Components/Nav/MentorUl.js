@@ -17,7 +17,7 @@ const MentorUl = () => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3">
               <Form.Label>Please type the channel name below</Form.Label>
               <Form.Control
                 type="text"

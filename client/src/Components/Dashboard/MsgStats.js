@@ -7,11 +7,11 @@ const MsgStats = () => {
 		<div className="msg-stats">
 			<div className="icons">
 				<TiMessages size={80} color={"green"} />
-				<p>20</p>
+				<p className="stats">20</p>
 			</div>
 			<div className="icons">
 				<BsTelephoneFill size={70} color={"#28cef4"} />
-				<p>14</p>
+				<p className="stats">14</p>
 			</div>
 		</div>
 	);

@@ -4,6 +4,8 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    height: 95vh;
+    margin: 6em 1.5em 2em 1.5em;
 }
 
 .student-search{
@@ -47,4 +49,8 @@ td {
 
  .student-img {
     border-radius: 50%;
+ }
+
+ .search-sort-buttons {
+    padding: 0em 0 1.5em 0;
  }

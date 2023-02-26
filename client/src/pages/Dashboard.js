@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Chart, registerables } from "chart.js";
 import "./Dashboard.css";
+import Nav from "../Components/Nav/Nav";
 import NavOld from "../Components/Dashboard/NavOld";
 import Title from "../Components/Dashboard/Title";
 import BarChart from "../Components/Dashboard/Bar";
 import PieChart from "../Components/Dashboard/Pie";
 import MsgStats from "../Components/Dashboard/MsgStats";
-import Footer from "../Components/Dashboard/Footer";
+import Footer from "../Components/Footer/Footer";
 Chart.register(...registerables);
 
 const channels = [
@@ -78,13 +79,16 @@ const Dashboard = () => {
 		isBar ? setIsBar(false) : setIsBar(true);
 	};
 	return (
+		<>
+		<Nav />
 		<div className="Dashboard">
 			<NavOld onClick={pieOrBar} />
 			<Title />
 			{isBar ? (<BarChart channels={channels} />) : (<PieChart channels={channels} />)}
 			<MsgStats />
-			<Footer />
 		</div>
+		<Footer />
+		</>
 	);
 };
 
