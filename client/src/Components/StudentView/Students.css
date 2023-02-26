@@ -65,3 +65,9 @@ td {
  .search-sort-buttons {
     padding: 0em 0 1.5em 0;
  }
+
+ .pagination-btns{
+    display:flex;
+    justify-content: space-between;
+    margin: 1em 2em;
+ }
