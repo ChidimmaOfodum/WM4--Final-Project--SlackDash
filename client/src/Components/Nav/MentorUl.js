@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { ReactDOM } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 const MentorUl = () => {
 	const [show, setShow] = useState(false);
+  const [channelAdd, setChannelAdd] = useState('')
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -21,8 +23,9 @@ const MentorUl = () => {
               <Form.Label>Please type the channel name below</Form.Label>
               <Form.Control
                 type="text"
+                onChange={(e) => setChannelAdd(e.target.value)}
                 placeholder="#"
-                autoFocus
+                required
               />
             </Form.Group>
           </Form>

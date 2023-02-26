@@ -7,7 +7,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 
 const Nav = () => {
 	return (
-		<nav className="navbar fixed-top">
+		<nav className="navbar">
 			<div className="container-fluid">
 				<button
 					className="navbar-toggler"
