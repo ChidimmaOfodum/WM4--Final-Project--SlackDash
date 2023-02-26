@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Chart, registerables } from "chart.js";
 import "./Dashboard.css";
-import Nav from "../Components/Dashboard/Nav";
+import NavOld from "../Components/Dashboard/NavOld";
 import Title from "../Components/Dashboard/Title";
 import BarChart from "../Components/Dashboard/Bar";
 import PieChart from "../Components/Dashboard/Pie";
@@ -79,7 +79,7 @@ const Dashboard = () => {
 	};
 	return (
 		<div className="Dashboard">
-			<Nav onClick={pieOrBar} />
+			<NavOld onClick={pieOrBar} />
 			<Title />
 			{isBar ? (<BarChart channels={channels} />) : (<PieChart channels={channels} />)}
 			<MsgStats />
