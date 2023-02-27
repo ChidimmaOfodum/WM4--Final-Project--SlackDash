@@ -1,16 +1,17 @@
 import { BsSortDown } from "react-icons/bs";
 import { BsSortUpAlt } from "react-icons/bs";
-import { BsPlusLg } from "react-icons/bs";
+import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 
-const StudentSearch = ({ handleShow }) => {
+const StudentSearch = ({}) => {
 	return (
 		<div className="search-sort-buttons">
-			{/* <input className="student-search" type="text" placeholder="&#61442;" /> */}
+			<section className="week-of">
+				<GrFormPrevious />
+				<p>Week of: dategoeshere</p>
+				<GrFormNext />
+			</section>
 			<BsSortDown />
 			{/* <BsSortUpAlt /> */}
-			<span>
-				Add a channel <BsPlusLg onClick={handleShow} />
-			</span>
 		</div>
 	);
 };
