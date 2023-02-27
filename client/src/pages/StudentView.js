@@ -15,6 +15,7 @@ const StudentView = () => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	const [channelName, setChannelName] = useState(0)
+	const [errMsg, setErrMsg] = useState("")
 
 		const postChannel = () => {
 			fetch("/api/channel/", {
@@ -26,11 +27,14 @@ const StudentView = () => {
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					console.log(data);
 					if(data.data === channelAdd) {
 						setChannelName(channelAdd)
+						handleClose();
 					}
-					handleClose();
+					else if (data.message) {
+						setErrMsg(data.message)
+					}
+					
 				});
 		};
 
@@ -53,6 +57,7 @@ const StudentView = () => {
 						/>
 					</Form.Group>
 				</Form>
+				<p style={{color: "red"}}>{errMsg}</p>
 			</Modal.Body>
 			<Modal.Footer>
 				<Button variant="secondary" onClick={handleClose}>
