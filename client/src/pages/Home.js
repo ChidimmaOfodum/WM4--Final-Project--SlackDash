@@ -43,10 +43,11 @@ export function Home() {
 				</div>
 				<div>
 				<Link to = "/login">Login to your account</Link>
-				</div>		
+				</div>
 				<div>
 				<Link to = "/signup">Create a new account</Link>
-				</div>							
+				</div>
+				<Link to="/landingpage">Landing Page</Link>
 			</div>
 		</main>
 	);

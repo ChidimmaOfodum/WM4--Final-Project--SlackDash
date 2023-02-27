@@ -1,0 +1,32 @@
+.navbar {
+	background-color: red;
+    padding: 1em;
+}
+.site-header{
+    color: white;
+    font-weight: bold;
+}
+
+nav ul {
+	margin: 3em;
+}
+
+nav ul li {
+	list-style-type: none;
+	font-size: 2em;
+	padding: 1em 0;
+}
+
+nav ul li a {
+	text-decoration: none;
+	color: white;
+}
+
+.navbar-toggler {
+	color: white;
+}
+
+.btn-close {
+	color: white;
+	font-size: 2em;
+}

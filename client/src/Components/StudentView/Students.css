@@ -4,6 +4,18 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    height: 95vh;
+    margin: 2em 1.5em 2em 1.5em;
+}
+
+.search-sort-buttons{
+    display: flex;
+    justify-content: space-between
+}
+
+#channels{
+    width: 25%;
+    margin: 1em 0;
 }
 
 .student-search{
@@ -12,10 +24,16 @@
     padding: .5em;
 }
 
+.search-sort-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
 table {
     border-collapse: separate;
     border-spacing:0 11px;
     margin-top:-11px;
+    max-width: 100%;
 }
 
 th {
@@ -47,4 +65,19 @@ td {
 
  .student-img {
     border-radius: 50%;
+ }
+
+ .search-sort-buttons {
+    padding: 0em 0 1.5em 0;
+ }
+
+ .form-control:focus{
+    border-color:lightgrey !important;
+    box-shadow: 0 0 0 0.1rem lightgrey !important;
+  }
+  
+ .pagination-btns{
+    display:flex;
+    justify-content: space-between;
+    margin: 1em 2em;
  }
