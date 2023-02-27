@@ -14,6 +14,25 @@ const StudentView = () => {
 	const [channelAdd, setChannelAdd] = useState("");
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+	const [channelName, setChannelName] = useState(0)
+
+		const postChannel = () => {
+			fetch("/api/channel/", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ data: channelAdd }),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					console.log(data);
+					if(data.data === channelAdd) {
+						setChannelName(channelAdd)
+					}
+					handleClose();
+				});
+		};
 
 	return (
 		<>
@@ -39,14 +58,14 @@ const StudentView = () => {
 				<Button variant="secondary" onClick={handleClose}>
 					Cancel
 				</Button>
-				<Button variant="danger" onClick={handleClose}>
+				<Button variant="danger" onClick={postChannel}>
 					Add
 				</Button>
 			</Modal.Footer>
 		</Modal>
 		<Header />
 			<main className="student-view">
-				<ChannelSelect />
+				<ChannelSelect channelName = {channelName}/>
 				<StudentSearch handleShow={handleShow}/>
 				<StudentTable />
 			</main>

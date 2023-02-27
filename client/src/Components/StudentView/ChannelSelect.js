@@ -1,6 +1,6 @@
 import { useState, useEffect} from "react";
 
-const ChannelSelect = () => {
+const ChannelSelect = ({channelName}) => {
 	const [channels, setChannels] = useState([]);
 
 	useEffect(() => {
@@ -8,7 +8,7 @@ const ChannelSelect = () => {
 		.then((res) => res.json())
 		.then((data) => setChannels(data))
 		.catch(err => console.log(err))
-	}, [])
+	}, [channelName])
 	
 
 	return (
