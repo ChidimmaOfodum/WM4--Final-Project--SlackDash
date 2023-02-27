@@ -2,6 +2,7 @@ import { Router } from "express";
 import logger from "./utils/logger";
 import db from "./db"
 import getData from "./Controllers/getData";
+import { getAllChannels } from "./slackMethods";
 
 const router = Router();
 router.get("/", (_, res) => {
@@ -18,9 +19,17 @@ router.get("/channels", async(req, res) => {
 })
 
 router.post("/channel", async(req, res) => {
+	const { channels } = await getAllChannels();
+	const filteredChannels = channels.filter(
+		(channel) => req.body.data === channel.name
+	);
+	const id = filteredChannels[0].id;
+	const channelName = filteredChannels[0].name;
+
 	const query = `INSERT INTO public.channel(channel_id, channel_name)
-										VALUES ('C04Q7BGH4L8', 'wm4');`;
-	await db.query(query);
-	res.json(req.body)
+										VALUES ($1, $2);`;
+
+  await db.query(query, [id, channelName]);
+	res.send({status:"success", data: channelName});
 })
 export default router;

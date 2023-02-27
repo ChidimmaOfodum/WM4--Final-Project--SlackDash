@@ -14,6 +14,7 @@ const StudentView = () => {
 	const [channelAdd, setChannelAdd] = useState("");
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+	const [channelName, setChannelName] = useState(0)
 
 		const postChannel = () => {
 			fetch("/api/channel/", {
@@ -25,7 +26,10 @@ const StudentView = () => {
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					console.log("Success", data);
+					console.log(data);
+					if(data.data === channelAdd) {
+						setChannelName(channelAdd)
+					}
 					handleClose();
 				});
 		};
@@ -61,7 +65,7 @@ const StudentView = () => {
 		</Modal>
 		<Header />
 			<main className="student-view">
-				<ChannelSelect />
+				<ChannelSelect channelName = {channelName}/>
 				<StudentSearch handleShow={handleShow}/>
 				<StudentTable />
 			</main>
