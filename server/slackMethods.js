@@ -38,3 +38,15 @@ export async function getChannelData() {
 		console.log(error);
 	}
 }
+
+//gets all channel in a workspace
+
+export async function getAllChannels() {
+	try {
+		return await client.conversations.list({
+			token: process.env.TOKEN,
+		});
+	} catch (error) {
+		console.log(error);
+	}
+}

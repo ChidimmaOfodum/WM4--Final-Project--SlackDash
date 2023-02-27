@@ -15,6 +15,21 @@ const StudentView = () => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
+		const postChannel = () => {
+			fetch("/api/channel/", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ data: channelAdd }),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					console.log("Success", data);
+					handleClose();
+				});
+		};
+
 	return (
 		<>
 		<Modal show={show} onHide={handleClose}>
@@ -39,7 +54,7 @@ const StudentView = () => {
 				<Button variant="secondary" onClick={handleClose}>
 					Cancel
 				</Button>
-				<Button variant="danger" onClick={handleClose}>
+				<Button variant="danger" onClick={postChannel}>
 					Add
 				</Button>
 			</Modal.Footer>

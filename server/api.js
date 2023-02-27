@@ -16,4 +16,11 @@ router.get("/channels", async(req, res) => {
 	data = data.rows.map((el) => el.channel_name)
 	res.json(data)
 })
+
+router.post("/channel", async(req, res) => {
+	const query = `INSERT INTO public.channel(channel_id, channel_name)
+										VALUES ('C04Q7BGH4L8', 'wm4');`;
+	await db.query(query);
+	res.json(req.body)
+})
 export default router;
