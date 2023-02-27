@@ -20,7 +20,7 @@ const getData = async (_, res) => {
 
 	//const trainees = memberInfo.filter((el) => el.user.profile.title.toLowerCase().includes("trainee"));
 
-	let { messages } = await getChannelData();
+	let { messages } = await getChannelData('C04Q7AGB5EU');
 	messages = messages.filter((el) => el.client_msg_id); //filter out bot messages
 
 	let aggregateData = membersInfo.map((el) => {
