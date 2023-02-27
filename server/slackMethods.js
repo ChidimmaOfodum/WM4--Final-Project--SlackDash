@@ -38,3 +38,38 @@ export async function getChannelData() {
 		console.log(error);
 	}
 }
+
+// accept a student ID and give me total messages in each channel 
+export async function studentProfileData(userId) {
+	try {
+		    let totalMessages = 0;
+            let messagesStatsForEachChannel = [];
+			// Get a list of all channels the user is a member of
+			const { channels } = await client.users.conversations({token: process.env.TOKEN, user: userId });
+
+			// Calculating all messages of a given user in those channels
+		    await Promise.all(channels.map( async (channel) => {
+				let totalMessagesForEachChannel = 0;
+				const channelId = await channel.id;
+				const channelName = await channel.name;
+			    const channelMessages = await client.conversations.history({token: process.env.TOKEN, channel: channelId, });
+			    const allMessages = await  channelMessages.messages;
+		        await allMessages.map(async (message)=>{
+				let isSelectedUSer = await message.user === userId;
+				if(isSelectedUSer){
+					totalMessages =  totalMessages + 1;
+					totalMessagesForEachChannel = totalMessagesForEachChannel + 1;
+				}
+				});
+				await messagesStatsForEachChannel.push({id:channelId, channelName:channelName, totalMessagesForEachChannel:totalMessagesForEachChannel });
+		    })); 
+
+			// Get the real name of the user
+			const userInfo = await getUserInfo(userId);
+			const realName = await userInfo.user.real_name;  
+			return await { traineeName: realName, messagesStatsForEachChannel: messagesStatsForEachChannel ,totalMessages:totalMessages   };
+     		}
+		    catch(error){
+		    console.log(error);
+	    }
+}
