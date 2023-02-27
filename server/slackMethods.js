@@ -27,11 +27,11 @@ export async function getUserInfo(userId) {
 
 //returns all messages in a particular channel
 
-export async function getChannelData() {
+export async function getChannelData(channelID) {
 	try {
 		return await client.conversations.history({
 			token: process.env.TOKEN,
-			channel: process.env.CHANNEL_ID,
+			channel: channelID || process.env.CHANNEL_ID,
 			oldest: 1676377207.351409,
 		});
 	} catch(error){
