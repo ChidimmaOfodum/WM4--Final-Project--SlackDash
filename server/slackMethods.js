@@ -2,10 +2,10 @@ import getSlackClient from "./slackClient";
 const client = getSlackClient();
 
 //get all members in a given channel
-export async function getChannelMembers() {
+export async function getChannelMembers(channelID) {
 	try {
 		return await client.conversations.members({
-			channel: process.env.CHANNEL_ID,
+			channel: channelID,
 			token: process.env.TOKEN,
 		});
 	} catch (error) {

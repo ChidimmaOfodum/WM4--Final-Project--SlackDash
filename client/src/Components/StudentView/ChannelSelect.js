@@ -9,11 +9,20 @@ const ChannelSelect = ({channelName}) => {
 		.then((data) => setChannels(data))
 		.catch(err => console.log(err))
 	}, [channelName])
-	
+
+	const handleChange = (e) => {
+		const value = e.target.value
+		fetch("", {
+			method: "POST",
+			body: value
+		})
+	}
 
 	return (
-		<select name="channels" id="channels">
-		{channels.map((channel, i) => <option value={i}>{channel}</option>)}
+		<select name="channels" id="channels" onChange={handleChange}>
+			{channels.map((channel, i) => {
+				return <option value={channel} key={i}>{channel}</option>;
+			})}
 		</select>
 	);
 };
