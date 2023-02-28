@@ -24,7 +24,7 @@ const Nav = ({studentProfileImage}) => {
 						) : (
 							<span className="site-header">MY PROFILE</span>
 						)}
-				<img src={studentProfileImage} alt='profile-picture'/>
+				<img src={studentProfileImage} alt='profile-picture' className="profile-pic"/>
 
 				<div
 					className="offcanvas offcanvas-end text-bg-dark"

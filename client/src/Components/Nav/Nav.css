@@ -7,6 +7,10 @@
     font-weight: bold;
 }
 
+.profile-pic{
+	border-radius: 50%;
+}
+
 nav ul {
 	margin: 3em;
 }

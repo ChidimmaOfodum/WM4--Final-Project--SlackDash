@@ -7,7 +7,6 @@ body {
 .Dashboard {
   width: 100vw;
   height: 100vh;
-  margin-top: 6em;
 }
 
 .toggle {
@@ -24,22 +23,27 @@ body {
   margin-right: 0.8rem;
 }
 .msg-stats {
-  grid-area: stats;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  align-items: center;
+  padding: 0 2em;
   margin-bottom: 1rem;
 }
+
+#lastMessageText {
+  text-align: center;
+  padding: 1em 0;
+}
+
 .title {
-  grid-area: title;
-  height: 8vh;
+  padding: 1em;
   text-align: center;
   margin: 0;
 }
 
 .icons{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   width: 90%;
   height: 25%;
@@ -51,7 +55,6 @@ body {
   font-style: italic;
 }
 .test{
-  grid-area: test;
   height: 51vh;
   width: 95vw;
   margin-left: 1rem;
