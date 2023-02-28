@@ -6,10 +6,10 @@ const PieChart = ({ channels }) => {
 		<div className="test">
 			<Doughnut
 				data={{
-					labels: channels.map((data) => data.name),
+					labels: channels.map((data) => data.channelName),
 					datasets: [
 						{
-							data: channels.map((data) => data.messages),
+							data: channels.map((data) => data.totalMessagesForEachChannel),
 							backgroundColor: [
 								"rgba(75,192,192,1)",
 								"#ecf0f1",
@@ -26,7 +26,7 @@ const PieChart = ({ channels }) => {
 					plugins: {
 						title: {
 							display: true,
-							text: "Number of messages from participants per channel",
+							text: "Number of your messages per channel",
 						},
 					},
 				}}
