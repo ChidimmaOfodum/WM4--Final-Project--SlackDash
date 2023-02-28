@@ -39,6 +39,21 @@ export async function getChannelData() {
 	}
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // accept a student ID and give me total messages in each channel 
 export async function studentProfileData(userId) {
 	try {
