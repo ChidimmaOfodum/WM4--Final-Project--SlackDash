@@ -79,7 +79,8 @@ export async function studentProfileData(userId) {
 			// Get the real name of the user
 			const userInfo = await getUserInfo(userId);
 			const realName = await userInfo.user.real_name;  
-			return await { traineeName: realName, messagesStatsForEachChannel: messagesStatsForEachChannel ,totalMessages:totalMessages , totalCalls: totalCalls  };
+		        const profilePic = await userInfo.user.profile.image_32;
+			return await { traineeName: realName, profilePic:profilePic  , messagesStatsForEachChannel: messagesStatsForEachChannel ,totalMessages:totalMessages , totalCalls: totalCalls  };
      		}
 		    catch(error){
 		    console.log(error);
