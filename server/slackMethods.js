@@ -43,6 +43,7 @@ export async function getChannelData() {
 export async function studentProfileData(userId) {
 	try {
 		    let totalMessages = 0;
+		    let totalCalls = 0;
             let messagesStatsForEachChannel = [];
 			// Get a list of all channels the user is a member of
 			const { channels } = await client.users.conversations({token: process.env.TOKEN, user: userId });
@@ -50,10 +51,21 @@ export async function studentProfileData(userId) {
 			// Calculating all messages of a given user in those channels
 		    await Promise.all(channels.map( async (channel) => {
 				let totalMessagesForEachChannel = 0;
+				let totalCallsForEachChannel = 0;
 				const channelId = await channel.id;
 				const channelName = await channel.name;
 			    const channelMessages = await client.conversations.history({token: process.env.TOKEN, channel: channelId, });
 			    const allMessages = await  channelMessages.messages;
+				let calls = await allMessages.filter((call) => call.room);
+                let callers = await calls.map((c) => c.room).map((p) => p.participant_history).flat();
+		        await callers.map(async (trainee)=>{
+					let isSelectedTrainee = await trainee === userId;
+					if(isSelectedTrainee){
+						totalCalls = totalCalls + 1;
+
+						totalCallsForEachChannel =  totalCallsForEachChannel + 1;
+					}
+					});
 		        await allMessages.map(async (message)=>{
 				let isSelectedUSer = await message.user === userId;
 				if(isSelectedUSer){
@@ -61,13 +73,13 @@ export async function studentProfileData(userId) {
 					totalMessagesForEachChannel = totalMessagesForEachChannel + 1;
 				}
 				});
-				await messagesStatsForEachChannel.push({id:channelId, channelName:channelName, totalMessagesForEachChannel:totalMessagesForEachChannel });
+				await messagesStatsForEachChannel.push({id:channelId, channelName:channelName, totalMessagesForEachChannel:totalMessagesForEachChannel, totalCallsForEachChannel:totalCallsForEachChannel });
 		    })); 
 
 			// Get the real name of the user
 			const userInfo = await getUserInfo(userId);
 			const realName = await userInfo.user.real_name;  
-			return await { traineeName: realName, messagesStatsForEachChannel: messagesStatsForEachChannel ,totalMessages:totalMessages   };
+			return await { traineeName: realName, messagesStatsForEachChannel: messagesStatsForEachChannel ,totalMessages:totalMessages , totalCalls: totalCalls  };
      		}
 		    catch(error){
 		    console.log(error);
