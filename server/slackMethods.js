@@ -27,11 +27,11 @@ export async function getUserInfo(userId) {
 
 //returns all messages in a particular channel
 
-export async function getChannelData() {
+export async function getChannelData(channelID) {
 	try {
 		return await client.conversations.history({
 			token: process.env.TOKEN,
-			channel: process.env.CHANNEL_ID,
+			channel: channelID,
 			oldest: 1676377207.351409,
 		});
 	} catch(error){
@@ -98,4 +98,15 @@ export async function studentProfileData(userId) {
 		    catch(error){
 		    console.log(error);
 	    }
+	}		
+//gets all channel in a workspace
+
+export async function getAllChannels() {
+	try {
+		return await client.conversations.list({
+			token: process.env.TOKEN,
+		});
+	} catch (error) {
+		console.log(error);
+	}
 }
