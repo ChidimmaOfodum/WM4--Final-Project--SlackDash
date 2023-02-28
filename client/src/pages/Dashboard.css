@@ -51,6 +51,8 @@ body {
   flex-direction: column;
   justify-content: space-around;
   margin-bottom: 1rem;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
 }
 .title {
   grid-area: title;
@@ -66,6 +68,13 @@ body {
   width: 90%;
   height: 25%;
 }
+#lastMessageText{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 25%;
+}
 
  p {
   font-size: 3rem;
@@ -74,7 +83,7 @@ body {
 }
 .test{
   grid-area: test;
-  height: 51vh;
+  height: 45vh;
   width: 95vw;
   margin-left: 1rem;
 }
@@ -95,7 +104,7 @@ body {
 footer {
   grid-area: footer;
   background-color: red;
-  height: 8vh;
+  /* height: 8vh; */
   display: flex;
   justify-content: space-around;
   align-items: center;
