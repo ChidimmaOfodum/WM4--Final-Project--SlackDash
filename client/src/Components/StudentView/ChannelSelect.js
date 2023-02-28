@@ -12,10 +12,23 @@ const ChannelSelect = ({channelName}) => {
 
 	const handleChange = (e) => {
 		const value = e.target.value
-		fetch("", {
+		const data = { data: value};
+
+		fetch("https://example.com/profile", {
 			method: "POST",
-			body: value
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data),
 		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log("Success:", data);
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+			});
+
 	}
 
 	return (

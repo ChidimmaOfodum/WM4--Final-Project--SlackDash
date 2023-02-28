@@ -6,9 +6,10 @@ import {
 import getCalls from "./getCalls";
 
 
-const getData = async (_, res) => {
-	const { members } = await getChannelMembers();
-	const calls = await getCalls();
+const getData = async (req, res) => {
+	const channelId = req.body
+	const { members } = await getChannelMembers(channelId);
+	const calls = await getCalls(channelId);
 
 	let membersInfo = await Promise.all(
 		members.map(async (userId) => {
@@ -20,7 +21,7 @@ const getData = async (_, res) => {
 
 	//const trainees = memberInfo.filter((el) => el.user.profile.title.toLowerCase().includes("trainee"));
 
-	let { messages } = await getChannelData('C04Q7AGB5EU');
+	let { messages } = await getChannelData(channelId);
 	messages = messages.filter((el) => el.client_msg_id); //filter out bot messages
 
 	let aggregateData = membersInfo.map((el) => {
