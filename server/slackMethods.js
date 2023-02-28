@@ -45,6 +45,7 @@ export async function studentProfileData(userId) {
 		    let totalMessages = 0;
 		    let totalCalls = 0;
             let messagesStatsForEachChannel = [];
+			let finalTs = 0;
 			// Get a list of all channels the user is a member of
 			const { channels } = await client.users.conversations({token: process.env.TOKEN, user: userId });
 
@@ -56,6 +57,13 @@ export async function studentProfileData(userId) {
 				const channelName = await channel.name;
 			    const channelMessages = await client.conversations.history({token: process.env.TOKEN, channel: channelId, });
 			    const allMessages = await  channelMessages.messages;
+				const ts = await allMessages[0].ts;
+				if(await finalTs===0){
+					finalTs = ts;
+				}
+                if(await ts> finalTs){
+					finalTs = ts;
+				}
 				let calls = await allMessages.filter((call) => call.room);
                 let callers = await calls.map((c) => c.room).map((p) => p.participant_history).flat();
 		        await callers.map(async (trainee)=>{
@@ -79,8 +87,13 @@ export async function studentProfileData(userId) {
 			// Get the real name of the user
 			const userInfo = await getUserInfo(userId);
 			const realName = await userInfo.user.real_name;  
-		        const profilePic = await userInfo.user.profile.image_32;
-			return await { traineeName: realName, profilePic:profilePic  , messagesStatsForEachChannel: messagesStatsForEachChannel ,totalMessages:totalMessages , totalCalls: totalCalls  };
+			const profilePic = await userInfo.user.profile.image_32;
+			// Finding time of very last message
+			const options = { weekday: "short", year: "numeric", month: "short", day: "numeric" };
+			const dOLM = await new Date(finalTs * 1000);
+			const finalTime = await `${dOLM.toLocaleDateString("en-GB", options)}, ${dOLM.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}` || "Nill";
+
+			return await { traineeName: realName, profilePic:profilePic, finalTime:finalTime  , messagesStatsForEachChannel: messagesStatsForEachChannel ,totalMessages:totalMessages , totalCalls: totalCalls  };
      		}
 		    catch(error){
 		    console.log(error);
