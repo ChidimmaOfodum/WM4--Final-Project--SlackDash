@@ -7,7 +7,11 @@
 	height: 95vh;
 	margin: 2em 1.5em 2em 1.5em;
 }
-
+.arrowsUp{
+	color: red;
+	font-size: 1.5rem;
+	font-weight: bolder;
+}
 .search-sort-buttons,
 .channels-section {
 	display: flex;
@@ -17,10 +21,13 @@
 
 .week-of{
     display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .week-of p {
     padding: 0 1em;
+	margin-bottom: 0;
 }
 
 #channels {

@@ -1,14 +1,13 @@
 import { BsSortDown } from "react-icons/bs";
 import { BsSortUpAlt } from "react-icons/bs";
-import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 
 const StudentSearch = ({}) => {
 	return (
 		<div className="search-sort-buttons">
 			<section className="week-of">
-				<GrFormPrevious />
+			   <span className="arrowsUp">{"<"}</span>
 				<p>Week of: dategoeshere</p>
-				<GrFormNext />
+			    <span className="arrowsUp">{">"}</span>
 			</section>
 			<BsSortDown />
 			{/* <BsSortUpAlt /> */}
