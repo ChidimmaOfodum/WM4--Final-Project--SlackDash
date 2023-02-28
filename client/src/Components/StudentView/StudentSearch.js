@@ -1,16 +1,16 @@
 import { BsSortDown } from "react-icons/bs";
 import { BsSortUpAlt } from "react-icons/bs";
-import { BsPlusLg } from "react-icons/bs";
 
-const StudentSearch = ({ handleShow }) => {
+const StudentSearch = ({}) => {
 	return (
 		<div className="search-sort-buttons">
-			{/* <input className="student-search" type="text" placeholder="&#61442;" /> */}
+			<section className="week-of">
+			   <span className="arrowsUp">{"<"}</span>
+				<p>Week of: dategoeshere</p>
+			    <span className="arrowsUp">{">"}</span>
+			</section>
 			<BsSortDown />
 			{/* <BsSortUpAlt /> */}
-			<span>
-				Add a channel <BsPlusLg onClick={handleShow} />
-			</span>
 		</div>
 	);
 };
