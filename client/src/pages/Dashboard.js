@@ -1,90 +1,48 @@
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import { Chart, registerables } from "chart.js";
 import "./Dashboard.css";
 import Nav from "../Components/Nav/Nav";
 import BarChart from "../Components/Dashboard/Bar";
 import PieChart from "../Components/Dashboard/Pie";
+import Title from "../Components/Dashboard/Title";
 import MsgStats from "../Components/Dashboard/MsgStats";
 import Footer from "../Components/Footer/Footer";
 Chart.register(...registerables);
 
-const channels = [
-	{
-		id: "C04P33JK30F",
-		name: "general",
-		messages: 50, //
-		is_archived: false,
-		is_general: true,
-	},
-	{
-		id: "C04P33JK30F",
-		name: "products",
-		messages: 50, //
-		is_archived: false,
-		is_general: true,
-	},
 
-	{
-		id: "C04P33JK30F",
-		name: "test1",
-		messages: 80, //
-		is_archived: false,
-		is_general: true,
-	},
-	{
-		id: "C04PB1GS27Q",
-		name: "random",
-		messages: 10,
-		is_channel: true,
-		is_group: false,
-	},
-	{
-		id: "C04Q7AGB5EU",
-		messages: 150,
-		name: "slackdash",
-		is_channel: true,
-		is_group: false,
-	},
-	{
-		id: "C04Q7BGH4L8",
-		name: "wm4",
-		messages: 100,
-		is_channel: true,
-		is_group: false,
-		is_im: false,
-	},
-	{
-		id: "C04Q7BGH4L8",
-		name: "wm4",
-		messages: 100,
-		is_channel: true,
-		is_group: false,
-		is_im: false,
-	},
-	{
-		id: "C04Q7BGH4L8",
-		name: "wm4",
-		messages: 100,
-		is_channel: true,
-		is_group: false,
-		is_im: false,
-	},
-];
 
 const Dashboard = () => {
 	const [isBar, setIsBar] = useState(true);
 	const pieOrBar = () => {
 		isBar ? setIsBar(false) : setIsBar(true);
 	};
+	const [studentStats, setStudentStats] = useState([]);
+	const [studentName, setStudentName] = useState("");
+	const [studentTotalMessgaes, setstudentTotalMessgaes] = useState(0);
+	const [studentTotalCalls, setstudentTotalCalls] = useState(0);
+	const [studentProfileImage, setstudentProfileImage] = useState(0);
+	const [lastMessage,setLastMessage] = useState("");
+	useEffect(() => {
+	  fetch("/api/studentProfileData/U04PEMGLF53")
+	  .then((res) => res.json())
+	  .then((data) => {
+		setStudentStats(data.messagesStatsForEachChannel);
+		setStudentName(data.traineeName);
+		setstudentTotalMessgaes(data.totalMessages);
+		setstudentTotalCalls(data.totalCalls);
+		setstudentProfileImage(data.profilePic);
+		setLastMessage(data.finalTime);
+	    })
+	  .catch((err) => console.log(err));
+  }, []);
 	return (
-		<>
-		<Nav />
 		<div className="Dashboard">
-			{isBar ? (<BarChart channels={channels} />) : (<PieChart channels={channels} />)}
-			<MsgStats />
+			<Nav studentProfileImage={studentProfileImage} />
+			<Title traineeName={studentName} />
+			{isBar ? (<BarChart channels={studentStats} />) : (<PieChart channels={studentStats} />)}
+			<MsgStats totalMessages={studentTotalMessgaes} totalCalls={studentTotalCalls} lastMessage={lastMessage} />
+			<Footer />
 		</div>
-		<Footer />
-		</>
 	);
 };
 
