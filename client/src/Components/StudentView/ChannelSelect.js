@@ -15,7 +15,7 @@ const ChannelSelect = ({ channelName, handleShow }) => {
 		<div className="channels-section">
 			<select name="channels" id="channels">
 				{channels.map((channel, i) => (
-					<option value={i}>{channel}</option>
+					<option value={i} key={channel}>{channel}</option>
 				))}
 			</select>
 			<span>

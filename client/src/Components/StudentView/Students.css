@@ -7,6 +7,10 @@
 	height: 95vh;
 	margin: 2em 1.5em 2em 1.5em;
 }
+.table-responsive{
+	display:flex;
+	flex-direction: column;
+}
 .arrowsUp{
 	color: red;
 	font-size: 1.5rem;
