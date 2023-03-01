@@ -13,6 +13,7 @@ Chart.register(...registerables);
 const Dashboard = () => {
 	const location = useLocation();
 	const { studentid } = location.state;
+	console.log(studentid)
 	const [isBar, setIsBar] = useState(true);
 	const pieOrBar = () => {
 		isBar ? setIsBar(false) : setIsBar(true);

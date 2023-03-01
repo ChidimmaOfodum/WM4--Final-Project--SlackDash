@@ -65,7 +65,6 @@ const StudentTable = () => {
 								<td>
 									<Link to="/dashboard" state={{ studentid: student.user.id }}>
 										{student.user.real_name}
-										{console.log(student.user.id)}
 									</Link>
 								</td>
 								<td>{student.messages.length}</td>
