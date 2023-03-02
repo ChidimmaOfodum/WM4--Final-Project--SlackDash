@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PaginationBtns from "./PaginationBtns";
 import "./Students.css";
 
-const StudentTable = ({ students, defaultMessage }) => {
+const StudentTable = ({ students, defaultMessage, loading}) => {
 	//const [students, setStudents] = useState([]);
 	const [startIndex, setStartIndex] = useState(0);
 
@@ -40,7 +40,7 @@ const StudentTable = ({ students, defaultMessage }) => {
 								<h2>add or select a channel first</h2>
 							</td>
 						</tr>
-					) : (
+					) : loading? <>...Loading</> : (
 						students.slice(startIndex, startIndex + 2).map((student, i) => (
 							<tr className="student-table-view" key={i}>
 								<td>
@@ -65,6 +65,7 @@ const StudentTable = ({ students, defaultMessage }) => {
 			</table>
 			<PaginationBtns
 				defaultMessage={defaultMessage}
+				loading= {loading}
 				students={students}
 				startIndex={startIndex}
 				setStartIndex={setStartIndex}
