@@ -10,7 +10,7 @@ const getDataPerChannel = async (req, res) => {
 	const channelId = rows[0].channel_id;
 	const data = await getData(channelId);
 
-	res.send({ data: data });
+	res.send({ data: data});
 };
 
 export default getDataPerChannel;

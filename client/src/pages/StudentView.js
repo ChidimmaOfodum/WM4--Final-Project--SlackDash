@@ -91,7 +91,7 @@ const StudentView = () => {
 			</Modal>
 			<Header />
 			<main className="student-view">
-				<ChannelSelect channelName={channelName} handleChange={handleChange} />
+				<ChannelSelect channelName={channelName} handleChange={handleChange} handleShow = {handleShow} />
 				<StudentSearch handleShow={handleShow} />
 				<StudentTable students={students} loading = {loading}/>
 			</main>
