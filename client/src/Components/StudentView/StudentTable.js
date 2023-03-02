@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Loader from "./Loader";
 import PaginationBtns from "./PaginationBtns";
 import "./Students.css";
 
@@ -40,7 +41,7 @@ const StudentTable = ({ students, defaultMessage, loading}) => {
 								<h2>add or select a channel first</h2>
 							</td>
 						</tr>
-					) : loading? <>...Loading</> : (
+					) : loading? <Loader/> : (
 						students.slice(startIndex, startIndex + 2).map((student, i) => (
 							<tr className="student-table-view" key={i}>
 								<td>
