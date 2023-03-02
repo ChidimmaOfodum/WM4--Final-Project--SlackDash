@@ -1,7 +1,6 @@
 import { Router } from "express";
 import logger from "./utils/logger";
-import db from "./db"
-import getData from "./Controllers/getData";
+import getDataPerChannel from "./Controllers/getDataPerChannel";
 import postChannel from "./Controllers/postChannel";
 import getChannels from "./Controllers/getChannels";
 
@@ -11,7 +10,7 @@ router.get("/", (_, res) => {
 	res.json({ message: "Hello, world!" });
 });
 
-router.get("/data", getData);
+router.post("/data", getDataPerChannel);
 router.get("/channels", getChannels)
 router.post("/channel", postChannel )
 

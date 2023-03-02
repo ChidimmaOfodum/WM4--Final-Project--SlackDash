@@ -32,7 +32,7 @@ export async function getChannelData(channelID) {
 		return await client.conversations.history({
 			token: process.env.TOKEN,
 			channel: channelID,
-			oldest: 1676377207.351409,
+			//oldest: 1676377207.351409,
 		});
 	} catch(error){
 		console.log(error);

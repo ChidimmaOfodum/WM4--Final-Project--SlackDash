@@ -10,7 +10,7 @@ const postChannel = async (req, res) => {
 		const id = filteredChannels[0].id;
 		const channelName = filteredChannels[0].name;
 	
-		const query = `INSERT INTO public.channel(channel_id,       channel_name) VALUES ($1, $2);`;
+		const query = `INSERT INTO public.channel(channel_id, channel_name) VALUES ($1, $2);`;
 	
 		await db.query(query, [id, channelName]);
 		res.send({ status: "success", data: channelName });
@@ -39,5 +39,6 @@ const postChannel = async (req, res) => {
 		 
 	}
 };
+
 
 export default postChannel;

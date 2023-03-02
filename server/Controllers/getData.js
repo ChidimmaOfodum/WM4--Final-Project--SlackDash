@@ -5,9 +5,7 @@ import {
 } from "../slackMethods";
 import getCalls from "./getCalls";
 
-
-const getData = async (req, res) => {
-	const channelId = req.body
+const getData = async (channelId) => {
 	const { members } = await getChannelMembers(channelId);
 	const calls = await getCalls(channelId);
 
@@ -32,7 +30,7 @@ const getData = async (req, res) => {
 				el.messages = msg;
 			}
 
-			if(Object.keys(calls).includes(el.user.real_name)) {
+			if (Object.keys(calls).includes(el.user.real_name)) {
 				el.totalCalls = calls[el.user.real_name];
 			}
 		}
@@ -44,7 +42,7 @@ const getData = async (req, res) => {
 		};
 	});
 
-	res.json(aggregateData);
+	return aggregateData;
 };
 
 export default getData;
