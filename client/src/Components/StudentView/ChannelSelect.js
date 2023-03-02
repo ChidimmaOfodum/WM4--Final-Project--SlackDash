@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BsPlusLg } from "react-icons/bs";
 
-const ChannelSelect = ({ channelName, handleShow }) => {
+const ChannelSelect = ({channelName, handleChange, handleShow}) => {
 	const [channels, setChannels] = useState([]);
 
 	useEffect(() => {
@@ -13,9 +13,9 @@ const ChannelSelect = ({ channelName, handleShow }) => {
 
 	return (
 		<div className="channels-section">
-			<select name="channels" id="channels">
+			<select name="channels" id="channels" onChange={handleChange}>
 				{channels.map((channel, i) => (
-					<option value={i}>{channel}</option>
+					<option value={channel} key= {i}>{channel}</option>
 				))}
 			</select>
 			<span>
