@@ -53,7 +53,7 @@ const StudentTable = () => {
 					<>Loading... </>
 				) : (
 					<tbody>
-						{students.slice(startIndex, startIndex + 2).map((student, i) => (
+						{students.slice(startIndex, startIndex + 4).map((student, i) => (
 							<tr className="student-table-view" key={i}>
 								<td>
 									<img
