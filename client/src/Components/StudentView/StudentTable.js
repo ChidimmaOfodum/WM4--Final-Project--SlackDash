@@ -7,7 +7,6 @@ const StudentTable = () => {
 	const [loading, setLoading] = useState(true);
 	const [students, setStudents] = useState([]);
 	const [startIndex, setStartIndex] = useState(0);
-	const [studentId, setStudentId] = useState("");
 
 	useEffect(() => {
 		fetch("/api/data")
@@ -33,9 +32,7 @@ const StudentTable = () => {
 		);
 	};
 
-	const handleNameClick = (id) => {
-		<Link to="/dashboard" studentId={id}></Link>;
-	};
+	students.sort((a,b) => a.messages.length < b.messages.length ? 1 : -1)
 
 	return (
 		<div className="table-responsive">
