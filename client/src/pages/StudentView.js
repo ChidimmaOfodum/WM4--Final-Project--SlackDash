@@ -39,16 +39,8 @@ const StudentView = () => {
 	};
 
 	const handleChange = (e) => {
-		const value = e.target.value;
-		const data = { data: value };
-
-		fetch("/api/data", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(data),
-		})
+		const channelName = e.target.value;
+		fetch(`/api/data/${channelName}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setStudents(data.data);
