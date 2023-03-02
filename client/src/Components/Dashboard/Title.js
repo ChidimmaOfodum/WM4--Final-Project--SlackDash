@@ -1,8 +1,7 @@
-
-const Title = () => {
-  return (
+const Title = ({ traineeName }) => {
+	return (
 		<div className="title">
-			<h2>Weekly Overview</h2>
+			<h2>Hi {traineeName} Here is your weekly Overview</h2>
 		</div>
 	);
 };

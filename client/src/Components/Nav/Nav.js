@@ -5,7 +5,7 @@ import "./Nav.css";
 import { CgClose } from "react-icons/cg";
 import { RxHamburgerMenu } from "react-icons/rx";
 
-const Nav = () => {
+const Nav = ({studentProfileImage}) => {
 	return (
 		<nav className="navbar">
 			<div className="container-fluid">
@@ -24,7 +24,7 @@ const Nav = () => {
 						) : (
 							<span className="site-header">MY PROFILE</span>
 						)}
-				<img src='' alt='profile-picture'/>
+				<img src={studentProfileImage} alt='profile-picture' className="profile-pic"/>
 
 				<div
 					className="offcanvas offcanvas-end text-bg-dark"

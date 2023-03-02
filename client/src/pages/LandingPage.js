@@ -9,7 +9,7 @@ const LandingPage = () => {
 			<img src={SlackDashLogo} alt="SlackDash" className="slackdash-logo" />
 			<div className="links">
 				<Link to="/students/table/view" className="links">Student Table View</Link>
-				<Link to="/dashboard" className="links">Dashboard</Link>
+				<Link to="/dashboard" className="links">Profile</Link>
 				<Link to="/login" className="links">Login to your account</Link>
 				<Link to="/signup" className="links">Create a new account</Link>
 			</div>
