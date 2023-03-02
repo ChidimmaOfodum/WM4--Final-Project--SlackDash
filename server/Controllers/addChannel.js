@@ -1,7 +1,7 @@
 import db from "../db";
 import { getAllChannels } from "../slackMethods";
 
-const postChannel = async (req, res) => {
+const addChannel = async (req, res) => {
 	try{
 		const { channels } = await getAllChannels();
 		const filteredChannels = channels.filter(
@@ -41,4 +41,4 @@ const postChannel = async (req, res) => {
 };
 
 
-export default postChannel;
+export default addChannel;
