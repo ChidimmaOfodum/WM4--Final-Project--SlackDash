@@ -2,8 +2,11 @@ import {
 	getChannelData,
 	getChannelMembers,
 	getUserInfo,
+	getReplies,
 } from "../slackMethods";
 import getCalls from "./getCalls";
+
+
 
 const getData = async (channelId) => {
 	const { members } = await getChannelMembers(channelId);
@@ -22,14 +25,14 @@ const getData = async (channelId) => {
 	let { messages } = await getChannelData(channelId);
 	messages = messages.filter((el) => el.client_msg_id); //filter out bot messages
 
-	let aggregateData = membersInfo.map((el) => {
+	let aggregateData = await Promise.all(membersInfo.map(async(el) => {
 		const msg = [];
+		const replies = []
 		for (let data of messages) {
 			if (data["user"] === el.user.id) {
 				msg.push(data);
 				el.messages = msg;
 			}
-
 			if (Object.keys(calls).includes(el.user.real_name)) {
 				el.totalCalls = calls[el.user.real_name];
 			}
@@ -40,9 +43,9 @@ const getData = async (channelId) => {
 			messages: el.messages || [],
 			totalCalls: el.totalCalls || 0,
 		};
-	});
-
-	return aggregateData;
+	}));
+	
+	return aggregateData
 };
 
 export default getData;
