@@ -25,13 +25,14 @@ const getData = async (channelId) => {
 
 	let aggregateData = await Promise.all(
 		membersInfo.map(async (el) => {
+			const allReplies = [];
 			const msg = [];
-			const replies = [];
+			const userReplies = [];
 			for (let data of messages) {
 				if (data["thread_ts"]) {
 					let { messages } = await getReplies(channelId, data["thread_ts"]);
 					messages = messages.filter((el) => el.ts !== data["thread_ts"]);
-					dataTest.push(...messages);
+					allReplies.push(...messages);
 				}
 				if (data["user"] === el.user.id) {
 					msg.push(data);
@@ -42,10 +43,10 @@ const getData = async (channelId) => {
 				}
 			}
 
-			for (let reply of dataTest) {
+			for (let reply of allReplies) {
 				if (reply["user"] === el.user.id) {
-					replies.push(reply);
-					el.replies = replies;
+					userReplies.push(reply);
+					el.replies = userReplies;
 				}
 			}
 
