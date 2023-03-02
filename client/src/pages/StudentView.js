@@ -13,7 +13,7 @@ const StudentView = () => {
 	const [show, setShow] = useState(false);
 	const [channelAdd, setChannelAdd] = useState("");
 	const [students, setStudents] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const [defaultMessage, setDefaultMessage] = useState(true);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	const [channelName, setChannelName] = useState(0);
@@ -44,7 +44,7 @@ const StudentView = () => {
 			.then((response) => response.json())
 			.then((data) => {
 				setStudents(data.data);
-				setLoading(false)
+				setDefaultMessage(false)
 			})
 			.catch((error) => {
 				console.error("Error:", error);
@@ -85,7 +85,7 @@ const StudentView = () => {
 			<main className="student-view">
 				<ChannelSelect channelName={channelName} handleChange={handleChange} handleShow = {handleShow} />
 				<StudentSearch handleShow={handleShow} />
-				<StudentTable students={students} loading = {loading}/>
+				<StudentTable students={students} defaultMessage = {defaultMessage}/>
 			</main>
 			<Footer />
 		</>

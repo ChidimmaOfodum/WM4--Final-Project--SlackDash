@@ -98,3 +98,7 @@ td:last-child {
 	justify-content: space-between;
 	margin: 1em 2em;
 }
+
+.hidden{
+	display: none;
+}
