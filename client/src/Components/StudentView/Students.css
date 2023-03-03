@@ -69,17 +69,6 @@ td {
 	background-color: lightgoldenrodyellow;
 }
 
-.tests {
-	border: none;
-	background-color: white;
-	padding: 0;
-	border-style: none;
-}
-
-.tests:first-child {
-	border-style: none;
-	border-radius: none;
-}
 td:first-child {
 	border-left-style: solid;
 	border-top-left-radius: 11em;
@@ -90,6 +79,18 @@ td:last-child {
 	border-right-style: solid;
 	border-bottom-right-radius: 11em;
 	border-top-right-radius: 11em;
+}
+
+.loader-row {
+	border: none;
+	background-color: white;
+	padding: 0;
+	border-style: none;
+}
+
+.loader-row:first-child {
+	border-style: none;
+	border-radius: none;
 }
 
 .student-img {
@@ -115,7 +116,8 @@ td:last-child {
 	display: none;
 }
 
-.center {
+/* loader animation styles begins */
+.loader {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -167,3 +169,4 @@ td:last-child {
     transform: scale(0);
   }
 }
+/* loader animation styles ends */
