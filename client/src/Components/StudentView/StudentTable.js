@@ -60,7 +60,7 @@ const StudentTable = () => {
 									/>
 								</td>
 								<td>
-									<Link to="/dashboard" state={{ studentid: student.user.id }}>
+									<Link to="/dashboard" state={{ studentid: student.user.id }} className="profile-link">
 										{student.user.real_name}
 									</Link>
 								</td>
