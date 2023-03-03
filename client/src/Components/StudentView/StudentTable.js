@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import Loader from "./Loader";
+import DefaultMsg from "./DefaultMsg";
 import PaginationBtns from "./PaginationBtns";
 import "./Students.css";
 
-const StudentTable = ({ students, defaultMessage, loading}) => {
+const StudentTable = ({ students, defaultMessage, loading }) => {
 	//const [students, setStudents] = useState([]);
 	const [startIndex, setStartIndex] = useState(0);
 
@@ -36,17 +37,9 @@ const StudentTable = ({ students, defaultMessage, loading}) => {
 				</thead>
 				<tbody>
 					{defaultMessage ? (
-						<tr>
-							<td colSpan={5}>
-								<h2>add or select a channel first</h2>
-							</td>
-						</tr>
+						<DefaultMsg />
 					) : loading ? (
-						<tr>
-							<td className = "tests" colSpan={5}>
-								<Loader />
-							</td>
-						</tr>
+						<Loader />
 					) : (
 						students.slice(startIndex, startIndex + 2).map((student, i) => (
 							<tr className="student-table-view" key={i}>
