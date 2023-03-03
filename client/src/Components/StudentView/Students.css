@@ -1,0 +1,113 @@
+@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+
+.student-view {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	height: 95vh;
+	margin: 2em 1.5em 2em 1.5em;
+}
+.table-responsive{
+	display:flex;
+	flex-direction: column;
+}
+.arrowsUp{
+	color: red;
+	font-size: 1.5rem;
+	font-weight: bolder;
+}
+.search-sort-buttons,
+.channels-section {
+	display: flex;
+	justify-content: space-between;
+    align-items: center;
+}
+
+.week-of{
+    display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.week-of p {
+    padding: 0 1em;
+	margin-bottom: 0;
+}
+
+#channels {
+	width: 25%;
+	margin: 1em 0;
+}
+
+.student-search {
+	font-family: FontAwesome;
+	border-radius: 10em;
+	padding: 0.5em;
+}
+
+.search-sort-buttons {
+	display: flex;
+	justify-content: space-between;
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 0 11px;
+	margin-top: -11px;
+	max-width: 100%;
+}
+
+th {
+	padding: 0.8em;
+}
+
+tr {
+	margin: 1em;
+	text-align: center;
+}
+
+td {
+	border: 2px solid black;
+	border-style: solid none;
+	padding: 11px;
+	background-color: lightgoldenrodyellow;
+}
+td:first-child {
+	border-left-style: solid;
+	border-top-left-radius: 11em;
+	border-bottom-left-radius: 11em;
+}
+
+td:last-child {
+	border-right-style: solid;
+	border-bottom-right-radius: 11em;
+	border-top-right-radius: 11em;
+}
+
+.student-img {
+	border-radius: 50%;
+}
+
+.search-sort-buttons {
+	padding: 0em 0 1.5em 0;
+}
+
+.form-control:focus {
+	border-color: lightgrey !important;
+	box-shadow: 0 0 0 0.1rem lightgrey !important;
+}
+
+.profile-link{
+	text-decoration: none;
+	color: black;
+}
+
+.profile-link:hover{
+	color: red;
+}
+
+.pagination-btns {
+	display: flex;
+	justify-content: space-between;
+	margin: 1em 2em;
+}

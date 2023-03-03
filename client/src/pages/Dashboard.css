@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.Dashboard {
+  width: 100vw;
+  height: 100vh;
+}
+
+.toggle {
+  margin-left: 0.5rem;
+  color: white;
+}
+
+.profile-pics {
+  background-image: url("https://i.stack.imgur.com/frlIf.png");
+  background-size: contain;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 0.8rem;
+}
+.msg-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2em;
+  margin-bottom: 1rem;
+}
+
+#lastMessageText {
+  text-align: center;
+  padding: 1em 0;
+}
+
+.title {
+  padding: 1em;
+  text-align: center;
+  margin: 0;
+}
+
+.icons{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90%;
+  height: 25%;
+}
+
+ .stats {
+  font-size: 3rem;
+  color: #059ec0;
+  font-style: italic;
+}
+.test{
+  height: 51vh;
+  width: 95vw;
+  margin-left: 1rem;
+}
+
+.test1{
+  border: 2px solid green;
+}
+
+.homebtn-wrapper{
+  background-color: white;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+footer {
+  width: 100vw;
+  background-color: red;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: .5em;
+}
+
+

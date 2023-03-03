@@ -14,6 +14,7 @@ const apiRoot = "/api";
 
 const app = express();
 
+
 app.use(express.json());
 app.use(configuredHelmet());
 app.use(configuredMorgan());
