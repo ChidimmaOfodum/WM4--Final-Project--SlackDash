@@ -2,10 +2,10 @@ import getSlackClient from "./slackClient";
 const client = getSlackClient();
 
 //get all members in a given channel
-export async function getChannelMembers() {
+export async function getChannelMembers(channelID) {
 	try {
 		return await client.conversations.members({
-			channel: process.env.CHANNEL_ID,
+			channel: channelID,
 			token: process.env.TOKEN,
 		});
 	} catch (error) {
@@ -32,12 +32,29 @@ export async function getChannelData(channelID) {
 		return await client.conversations.history({
 			token: process.env.TOKEN,
 			channel: channelID,
-			oldest: 1676377207.351409,
+			//oldest: 1676377207.351409,
 		});
 	} catch(error){
 		console.log(error);
 	}
 }
+
+//return all replies of a channel for a given thread_ts
+
+export async function getReplies(channelId, thread_ts) {
+	try {
+		return await client.conversations.replies({
+			token: process.env.TOKEN,
+			channel: channelId,
+			ts: thread_ts,
+			//oldest: 1676377207.351409,
+		});
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+
 
 // accept a student ID and give me total messages in each channel 
 export async function studentProfileData(userId) {

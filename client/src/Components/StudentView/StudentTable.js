@@ -3,19 +3,11 @@ import { Link } from "react-router-dom";
 import PaginationBtns from "./PaginationBtns";
 import "./Students.css";
 
-const StudentTable = () => {
-	const [loading, setLoading] = useState(true);
-	const [students, setStudents] = useState([]);
+const StudentTable = ({students, loading}) => {
+	//const [loading, setLoading] = useState(true);
+	//const [students, setStudents] = useState([]);
 	const [startIndex, setStartIndex] = useState(0);
-
-	useEffect(() => {
-		fetch("/api/data")
-			.then((res) => res.json())
-			.then((data) => setStudents(data))
-			.then(() => setLoading(false))
-			.catch((err) => console.log(err));
-	}, []);
-
+	
 	const epochConversion = (epochTime) => {
 		const options = {
 			weekday: "short",
@@ -79,6 +71,7 @@ const StudentTable = () => {
 						))}
 					</tbody>
 				)}
+
 			</table>
 			<PaginationBtns
 				students={students}

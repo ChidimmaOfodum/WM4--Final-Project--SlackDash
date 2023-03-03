@@ -2,13 +2,15 @@ import {
 	getChannelData,
 	getChannelMembers,
 	getUserInfo,
+	getReplies,
 } from "../slackMethods";
 import getCalls from "./getCalls";
 
 
-const getData = async (_, res) => {
-	const { members } = await getChannelMembers();
-	const calls = await getCalls();
+
+const getData = async (channelId) => {
+	const { members } = await getChannelMembers(channelId);
+	const calls = await getCalls(channelId);
 
 	let membersInfo = await Promise.all(
 		members.map(async (userId) => {
@@ -20,30 +22,46 @@ const getData = async (_, res) => {
 
 	//const trainees = memberInfo.filter((el) => el.user.profile.title.toLowerCase().includes("trainee"));
 
-	let { messages } = await getChannelData('C04Q7AGB5EU');
+	let { messages } = await getChannelData(channelId);
 	messages = messages.filter((el) => el.client_msg_id); //filter out bot messages
 
-	let aggregateData = membersInfo.map((el) => {
+	let aggregateData = await Promise.all(membersInfo.map(async(el) => {
+		const allReplies = [];
 		const msg = [];
+		const userReplies = []
 		for (let data of messages) {
+			if(data["thread_ts"]) {
+				let { messages } = await getReplies(channelId, data["thread_ts"])
+				messages = messages.filter((el) => el.ts !== data["thread_ts"])
+				allReplies.push(...messages)
+			}
 			if (data["user"] === el.user.id) {
 				msg.push(data);
 				el.messages = msg;
 			}
-
-			if(Object.keys(calls).includes(el.user.real_name)) {
+			if (Object.keys(calls).includes(el.user.real_name)) {
 				el.totalCalls = calls[el.user.real_name];
 			}
 		}
+
+			for (let reply of allReplies) {
+				if (reply["user"] === el.user.id) {
+					userReplies.push(reply)
+					el.replies = userReplies
+				}
+			}
+
+	
 		return {
 			ok: el.ok,
 			user: el.user,
 			messages: el.messages || [],
+			replies: el.replies || [],
 			totalCalls: el.totalCalls || 0,
 		};
-	});
-
-	res.json(aggregateData);
+	}));
+	
+	return aggregateData
 };
 
 export default getData;
