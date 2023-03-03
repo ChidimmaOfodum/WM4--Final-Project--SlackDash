@@ -60,7 +60,7 @@ const StudentTable = ({students, loading}) => {
 										{student.user.real_name}
 									</Link>
 								</td>
-								<td>{student.messages.length}</td>
+								<td>{student.messages.length + student.replies.length}</td>
 								<td>{student.totalCalls}</td>
 								<td>
 									{student.messages.length === 0
