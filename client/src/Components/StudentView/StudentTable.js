@@ -32,7 +32,7 @@ const StudentTable = () => {
 		);
 	};
 
-	students.sort((a,b) => a.messages.length < b.messages.length ? 1 : -1)
+	students.sort((a, b) => (a.messages.length < b.messages.length ? 1 : -1));
 
 	return (
 		<div className="table-responsive">
@@ -60,7 +60,11 @@ const StudentTable = () => {
 									/>
 								</td>
 								<td>
-									<Link to="/dashboard" state={{ studentid: student.user.id }} className="profile-link">
+									<Link
+										to="/dashboard"
+										state={{ studentid: student.user.id }}
+										className="profile-link"
+									>
 										{student.user.real_name}
 									</Link>
 								</td>
