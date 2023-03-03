@@ -41,7 +41,13 @@ const StudentTable = ({ students, defaultMessage, loading}) => {
 								<h2>add or select a channel first</h2>
 							</td>
 						</tr>
-					) : loading? <Loader/> : (
+					) : loading ? (
+						<tr>
+							<td className = "tests" colSpan={5}>
+								<Loader />
+							</td>
+						</tr>
+					) : (
 						students.slice(startIndex, startIndex + 2).map((student, i) => (
 							<tr className="student-table-view" key={i}>
 								<td>
@@ -66,7 +72,7 @@ const StudentTable = ({ students, defaultMessage, loading}) => {
 			</table>
 			<PaginationBtns
 				defaultMessage={defaultMessage}
-				loading= {loading}
+				loading={loading}
 				students={students}
 				startIndex={startIndex}
 				setStartIndex={setStartIndex}

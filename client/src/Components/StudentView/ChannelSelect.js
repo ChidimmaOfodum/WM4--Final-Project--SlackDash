@@ -14,7 +14,7 @@ const ChannelSelect = ({channelName, handleChange, handleShow}) => {
 	return (
 		<div className="channels-section">
 			<select name="channels" id="channels" onChange={handleChange}>
-				<option>Select a channel</option>
+				<option selected disabled>Select a channel</option>
 				{channels.map((channel, i) => (
 					<option value={channel} key= {i}>{channel}</option>
 				))}

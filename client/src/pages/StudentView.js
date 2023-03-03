@@ -40,6 +40,7 @@ const StudentView = () => {
 	};
 
 	const handleChange = (e) => {
+		setLoading(true)
 		setDefaultMessage(false);
 		const channelName = e.target.value;
 		fetch(`/api/data/${channelName}`)
