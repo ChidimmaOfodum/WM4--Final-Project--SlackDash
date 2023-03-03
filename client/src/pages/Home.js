@@ -36,18 +36,6 @@ export function Home() {
 					{message}
 				</h1>
 				<Link to="/about/this/site">About</Link>
-				<br />
-				<Link to="/students/table/view">Student Table View</Link>
-				<div>
-				<Link to = "/dashboard">Dashboard</Link>
-				</div>
-				<div>
-				<Link to = "/login">Login to your account</Link>
-				</div>
-				<div>
-				<Link to = "/signup">Create a new account</Link>
-				</div>
-				<Link to="/landingpage">Landing Page</Link>
 			</div>
 		</main>
 	);
