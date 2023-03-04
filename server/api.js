@@ -2,6 +2,7 @@ import { Router } from "express";
 import logger from "./utils/logger";
 import getDataPerChannel from "./Controllers/getDataPerChannel";
 import db from "./db"
+import aggregate from "./Controllers/getStudentProfileData";
 import getData from "./Controllers/getData";
 import getStudentProfileData from "./Controllers/getStudentProfileData";
 import addChannel from "./Controllers/addChannel";
@@ -16,6 +17,8 @@ router.get("/", (_, res) => {
 router.get("/data/:channel", getDataPerChannel);
 router.get("/channels", getChannels)
 router.post("/channel", addChannel )
+
+router.get("/test", aggregate)
 
 
 router.get("/studentProfileData/:id", getStudentProfileData)
