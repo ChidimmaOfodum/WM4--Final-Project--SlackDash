@@ -9,6 +9,12 @@ export const clientRouter = (apiRoot) => {
 	const staticDir = path.join(__dirname, "..", "static");
 	const router = Router();
 	router.use(express.static(staticDir));
+	router.use((_, res, next) => {
+		res.setHeader('Access-Control-Allow-Origin', '*');
+		res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+		res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+		next()
+	});
 	router.use((req, res, next) => {
 		if (req.method === "GET" && !req.url.startsWith(apiRoot)) {
 			return res.sendFile(path.join(staticDir, "index.html"));
@@ -18,8 +24,9 @@ export const clientRouter = (apiRoot) => {
 	return router;
 };
 
+
 export const configuredHelmet = () =>
-	helmet({ contentSecurityPolicy: false});
+	helmet({ contentSecurityPolicy: false, crossOriginEmbedderPolicy: false});
 
 export const configuredMorgan = () =>
 	morgan("dev", {
