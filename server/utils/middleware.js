@@ -18,8 +18,13 @@ export const clientRouter = (apiRoot) => {
 	return router;
 };
 
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*') 
+	next()
+})
+
 export const configuredHelmet = () =>
-	helmet({ contentSecurityPolicy: false, crossOriginEmbedderPolicy: false });
+	helmet({ contentSecurityPolicy: false});
 
 export const configuredMorgan = () =>
 	morgan("dev", {
