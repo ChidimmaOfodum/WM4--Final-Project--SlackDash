@@ -44,7 +44,7 @@ const StudentTable = ({students, loading}) => {
 							<tr className="student-table-view" key={i}>
 								<td>
 									<img
-									 Cross-Origin-Embedder-Policy = "same-origin"
+									 //Cross-Origin-Embedder-Policy = "same-origin"
 										src={student.user.profile.image_32}
 										alt={student.user.real_name}
 										className="student-img"
