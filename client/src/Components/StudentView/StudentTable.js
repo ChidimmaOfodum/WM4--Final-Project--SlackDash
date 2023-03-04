@@ -4,8 +4,6 @@ import PaginationBtns from "./PaginationBtns";
 import "./Students.css";
 
 const StudentTable = ({students, loading}) => {
-	//const [loading, setLoading] = useState(true);
-	//const [students, setStudents] = useState([]);
 	const [startIndex, setStartIndex] = useState(0);
 	
 	const epochConversion = (epochTime) => {
@@ -47,7 +45,6 @@ const StudentTable = ({students, loading}) => {
 								<td>
 									<img
 									 Cross-Origin-Embedder-Policy = "same-origin"
-									  //crossOrigin="anonymous"
 										src={student.user.profile.image_32}
 										alt={student.user.real_name}
 										className="student-img"
