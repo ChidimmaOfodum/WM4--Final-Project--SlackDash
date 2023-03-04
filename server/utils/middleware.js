@@ -10,6 +10,10 @@ export const clientRouter = (apiRoot) => {
 	const router = Router();
 	router.use(express.static(staticDir));
 	router.use((req, res, next) => {
+		res.header('Access-Control-Allow-Origin', '*') 
+		next()
+	});
+	router.use((req, res, next) => {
 		if (req.method === "GET" && !req.url.startsWith(apiRoot)) {
 			return res.sendFile(path.join(staticDir, "index.html"));
 		}
@@ -18,10 +22,6 @@ export const clientRouter = (apiRoot) => {
 	return router;
 };
 
-app.use((req, res, next) => {
-	res.header('Access-Control-Allow-Origin', '*') 
-	next()
-})
 
 export const configuredHelmet = () =>
 	helmet({ contentSecurityPolicy: false});
