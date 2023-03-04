@@ -17,10 +17,6 @@ router.get("/", (_, res) => {
 router.get("/data/:channel", getDataPerChannel);
 router.get("/channels", getChannels)
 router.post("/channel", addChannel )
-
-router.get("/test", aggregate)
-
-
 router.get("/studentProfileData/:id", getStudentProfileData)
 
 router.get("/channels", async(_, res) => {
