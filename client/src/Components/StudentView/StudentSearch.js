@@ -7,10 +7,10 @@ const StudentSearch = ({ students, handleSort }) => {
 	
 	const handleSorted = () => {
 		// setStudents([...students].reverse())
-		students.reverse()
+		// students.reverse()
 		// students.sort((a,b) => a.messages.length < b.messages.length ? -1 : 1)
-		console.log(students)
-		console.log('clicked!')
+		// console.log(students)
+		// console.log('clicked!')
 		setSorted(!sort)
 	};
 
