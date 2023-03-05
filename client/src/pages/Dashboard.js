@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Chart, registerables } from "chart.js";
+import { useLocation } from "react-router-dom";
 import "./Dashboard.css";
 import Nav from "../Components/Nav/Nav";
 import BarChart from "../Components/Dashboard/Bar";
@@ -10,6 +11,8 @@ import Footer from "../Components/Footer/Footer";
 Chart.register(...registerables);
 
 const Dashboard = () => {
+	const location = useLocation();
+	const { studentid } = location.state;
 	const [isBar, setIsBar] = useState(true);
 	const pieOrBar = () => {
 		isBar ? setIsBar(false) : setIsBar(true);
@@ -21,7 +24,7 @@ const Dashboard = () => {
 	const [studentProfileImage, setstudentProfileImage] = useState(0);
 	const [lastMessage, setLastMessage] = useState("");
 	useEffect(() => {
-		fetch("/api/studentProfileData/U04PEMGLF53")
+		fetch(`/api/studentProfileData/${studentid}`)
 			.then((res) => res.json())
 			.then((data) => {
 				setStudentStats(data.messagesStatsForEachChannel);

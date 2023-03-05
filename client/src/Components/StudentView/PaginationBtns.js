@@ -2,12 +2,12 @@ import React, { useState } from "react";
 
 const PaginationBtns = ({ students, startIndex, setStartIndex, defaultMessage, loading }) => {
 	// const [startIndex, setStartIndex] = useState(0);
-	
-    const nexthandleClick = (e) => {
+
+	const nexthandleClick = (e) => {
 		if (startIndex < Object.keys(students).length - 3) {
 			setStartIndex((prevStartIndex) => prevStartIndex + 2);
 		}
-        console.log(e.target.value)
+		console.log(e.target.value);
 	};
 
 	const prevhandleClick = () => {
@@ -22,6 +22,9 @@ const PaginationBtns = ({ students, startIndex, setStartIndex, defaultMessage, l
 			</button>
 			<button className="btn btn-danger" onClick={prevhandleClick}>
 				Previous
+			</button>
+			<button className="btn btn-danger" onClick={nexthandleClick}>
+				Next
 			</button>
 		</div>
 	);

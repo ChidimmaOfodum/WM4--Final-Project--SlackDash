@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Loader from "./Loader";
 import DefaultMsg from "./DefaultMsg";
+import { Link } from "react-router-dom";
 import PaginationBtns from "./PaginationBtns";
 import "./Students.css";
 
@@ -23,6 +24,9 @@ const StudentTable = ({ students, defaultMessage, loading }) => {
 			)}` || "Nill"
 		);
 	};
+
+	students.sort((a, b) => (a.messages.length < b.messages.length ? 1 : -1));
+
 	return (
 		<>
 			<table className="table table-striped">
@@ -50,7 +54,15 @@ const StudentTable = ({ students, defaultMessage, loading }) => {
 										className="student-img"
 									/>
 								</td>
-								<td>{student.user.real_name}</td>
+								<td>
+									<Link
+										to="/dashboard"
+										state={{ studentid: student.user.id }}
+										className="profile-link"
+									>
+										{student.user.real_name}
+									</Link>
+								</td>
 								<td>{student.messages.length + student.replies.length}</td>
 								<td>{student.totalCalls}</td>
 								<td>
