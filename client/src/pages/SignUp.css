@@ -50,6 +50,21 @@
 	padding-top: 1.3rem;
 }
 
+input[type = radio] {
+	accent-color: red;
+}
+.radioBtnWrapper {
+	width: 60%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.radioBtn {
+	display: flex;
+	gap: 10px;
+}
+
 /* Desktop version */
 @media screen and (min-width: 600px) {
 	.userDetail {
