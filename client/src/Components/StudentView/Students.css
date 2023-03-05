@@ -50,38 +50,13 @@
 	justify-content: space-between;
 }
 
-table {
-	border-collapse: separate;
-	border-spacing: 0 11px;
-	margin-top: -11px;
-	max-width: 100%;
+.loader-row {
+	--bs-table-striped-bg:none;
 }
 
-th {
-	padding: 0.8em;
-}
-
-tr {
-	margin: 1em;
-	text-align: center;
-}
-
-td {
-	border: 2px solid black;
-	border-style: solid none;
-	padding: 11px;
-	background-color: lightgoldenrodyellow;
-}
-td:first-child {
-	border-left-style: solid;
-	border-top-left-radius: 11em;
-	border-bottom-left-radius: 11em;
-}
-
-td:last-child {
-	border-right-style: solid;
-	border-bottom-right-radius: 11em;
-	border-top-right-radius: 11em;
+.loader-row:first-child {
+	border-style: none;
+	border-radius: none;
 }
 
 .student-img {
@@ -111,3 +86,62 @@ td:last-child {
 	justify-content: space-between;
 	margin: 1em 2em;
 }
+
+.hidden{
+	display: none;
+}
+
+/* loader animation styles begins */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wave {
+  width: 5px;
+  height: 100px;
+  background: linear-gradient(45deg, red, #fff);
+  margin: 10px;
+  animation: wave 1s linear infinite;
+  border-radius: 20px;
+}
+.wave:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.wave:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.wave:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.wave:nth-child(5) {
+  animation-delay: 0.4s;
+}
+.wave:nth-child(6) {
+  animation-delay: 0.5s;
+}
+.wave:nth-child(7) {
+  animation-delay: 0.6s;
+}
+.wave:nth-child(8) {
+  animation-delay: 0.7s;
+}
+.wave:nth-child(9) {
+  animation-delay: 0.8s;
+}
+.wave:nth-child(10) {
+  animation-delay: 0.9s;
+}
+
+@keyframes wave {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+/* loader animation styles ends */

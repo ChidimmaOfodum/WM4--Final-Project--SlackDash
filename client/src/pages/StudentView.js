@@ -13,7 +13,8 @@ const StudentView = () => {
 	const [show, setShow] = useState(false);
 	const [channelAdd, setChannelAdd] = useState("");
 	const [students, setStudents] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(true)
+	const [defaultMessage, setDefaultMessage] = useState(true);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	const [channelName, setChannelName] = useState(0);
@@ -39,6 +40,8 @@ const StudentView = () => {
 	};
 
 	const handleChange = (e) => {
+		setLoading(true)
+		setDefaultMessage(false);
 		const channelName = e.target.value;
 		fetch(`/api/data/${channelName}`)
 			.then((response) => response.json())
@@ -85,7 +88,7 @@ const StudentView = () => {
 			<main className="student-view">
 				<ChannelSelect channelName={channelName} handleChange={handleChange} handleShow = {handleShow} />
 				<StudentSearch handleShow={handleShow} />
-				<StudentTable students={students} loading = {loading}/>
+				<StudentTable students={students} defaultMessage = {defaultMessage} loading = {loading}/>
 			</main>
 			<Footer />
 		</>
