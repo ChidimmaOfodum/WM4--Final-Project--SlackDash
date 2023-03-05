@@ -29,52 +29,55 @@ const StudentTable = ({ students, defaultMessage, loading }) => {
 
 	return (
 		<>
-			<table className="table table-striped">
-				<thead>
-					<tr>
-						<th>Image</th>
-						<th>Name</th>
-						<th>Total Messages</th>
-						<th>Total Calls</th>
-						<th>Time of Last Message</th>
-					</tr>
-				</thead>
-				<tbody>
-					{defaultMessage ? (
-						<DefaultMsg />
-					) : loading ? (
-						<Loader />
-					) : (
-						students.slice(startIndex, startIndex + 2).map((student, i) => (
-							<tr className="student-table-view" key={i}>
-								<td>
-									<img
-										src={student.user.profile.image_32}
-										alt={student.user.real_name}
-										className="student-img"
-									/>
-								</td>
-								<td>
-									<Link
-										to="/dashboard"
-										state={{ studentid: student.user.id }}
-										className="profile-link"
-									>
-										{student.user.real_name}
-									</Link>
-								</td>
-								<td>{student.messages.length + student.replies.length}</td>
-								<td>{student.totalCalls}</td>
-								<td>
-									{student.messages.length === 0
-										? "Nill"
-										: epochConversion(student.messages[0].ts)}
-								</td>
-							</tr>
-						))
-					)}
-				</tbody>
-			</table>
+			<div className="table-responsive">
+				<table className="table table-striped">
+					<thead>
+						<tr>
+							<th>Image</th>
+							<th>Name</th>
+							<th>Total Messages</th>
+							<th>Total Calls</th>
+							<th>Time of Last Message</th>
+						</tr>
+					</thead>
+					<tbody>
+						{defaultMessage ? (
+							<DefaultMsg />
+						) : loading ? (
+							<Loader />
+						) : (
+							students.slice(startIndex, startIndex + 2).map((student, i) => (
+								<tr className="student-table-view" key={i}>
+									<td>
+										<img
+											src={student.user.profile.image_32}
+											alt={student.user.real_name}
+											className="student-img"
+										/>
+									</td>
+									<td>
+										<Link
+											to="/dashboard"
+											state={{ studentid: student.user.id }}
+											className="profile-link"
+										>
+											{student.user.real_name}
+										</Link>
+									</td>
+									<td>{student.messages.length + student.replies.length}</td>
+									<td>{student.totalCalls}</td>
+									<td>
+										{student.messages.length === 0
+											? "Nill"
+											: epochConversion(student.messages[0].ts)}
+									</td>
+								</tr>
+							))
+						)}
+					</tbody>
+				</table>
+			</div>
+
 			<PaginationBtns
 				defaultMessage={defaultMessage}
 				loading={loading}
