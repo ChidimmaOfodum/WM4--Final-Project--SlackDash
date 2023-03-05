@@ -46,46 +46,8 @@
 	justify-content: space-between;
 }
 
-table {
-	border-collapse: separate;
-	border-spacing: 0 11px;
-	margin-top: -11px;
-	max-width: 100%;
-}
-
-th {
-	padding: 0.8em;
-}
-
-tr {
-	margin: 1em;
-	text-align: center;
-}
-
-td {
-	border: 2px solid black;
-	border-style: solid none;
-	padding: 11px;
-	background-color: lightgoldenrodyellow;
-}
-
-td:first-child {
-	border-left-style: solid;
-	border-top-left-radius: 11em;
-	border-bottom-left-radius: 11em;
-}
-
-td:last-child {
-	border-right-style: solid;
-	border-bottom-right-radius: 11em;
-	border-top-right-radius: 11em;
-}
-
 .loader-row {
-	border: none;
-	background-color: white;
-	padding: 0;
-	border-style: none;
+	--bs-table-striped-bg:none;
 }
 
 .loader-row:first-child {

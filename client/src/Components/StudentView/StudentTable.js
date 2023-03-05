@@ -25,7 +25,7 @@ const StudentTable = ({ students, defaultMessage, loading }) => {
 	};
 	return (
 		<>
-			<table>
+			<table className="table table-striped">
 				<thead>
 					<tr>
 						<th>Image</th>
