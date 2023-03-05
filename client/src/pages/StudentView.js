@@ -64,17 +64,17 @@ const StudentView = () => {
 		setUpdatedNextSaturday(currentWeekStamps[1]);
         
 		// When it loads for the first time it fetch data for general, we can change it however we want.
-		let URL = `/api/data/general?oldest=${currentWeekStamps[0]}&latest=${currentWeekStamps[1]}`;
-		console.log(URL);
-		fetch(URL)
-			.then((response) => response.json())
-			.then((data) => {
-				setStudents(data.data);
-				setLoading(false);
-			})
-			.catch((error) => {
-				console.error("Error:", error);
-			});
+		// let URL = `/api/data/general?oldest=${currentWeekStamps[0]}&latest=${currentWeekStamps[1]}`;
+		// console.log(URL);
+		// fetch(URL)
+		// 	.then((response) => response.json())
+		// 	.then((data) => {
+		// 		setStudents(data.data);
+		// 		setLoading(false);
+		// 	})
+		// 	.catch((error) => {
+		// 		console.error("Error:", error);
+		// 	});
 	},[]);
 
 	// Handle function for  Prev button
