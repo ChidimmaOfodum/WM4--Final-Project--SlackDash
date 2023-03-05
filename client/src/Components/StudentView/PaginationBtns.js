@@ -17,9 +17,6 @@ const PaginationBtns = ({ students, startIndex, setStartIndex, defaultMessage, l
 	};
 	return (
 		<div className={defaultMessage || loading ? "hidden": "pagination-btns"}>
-			<button className="btn btn-danger" onClick={nexthandleClick}>
-				Next
-			</button>
 			<button className="btn btn-danger" onClick={prevhandleClick}>
 				Previous
 			</button>
