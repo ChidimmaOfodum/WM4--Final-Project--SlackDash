@@ -1,19 +1,18 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import StudentTable from "../Components/StudentView/StudentTable";
 import StudentSearch from "../Components/StudentView/StudentSearch";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
-import ChannelSelect from '../Components/StudentView/ChannelSelect';
+import ChannelSelect from "../Components/StudentView/ChannelSelect";
 import Modal from "react-bootstrap/Modal";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 const StudentView = () => {
 	const [show, setShow] = useState(false);
 	const [channelAdd, setChannelAdd] = useState("");
 	const [students, setStudents] = useState([]);
-	const [loading, setLoading] = useState(true)
+	const [loading, setLoading] = useState(true);
 	const [defaultMessage, setDefaultMessage] = useState(true);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -40,18 +39,32 @@ const StudentView = () => {
 	};
 
 	const handleChange = (e) => {
-		setLoading(true)
+		setLoading(true);
 		setDefaultMessage(false);
 		const channelName = e.target.value;
 		fetch(`/api/data/${channelName}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setStudents(data.data);
-				setLoading(false)
+				setLoading(false);
 			})
 			.catch((error) => {
 				console.error("Error:", error);
 			});
+	};
+
+	useEffect(() => {});
+
+	students.sort((a, b) =>
+		a.messages.length + a.replies.length > b.messages.length + b.replies.length
+			? -1
+			: 1
+	);
+
+	const handleSort = () => {
+		const reversed = students.reverse();
+		setStudents(reversed);
+		console.log(students);
 	};
 
 	return (
@@ -86,9 +99,21 @@ const StudentView = () => {
 			</Modal>
 			<Header />
 			<main className="student-view">
-				<ChannelSelect channelName={channelName} handleChange={handleChange} handleShow = {handleShow} />
-				<StudentSearch handleShow={handleShow} />
-				<StudentTable students={students} defaultMessage = {defaultMessage} loading = {loading}/>
+				<ChannelSelect
+					channelName={channelName}
+					handleChange={handleChange}
+					handleShow={handleShow}
+				/>
+				<StudentSearch
+					handleSort={handleSort}
+					students={students}
+					handleShow={handleShow}
+				/>
+				<StudentTable
+					students={students}
+					defaultMessage={defaultMessage}
+					loading={loading}
+				/>
 			</main>
 			<Footer />
 		</>
