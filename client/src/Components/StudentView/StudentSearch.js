@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { BsSortDown } from "react-icons/bs";
 import { BsSortUpAlt } from "react-icons/bs";
 
-const StudentSearch = ({prevWeekChangeHandle , nextWeekChangeHandle, updatedNextSaturday , updatedPreviousSaturday}) => {
+const StudentSearch = ({prevWeekChangeHandle , nextWeekChangeHandle, updatedNextSaturday , updatedPreviousSaturday,students, setStudents }) => {
+	const [sort, setSorted] = useState(<BsSortDown />);
 
 	const epochConversion = (timestamp) => {
 		const date = new Date(timestamp*1000);
@@ -10,6 +12,11 @@ const StudentSearch = ({prevWeekChangeHandle , nextWeekChangeHandle, updatedNext
 		const year = date.getFullYear();
 		let result = `${day}-${month}-${year}`; // Output: "4-3-2022"
 		return result;
+	}
+	const handleSort = () => {
+		const reversed = [...students].reverse();
+		setStudents(reversed);
+		setSorted(!sort);
 	};
 
 	return (
@@ -19,8 +26,11 @@ const StudentSearch = ({prevWeekChangeHandle , nextWeekChangeHandle, updatedNext
 				<p>{`Week between: ${epochConversion(updatedPreviousSaturday)} and ${epochConversion(updatedNextSaturday)} `}</p>
 			    <span className="arrowsUp" onClick={nextWeekChangeHandle} >{">"}</span>
 			</section>
-			<BsSortDown />
-			{/* <BsSortUpAlt /> */}
+			{sort ? (
+				<BsSortDown onClick={handleSort} className="sort" />
+			) : (
+				<BsSortUpAlt onClick={handleSort} className="sort" />
+			)}
 		</div>
 	);
 };

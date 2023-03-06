@@ -1,19 +1,19 @@
-
 import { useState , useEffect } from "react";
 import StudentTable from "../Components/StudentView/StudentTable";
 import StudentSearch from "../Components/StudentView/StudentSearch";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
-import ChannelSelect from '../Components/StudentView/ChannelSelect';
+import ChannelSelect from "../Components/StudentView/ChannelSelect";
 import Modal from "react-bootstrap/Modal";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 const StudentView = () => {
 	const [show, setShow] = useState(false);
 	const [channelAdd, setChannelAdd] = useState("");
 	const [students, setStudents] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [defaultMessage, setDefaultMessage] = useState(true);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	const [channelName, setChannelName] = useState(0);
@@ -147,13 +147,15 @@ const StudentView = () => {
 	};
 
 	const handleChange = (e) => {
+		setLoading(true);
+		setDefaultMessage(false);
 		const channelName = e.target.value;
 		// It fetch the data based on current week which user has selected
 		fetch(`/api/data/${channelName}?oldest=${updatedPreviousSaturday}&latest=${updatedNextSaturday}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setStudents(data.data);
-				setLoading(false)
+				setLoading(false);
 			})
 			.catch((error) => {
 				console.error("Error:", error);
@@ -192,9 +194,21 @@ const StudentView = () => {
 			</Modal>
 			<Header />
 			<main className="student-view">
-				<ChannelSelect channelName={channelName} handleChange={handleChange} handleShow = {handleShow}  />
-				<StudentSearch handleShow={handleShow} prevWeekChangeHandle={prevWeekChangeHandle} nextWeekChangeHandle={nextWeekChangeHandle} updatedPreviousSaturday={updatedPreviousSaturday} updatedNextSaturday={updatedNextSaturday} />
-				<StudentTable students={students} loading = {loading}/>
+				<ChannelSelect
+					channelName={channelName}
+					handleChange={handleChange}
+					handleShow={handleShow} 
+				/>
+				<StudentSearch
+					students={students}
+					setStudents={setStudents}
+					handleShow={handleShow} prevWeekChangeHandle={prevWeekChangeHandle} nextWeekChangeHandle={nextWeekChangeHandle} updatedPreviousSaturday={updatedPreviousSaturday} updatedNextSaturday={updatedNextSaturday}
+				/>
+				<StudentTable
+					students={students}
+					defaultMessage={defaultMessage}
+					loading={loading}
+				/>
 			</main>
 			<Footer />
 		</>
