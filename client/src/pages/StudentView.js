@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import StudentTable from "../Components/StudentView/StudentTable";
 import StudentSearch from "../Components/StudentView/StudentSearch";
 import Header from "../Components/Header/Header";
@@ -53,20 +53,6 @@ const StudentView = () => {
 			});
 	};
 
-	useEffect(() => {});
-
-	students.sort((a, b) =>
-		a.messages.length + a.replies.length > b.messages.length + b.replies.length
-			? -1
-			: 1
-	);
-
-	const handleSort = () => {
-		const reversed = students.reverse();
-		setStudents(reversed);
-		console.log(students);
-	};
-
 	return (
 		<>
 			<Modal show={show} onHide={handleClose}>
@@ -105,8 +91,8 @@ const StudentView = () => {
 					handleShow={handleShow}
 				/>
 				<StudentSearch
-					handleSort={handleSort}
 					students={students}
+					setStudents={setStudents}
 					handleShow={handleShow}
 				/>
 				<StudentTable

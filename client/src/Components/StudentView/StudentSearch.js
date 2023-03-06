@@ -2,15 +2,12 @@ import { useState } from "react";
 import { BsSortDown } from "react-icons/bs";
 import { BsSortUpAlt } from "react-icons/bs";
 
-const StudentSearch = ({ students, handleSort }) => {
+const StudentSearch = ({ students, setStudents }) => {
 	const [sort, setSorted] = useState(<BsSortDown />);
 	
-	const handleSorted = () => {
-		// setStudents([...students].reverse())
-		// students.reverse()
-		// students.sort((a,b) => a.messages.length < b.messages.length ? -1 : 1)
-		// console.log(students)
-		// console.log('clicked!')
+	const handleSort = () => {
+		const reversed = [...students].reverse();
+		setStudents(reversed);
 		setSorted(!sort)
 	};
 
@@ -21,7 +18,7 @@ const StudentSearch = ({ students, handleSort }) => {
 				<p>Week of: dategoeshere</p>
 				<span className="arrowsUp">{">"}</span>
 			</section>
-			{sort ? <BsSortDown onClick={handleSorted} /> : <BsSortUpAlt onClick={handleSorted}/>}
+			{sort ? <BsSortDown onClick={handleSort} /> : <BsSortUpAlt onClick={handleSort}/>}
 
 		</div>
 	);
