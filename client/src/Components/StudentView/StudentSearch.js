@@ -1,16 +1,25 @@
+import { useState } from "react";
 import { BsSortDown } from "react-icons/bs";
 import { BsSortUpAlt } from "react-icons/bs";
 
-const StudentSearch = ({}) => {
+const StudentSearch = ({ students, setStudents }) => {
+	const [sort, setSorted] = useState(<BsSortDown />);
+	
+	const handleSort = () => {
+		const reversed = [...students].reverse();
+		setStudents(reversed);
+		setSorted(!sort)
+	};
+
 	return (
 		<div className="search-sort-buttons">
 			<section className="week-of">
-			   <span className="arrowsUp">{"<"}</span>
+				<span className="arrowsUp">{"<"}</span>
 				<p>Week of: dategoeshere</p>
-			    <span className="arrowsUp">{">"}</span>
+				<span className="arrowsUp">{">"}</span>
 			</section>
-			<BsSortDown />
-			{/* <BsSortUpAlt /> */}
+			{sort ? <BsSortDown onClick={handleSort} /> : <BsSortUpAlt onClick={handleSort}/>}
+
 		</div>
 	);
 };
