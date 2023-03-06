@@ -55,7 +55,13 @@ padding-top: 0;
 }
 .userInput{
     background-color: rgb(231, 231, 231);
-    border: none;
+    border-color: blue;
+    border-radius: 1.2rem;
+    padding-top: 1.3rem;
+}
+.userInputWrong{
+    background-color: rgb(231, 231, 231);
+    border-color: red !important;
     border-radius: 1.2rem;
     padding-top: 1.3rem;
 }

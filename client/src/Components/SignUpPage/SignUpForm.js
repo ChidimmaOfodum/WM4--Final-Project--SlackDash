@@ -5,9 +5,19 @@ function SignUpForm() {
     // I have just added this click handle functions to use for future purposes
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+	const [isValidEmail, setIsValidEmail] = useState(false);
+	const [userInputClass, setUserInputClass] = useState("");
   
     const handleEmailChange = (event) => {
-      setEmail(event.target.value);
+		const emailRegex = /^\S+@\S+\.\S+$/;
+		const inputEmail = event.target.value;
+		setIsValidEmail(emailRegex.test(inputEmail));
+		setEmail(event.target.value);
+		if(isValidEmail){
+		  setUserInputClass("userInput")
+		}else{
+		  setUserInputClass("userInputWrong")
+		}
     };
   
     const handlePasswordChange = (event) => {
@@ -42,8 +52,9 @@ function SignUpForm() {
 					type="email"
 					value={email}
 					onChange={handleEmailChange}
-					className="userInput"
+					className={userInputClass===""?"userInput":userInputClass} 
 					id="email"
+					required
 				/>
 				<label htmlFor="password">Password</label>
 				<input
