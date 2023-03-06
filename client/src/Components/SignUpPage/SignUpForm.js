@@ -19,20 +19,59 @@ function SignUpForm() {
       console.log(`Email: ${email}, Password: ${password}`);
     };  
   return (
-    <div className='userDetail'>
-     <form onSubmit={handleSubmit} className='signUpForm' >
-      <label htmlFor='firstName'>First Name</label>
-      <input type="text" value={email} onChange={handleEmailChange} className="userInput" id='firstName' />
-      <label htmlFor='lastName' >Last Name</label>
-      <input type="text" value={email} onChange={handleEmailChange} className="userInput" id='lastName' />
-      <label htmlFor='eamil' >Email</label>        
-      <input type="email" value={email} onChange={handleEmailChange} className="userInput" id='email'/>
-      <label htmlFor='password' >Password</label>        
-      <input type="password" value={password} onChange={handlePasswordChange} className="userInput" id='password'/>
-      <button type="submit" className='signUpBtn' >Continue</button>
-     </form>
-    </div>
-  )
+		<div className="userDetail">
+			<form onSubmit={handleSubmit} className="signUpForm">
+				<label htmlFor="firstName">First Name</label>
+				<input
+					type="text"
+					value={email}
+					onChange={handleEmailChange}
+					className="userInput"
+					id="firstName"
+				/>
+				<label htmlFor="lastName">Last Name</label>
+				<input
+					type="text"
+					value={email}
+					onChange={handleEmailChange}
+					className="userInput"
+					id="lastName"
+				/>
+				<label htmlFor="eamil">Email</label>
+				<input
+					type="email"
+					value={email}
+					onChange={handleEmailChange}
+					className="userInput"
+					id="email"
+				/>
+				<label htmlFor="password">Password</label>
+				<input
+					type="password"
+					value={password}
+					onChange={handlePasswordChange}
+					className="userInput"
+					id="password"
+				/>
+
+        <div className='radioBtnWrapper'>
+          <div className='radioBtn'>
+				<input type="radio" id="mentor" name='input' />
+				<label htmlFor="mentor">Mentor</label>
+          </div>
+
+          <div className='radioBtn'>
+				<input type="radio" id="trainee" name='input'/>
+				<label htmlFor="trainee">Trainee</label>
+          </div>
+
+        </div>
+				<button type="submit" className="signUpBtn">
+					Continue
+				</button>
+			</form>
+		</div>
+	);
 }
 
 export default SignUpForm
