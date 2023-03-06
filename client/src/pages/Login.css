@@ -65,3 +65,15 @@ padding-top: 0;
     border-radius: 1.2rem;
     padding-top: 1.3rem;
 }
+.userInputPassword{
+	background-color: rgb(231, 231, 231);
+    border-color: blue;
+    border-radius: 1.2rem;
+    padding-top: 1.3rem;
+}
+.userInputPasswordWrong{
+    background-color: rgb(231, 231, 231);
+    border-color: red !important;
+    border-radius: 1.2rem;
+    padding-top: 1.3rem;
+}

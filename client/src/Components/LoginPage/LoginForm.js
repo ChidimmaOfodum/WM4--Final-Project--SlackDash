@@ -7,6 +7,8 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [userInputClass, setUserInputClass] = useState("");
+  const [isValidPassword, setIsValidPassword] = useState(false);
+	const [userInputPasswordClass, setUserInputPasswordClass] = useState("");
 
   const handleEmailChange = (event) => {
     const emailRegex = /^\S+@\S+\.\S+$/;
@@ -21,7 +23,15 @@ function LoginForm() {
   };
 
   const handlePasswordChange = (event) => {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
+	  const inputPassword = event.target.value;
+	  setIsValidPassword(passwordRegex.test(inputPassword));
     setPassword(event.target.value);
+	  if(isValidPassword){
+		setUserInputPasswordClass("userInputPassword")
+	  }else{
+		setUserInputPasswordClass("userInputPasswordWrong")
+	  }
   };
 
   const handleSubmit = (event) => {
@@ -34,7 +44,7 @@ function LoginForm() {
       <label htmlFor='email'>Email</label>
       <input type="email" value={email} onChange={handleEmailChange} className={userInputClass===""?"userInput":userInputClass} id='email' required />
       <label htmlFor='password' >Password</label>
-      <input type="password" value={password} onChange={handlePasswordChange} className="userInput" id='password'/>
+      <input type="password" value={password} onChange={handlePasswordChange} className={userInputPasswordClass===""?"userInputPassword":userInputPasswordClass} required/>
       <button type="submit" className='submitBtn' >Continue</button>
      </form>
    </div>

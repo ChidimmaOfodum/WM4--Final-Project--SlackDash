@@ -7,6 +7,8 @@ function SignUpForm() {
     const [password, setPassword] = useState('');
 	const [isValidEmail, setIsValidEmail] = useState(false);
 	const [userInputClass, setUserInputClass] = useState("");
+	const [isValidPassword, setIsValidPassword] = useState(false);
+	const [userInputPasswordClass, setUserInputPasswordClass] = useState("");
   
     const handleEmailChange = (event) => {
 		const emailRegex = /^\S+@\S+\.\S+$/;
@@ -21,7 +23,15 @@ function SignUpForm() {
     };
   
     const handlePasswordChange = (event) => {
+	  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
+	  const inputPassword = event.target.value;
+	  setIsValidPassword(passwordRegex.test(inputPassword));
       setPassword(event.target.value);
+	  if(isValidPassword){
+		setUserInputPasswordClass("userInputPassword")
+	  }else{
+		setUserInputPasswordClass("userInputPasswordWrong")
+	  }
     };
   
     const handleSubmit = (event) => {
@@ -38,6 +48,7 @@ function SignUpForm() {
 					onChange={handleEmailChange}
 					className="userInput"
 					id="firstName"
+					required
 				/>
 				<label htmlFor="lastName">Last Name</label>
 				<input
@@ -46,6 +57,7 @@ function SignUpForm() {
 					onChange={handleEmailChange}
 					className="userInput"
 					id="lastName"
+					required
 				/>
 				<label htmlFor="eamil">Email</label>
 				<input
@@ -61,8 +73,9 @@ function SignUpForm() {
 					type="password"
 					value={password}
 					onChange={handlePasswordChange}
-					className="userInput"
+					className={userInputPasswordClass===""?"userInputPassword":userInputPasswordClass}
 					id="password"
+					required
 				/>
 
         <div className='radioBtnWrapper'>
