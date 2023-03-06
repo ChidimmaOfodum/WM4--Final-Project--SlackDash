@@ -87,6 +87,10 @@
 	margin: 1em 2em;
 }
 
+.sort{
+	font-size: 1.8em;
+}
+
 .hidden {
 	display: none;
 }

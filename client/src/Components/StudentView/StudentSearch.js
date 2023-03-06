@@ -4,11 +4,11 @@ import { BsSortUpAlt } from "react-icons/bs";
 
 const StudentSearch = ({ students, setStudents }) => {
 	const [sort, setSorted] = useState(<BsSortDown />);
-	
+
 	const handleSort = () => {
 		const reversed = [...students].reverse();
 		setStudents(reversed);
-		setSorted(!sort)
+		setSorted(!sort);
 	};
 
 	return (
@@ -18,8 +18,11 @@ const StudentSearch = ({ students, setStudents }) => {
 				<p>Week of: dategoeshere</p>
 				<span className="arrowsUp">{">"}</span>
 			</section>
-			{sort ? <BsSortDown onClick={handleSort} /> : <BsSortUpAlt onClick={handleSort}/>}
-
+			{sort ? (
+				<BsSortDown onClick={handleSort} className="sort" />
+			) : (
+				<BsSortUpAlt onClick={handleSort} className="sort" />
+			)}
 		</div>
 	);
 };
