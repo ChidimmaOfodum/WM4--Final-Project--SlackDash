@@ -4,8 +4,8 @@ import getData from "./getData";
 const getDataPerChannel = async (req, res) => {
 	try{
 		const channelName = req.params.channel;
-		const oldest = req.params.oldest;
-		const latest = req.params.latest;
+		const oldest = req.params.oldest || 0;
+		const latest = req.params.latest || 0;
 	
 		const { rows } = await db.query(
 			`SELECT channel_id FROM public.channel WHERE channel_name = $1`,

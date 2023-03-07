@@ -55,9 +55,11 @@ const handleClick = (e) => {
 }
 
 	const handleChange = (e) => {
+		timeFrame()
 		setLoading(true)
 		setDefaultMessage(false);
 		const channelName = e.target.value;
+		console.log(`/api/data/${tests}/${t.oldest}/${t.latest}`);
 		fetch(`/api/data/${tests}/${t.oldest}/${t.latest}`)
 			.then((response) => response.json())
 			.then((data) => {

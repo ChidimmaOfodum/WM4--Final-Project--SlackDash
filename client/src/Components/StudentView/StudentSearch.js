@@ -23,8 +23,8 @@ const StudentSearch = ({timeFrame}) => {
 	]);
 
 	const data = {
-		oldest: getUnixTime(range[0].startDate),
-		latest: getUnixTime(range[0].endDate)
+		oldest: getUnixTime(range[0].startDate || 0),
+		latest: getUnixTime(range[0].endDate || 0)
 	}
 	useEffect(() => {
 		document.addEventListener("click", hideOnOutsideClick, true);
