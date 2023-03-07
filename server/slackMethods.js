@@ -180,3 +180,14 @@ export async function getAllChannels() {
 		console.log(error);
 	}
 }
+
+export async function joinChannel(channelId) {
+	try {
+		return await client.conversations.join({
+			token: process.env.TOKEN,
+			channel: channelId
+		});
+	} catch (error) {
+		console.log(error);
+	}
+}

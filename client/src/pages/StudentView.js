@@ -1,5 +1,7 @@
 
 import { useState } from "react";
+import { startOfWeek, endOfWeek } from "date-fns";
+import { getUnixTime } from "date-fns";
 import StudentTable from "../Components/StudentView/StudentTable";
 import StudentSearch from "../Components/StudentView/StudentSearch";
 import Header from "../Components/Header/Header";
@@ -23,7 +25,10 @@ const StudentView = () => {
 	const handleShow = () => setShow(true);
 	const [channelName, setChannelName] = useState(0);
 	const [errMsg, setErrMsg] = useState("");
-	const [t, sett] = useState("")
+	const [t, sett] = useState({
+		oldest: getUnixTime(startOfWeek(new Date())),
+		latest: getUnixTime(endOfWeek (new Date()))
+	})
 
 	const timeFrame = payload => {
 		sett(payload)
@@ -50,8 +55,6 @@ const StudentView = () => {
 	
 const handleClick = (e) => {
 	tests = e.target.value
-	console.log(`/api/data/${tests}/${t.oldest}/${t.latest}`);
-	console.log(t)
 }
 
 	const handleChange = (e) => {
