@@ -22,15 +22,15 @@ const StudentSearch = ({timeFrame}) => {
 		},
 	]);
 
+	const data = {
+		oldest: getUnixTime(range[0].startDate),
+		latest: getUnixTime(range[0].endDate)
+	}
 	useEffect(() => {
 		document.addEventListener("click", hideOnOutsideClick, true);
 		document.addEventListener("load", test, true)
 	}, []);
 
-	const data = {
-		oldest: getUnixTime(range[0].startDate),
-		latest: getUnixTime(range[0].endDate)
-	}
 
 	const test = () => timeFrame(data)
 
@@ -50,14 +50,15 @@ const StudentSearch = ({timeFrame}) => {
 					className="inputBox"
 					onClick={(open) => setOpen((open) => !open)}
 				/>
-				<button onClick={test}>Change Date</button>
-
+				
 				<div ref={refOne}>
 					{open && (
 						<DateRangePicker
 							className="calendarElement"
 							date={new Date()}
-							onChange={(item) => setRange([item.selection])}
+							onChange={(item) => {
+								setRange([item.selection])
+							test()}}
 							editableDateInputs={true}
 							moveRangeOnFirstSelection={false}
 							ranges={range}

@@ -8,6 +8,7 @@ import ChannelSelect from '../Components/StudentView/ChannelSelect';
 import Modal from "react-bootstrap/Modal";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+let tests;
 
 const StudentView = () => {
 	const [show, setShow] = useState(false);
@@ -23,7 +24,6 @@ const StudentView = () => {
 
 	const timeFrame = payload => {
 		sett(payload)
-		console.log(t)
 	}
 
 	const postChannel = () => {
@@ -44,12 +44,18 @@ const StudentView = () => {
 				}
 			});
 	};
+	
+const handleClick = (e) => {
+	tests = e.target.value
+	console.log(`/api/data/${tests}/${t.oldest}/${t.latest}`);
+	console.log(t)
+}
 
 	const handleChange = (e) => {
 		setLoading(true)
 		setDefaultMessage(false);
 		const channelName = e.target.value;
-		fetch(`/api/data/${channelName}/${t.oldest}/${t.latest}`)
+		fetch(`/api/data/${tests}/${t.oldest}/${t.latest}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setStudents(data.data);
@@ -60,8 +66,6 @@ const StudentView = () => {
 			});
 	};
 
-	let url = `/api/data/${channelName}/${t.oldest}/${t.latest}`;
-	console.log(url)
 
 	return (
 		<>
@@ -95,7 +99,7 @@ const StudentView = () => {
 			</Modal>
 			<Header />
 			<main className="student-view">
-				<ChannelSelect channelName={channelName} handleChange={handleChange} handleShow = {handleShow} />
+				<ChannelSelect channelName={channelName} handleChange={handleChange} handleShow = {handleShow} handleClick = {handleClick} />
 				<StudentSearch timeFrame = {timeFrame} />
 				<StudentTable students={students} defaultMessage = {defaultMessage} loading = {loading}/>
 			</main>
