@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import "../../pages/SignUp.css";
+import bcrypt from 'bcryptjs'
 
 function SignUpForm() {
-    // I have just added this click handle functions to use for future purposes
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-  
-    const handleEmailChange = (event) => {
-      setEmail(event.target.value);
-    };
-  
-    const handlePasswordChange = (event) => {
-      setPassword(event.target.value);
-    };
+	const firstName = useRef()
+	const lastName = useRef()
+	const emailInputRef = useRef()
+	const passwordInputRef = useRef()
+	const traineeOrMentor = useRef()
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      console.log(`Email: ${email}, Password: ${password}`);
+	  const email = emailInputRef.current.value
+	  const password = bcrypt.hashSync(passwordInputRef.current.value, 10)
+	  console.log(password)
     };  
   return (
 		<div className="userDetail">
@@ -24,34 +21,34 @@ function SignUpForm() {
 				<label htmlFor="firstName">First Name</label>
 				<input
 					type="text"
-					value={email}
-					onChange={handleEmailChange}
+					ref={firstName}
 					className="userInput"
 					id="firstName"
+					name='first-name'
 				/>
 				<label htmlFor="lastName">Last Name</label>
 				<input
 					type="text"
-					value={email}
-					onChange={handleEmailChange}
+					ref={lastName}
 					className="userInput"
 					id="lastName"
+					name='last-name'
 				/>
 				<label htmlFor="eamil">Email</label>
 				<input
 					type="email"
-					value={email}
-					onChange={handleEmailChange}
+					ref={emailInputRef}
 					className="userInput"
 					id="email"
+					name='email'
 				/>
 				<label htmlFor="password">Password</label>
 				<input
 					type="password"
-					value={password}
-					onChange={handlePasswordChange}
+					ref={passwordInputRef}
 					className="userInput"
 					id="password"
+					name='password'
 				/>
 
         <div className='radioBtnWrapper'>
