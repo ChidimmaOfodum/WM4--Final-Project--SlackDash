@@ -16,7 +16,10 @@ const StudentView = () => {
 	const [students, setStudents] = useState([]);
 	const [loading, setLoading] = useState(true)
 	const [defaultMessage, setDefaultMessage] = useState(true);
-	const handleClose = () => setShow(false);
+	const handleClose = () => {
+		setShow(false)
+		setErrMsg(null)
+	};
 	const handleShow = () => setShow(true);
 	const [channelName, setChannelName] = useState(0);
 	const [errMsg, setErrMsg] = useState("");
@@ -58,7 +61,12 @@ const handleClick = (e) => {
 		fetch(`/api/data/${tests}/${t.oldest}/${t.latest}`)
 			.then((response) => response.json())
 			.then((data) => {
-				setStudents(data.data);
+				if (data.data) {
+					setStudents(data.data);
+					setErrMsg(null)
+				} else {
+					setErrMsg('Please select a valid channel')
+				}
 				setLoading(false)
 			})
 			.catch((error) => {
@@ -101,6 +109,7 @@ const handleClick = (e) => {
 			<main className="student-view">
 				<ChannelSelect channelName={channelName} handleChange={handleChange} handleShow = {handleShow} handleClick = {handleClick} />
 				<StudentSearch timeFrame = {timeFrame} />
+				<p>{errMsg}</p>
 				<StudentTable students={students} defaultMessage = {defaultMessage} loading = {loading}/>
 			</main>
 			<Footer />
