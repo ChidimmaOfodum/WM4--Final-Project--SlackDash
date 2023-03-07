@@ -19,6 +19,12 @@ const StudentView = () => {
 	const handleShow = () => setShow(true);
 	const [channelName, setChannelName] = useState(0);
 	const [errMsg, setErrMsg] = useState("");
+	const [t, sett] = useState("")
+
+	const timeFrame = payload => {
+		sett(payload)
+		console.log(t)
+	}
 
 	const postChannel = () => {
 		fetch("/api/channel/", {
@@ -43,7 +49,7 @@ const StudentView = () => {
 		setLoading(true)
 		setDefaultMessage(false);
 		const channelName = e.target.value;
-		fetch(`/api/data/${channelName}`)
+		fetch(`/api/data/${channelName}/${t.oldest}/${t.latest}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setStudents(data.data);
@@ -53,6 +59,9 @@ const StudentView = () => {
 				console.error("Error:", error);
 			});
 	};
+
+	let url = `/api/data/${channelName}/${t.oldest}/${t.latest}`;
+	console.log(url)
 
 	return (
 		<>
@@ -87,7 +96,7 @@ const StudentView = () => {
 			<Header />
 			<main className="student-view">
 				<ChannelSelect channelName={channelName} handleChange={handleChange} handleShow = {handleShow} />
-				<StudentSearch handleShow={handleShow} />
+				<StudentSearch timeFrame = {timeFrame} />
 				<StudentTable students={students} defaultMessage = {defaultMessage} loading = {loading}/>
 			</main>
 			<Footer />

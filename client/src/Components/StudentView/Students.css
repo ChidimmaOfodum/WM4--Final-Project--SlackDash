@@ -145,3 +145,7 @@
   }
 }
 /* loader animation styles ends */
+
+.calendarElement {
+	position: absolute;
+}

@@ -8,7 +8,7 @@ import getCalls from "./getCalls";
 
 
 
-const getData = async (channelId) => {
+const getData = async (channelId, oldest, latest) => {
 	const { members } = await getChannelMembers(channelId);
 	const calls = await getCalls(channelId);
 
@@ -22,7 +22,7 @@ const getData = async (channelId) => {
 
 	//const trainees = memberInfo.filter((el) => el.user.profile.title.toLowerCase().includes("trainee"));
 
-	let { messages } = await getChannelData(channelId);
+	let { messages } = await getChannelData(channelId, oldest, latest);
 	messages = messages.filter((el) => el.client_msg_id); //filter out bot messages
 
 	let aggregateData = await Promise.all(membersInfo.map(async(el) => {
