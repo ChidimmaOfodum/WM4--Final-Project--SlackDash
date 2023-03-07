@@ -10,7 +10,7 @@ import getCalls from "./getCalls";
 
 const getData = async (channelId, oldest, latest) => {
 	const { members } = await getChannelMembers(channelId);
-	const calls = await getCalls(channelId);
+	const calls = await getCalls(channelId, oldest, latest);
 
 	let membersInfo = await Promise.all(
 		members.map(async (userId) => {
