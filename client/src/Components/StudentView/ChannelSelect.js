@@ -21,7 +21,7 @@ const ChannelSelect = ({channelName, handleChange, handleShow, handleClick}) => 
 					<option value={channel} key= {i}>{channel}</option>
 				))}
 			</select>
-			<button onClick={handleChange}>View Data</button>
+			<button className="btn btn-danger" onClick={handleChange}>View Data</button>
 			<span>
 				Add a channel <BsPlusLg onClick={handleShow} />
 			</span>
