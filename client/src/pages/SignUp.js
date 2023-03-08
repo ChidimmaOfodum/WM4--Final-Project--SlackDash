@@ -6,8 +6,13 @@ import SlackDashLogo from "../Components/LandingPage/SlackDashLogo.png";
 function SignUp() {
 	return (
 		<>
-			<Link to="/landingpage"></Link>
-			<img src={SlackDashLogo} alt="SlackDash" className="slackdash-logo-sm" />
+			<Link to="/landingpage">
+				<img
+					src={SlackDashLogo}
+					alt="SlackDash"
+					className="slackdash-logo-sm"
+				/>
+			</Link>
 			<main className="signup-page">
 				<div className="signup-header">
 					<h1>Welcome</h1>
@@ -19,7 +24,6 @@ function SignUp() {
 					</p>
 					<SignUpForm />
 				</div>
-				
 			</main>
 		</>
 	);

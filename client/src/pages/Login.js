@@ -6,8 +6,13 @@ import SlackDashLogo from "../Components/LandingPage/SlackDashLogo.png";
 function Login() {
 	return (
 		<>
-			<Link to="/landingpage"></Link>
-			<img src={SlackDashLogo} alt="SlackDash" className="slackdash-logo-sm" />
+			<Link to="/landingpage">
+				<img
+					src={SlackDashLogo}
+					alt="SlackDash"
+					className="slackdash-logo-sm"
+				/>
+			</Link>
 			<main className="login-page">
 				<div className="login-header">
 					<h1>Login</h1>
