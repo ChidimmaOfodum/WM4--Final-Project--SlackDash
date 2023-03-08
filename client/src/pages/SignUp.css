@@ -1,11 +1,47 @@
 .signup-page{
 	margin: 0 2em;
 }
+.signup-header{
+	display: flex;
+	flex-direction: column;
+	margin-top: 2em;
+}
 .signup-form{
 	display: flex;
 	flex-direction: column;
 }
 
+input[type = radio] {
+	accent-color: red;
+}
+.radioBtnWrapper {
+	display: flex;
+	margin: 1em;
+}
+
+.radioBtn {
+	display: flex;
+	gap: 10px;
+	margin-right: 3em;
+}
+
+.signup-btn{
+	width: 50%;
+	align-self: center;
+	margin-top: 1em;
+}
+
 @media screen and (min-width: 600px) {
-    
+    .signup-page{
+		display: flex;
+		flex-direction: column;
+		width: 100vw;
+	}
+	.signup-header{
+	align-self: center;
+	width: 50%;
+	}
+	.signup-btn{
+		width: 25%;
+	}
 }

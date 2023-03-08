@@ -42,7 +42,6 @@ const SignUpForm = () => {
 	};
 
 	return (
-		<div className="userDetail">
 			<form onSubmit={handleSubmit} className="signup-form">
 				<label htmlFor="firstName">First Name</label>
 				<input
@@ -51,6 +50,7 @@ const SignUpForm = () => {
 					className="userInput"
 					id="firstName"
 					name="first-name"
+					required
 				/>
 				<label htmlFor="lastName">Last Name</label>
 				<input
@@ -59,6 +59,7 @@ const SignUpForm = () => {
 					className="userInput"
 					id="lastName"
 					name="last-name"
+					required
 				/>
 				<label htmlFor="eamil">Email</label>
 				<input
@@ -67,6 +68,7 @@ const SignUpForm = () => {
 					className="userInput"
 					id="email"
 					name="email"
+					required
 				/>
 				<label htmlFor="password">Password</label>
 				<input
@@ -75,6 +77,7 @@ const SignUpForm = () => {
 					className="userInput"
 					id="password"
 					name="password"
+					required
 				/>
 
 				<div className="radioBtnWrapper">
@@ -100,11 +103,10 @@ const SignUpForm = () => {
 						<label htmlFor="trainee">Trainee</label>
 					</div>
 				</div>
-				<button type="submit" className="signUpBtn">
+				<button type="submit" className="signup-btn btn btn-danger">
 					Continue
 				</button>
 			</form>
-		</div>
 	);
 };
 

@@ -17,8 +17,9 @@ function SignUp() {
 							<Link to="/login">Sign in </Link>
 						</strong>{" "}
 					</p>
+					<SignUpForm />
 				</div>
-				<SignUpForm />
+				
 			</main>
 		</>
 	);
