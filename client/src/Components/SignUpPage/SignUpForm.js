@@ -80,7 +80,9 @@ const SignUpForm = () => {
 					required
 				/>
 
-				<div className="radioBtnWrapper">
+				<fieldset className="radioBtnWrapper">
+					<legend>Please select your role</legend>
+					<div className="radio-style-helper">
 					<div className="radioBtn">
 						<input
 							type="radio"
@@ -102,7 +104,8 @@ const SignUpForm = () => {
 						/>
 						<label htmlFor="trainee">Trainee</label>
 					</div>
-				</div>
+					</div>
+				</fieldset>
 				<button type="submit" className="signup-btn btn btn-danger">
 					Continue
 				</button>
