@@ -26,8 +26,8 @@ const LoginForm = () => {
 	};
 
 	return (
-		<div className="userDetail">
-			<form onSubmit={handleSubmit} className="loginForm">
+
+			<form onSubmit={handleSubmit} className="login-form">
 				<label htmlFor="email">Email</label>
 				<input type="email" ref={emailRef} className="userInput" id="email" />
 				<label htmlFor="password">Password</label>
@@ -37,11 +37,10 @@ const LoginForm = () => {
 					className="userInput"
 					id="password"
 				/>
-				<button type="submit" className="submitBtn">
+				<button type="submit" className="btn btn-danger submit-btn">
 					Continue
 				</button>
 			</form>
-		</div>
 	);
 };
 
