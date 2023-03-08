@@ -8,10 +8,9 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { getUnixTime } from "date-fns";
 
-const StudentSearch = ({timeFrame}) => {
+const StudentSearch = ({timeFrame, students, setStudents}) => {
 	const [open, setOpen] = useState(false);
-
-
+	const [sort, setSorted] = useState(<BsSortDown />);
 	const refOne = useRef(null);
 
 	const [range, setRange] = useState([
@@ -21,6 +20,12 @@ const StudentSearch = ({timeFrame}) => {
 			key: "selection",
 		},
 	]);
+
+	const handleSort = () => {
+		const reversed = [...students].reverse();
+		setStudents(reversed);
+		setSorted(!sort)
+	};
 
 	const data = {
 		oldest: getUnixTime(range[0].startDate || 0),
@@ -66,8 +71,7 @@ const StudentSearch = ({timeFrame}) => {
 					)}
 				</div>
 			</section>
-			<BsSortDown />
-			{/* <BsSortUpAlt /> */}
+			{sort ? <BsSortDown onClick={handleSort} /> : <BsSortUpAlt onClick={handleSort}/>}
 		</div>
 	);
 };
