@@ -33,11 +33,11 @@ const StudentSearch = ({timeFrame, students, setStudents}) => {
 	}
 	useEffect(() => {
 		document.addEventListener("click", hideOnOutsideClick, true);
-		document.addEventListener("load", test, true)
+		document.addEventListener("load", updateDate, true)
 	}, []);
 
 
-	const test = () => timeFrame(data)
+	const updateDate = () => timeFrame(data)
 
 	const hideOnOutsideClick = (e) => {
 		if (refOne.current && !refOne.current.contains(e.target)) {
@@ -63,7 +63,7 @@ const StudentSearch = ({timeFrame, students, setStudents}) => {
 							date={new Date()}
 							onChange={(item) => {
 								setRange([item.selection])
-							test()}}
+							updateDate()}}
 							editableDateInputs={true}
 							moveRangeOnFirstSelection={false}
 							ranges={range}
