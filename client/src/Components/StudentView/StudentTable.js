@@ -25,7 +25,6 @@ const StudentTable = ({ students, defaultMessage, loading }) => {
 		);
 	};
 
-	students.sort((a, b) => (a.messages.length < b.messages.length ? 1 : -1));
 
 	return (
 		<>

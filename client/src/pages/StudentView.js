@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { startOfWeek, endOfWeek } from "date-fns";
 import { getUnixTime } from "date-fns";
@@ -6,33 +5,33 @@ import StudentTable from "../Components/StudentView/StudentTable";
 import StudentSearch from "../Components/StudentView/StudentSearch";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
-import ChannelSelect from '../Components/StudentView/ChannelSelect';
+import ChannelSelect from "../Components/StudentView/ChannelSelect";
 import Modal from "react-bootstrap/Modal";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 let tests;
 
 const StudentView = () => {
 	const [show, setShow] = useState(false);
 	const [channelAdd, setChannelAdd] = useState("");
 	const [students, setStudents] = useState([]);
-	const [loading, setLoading] = useState(true)
+	const [loading, setLoading] = useState(true);
 	const [defaultMessage, setDefaultMessage] = useState(true);
 	const handleClose = () => {
-		setShow(false)
-		setErrMsg(null)
+		setShow(false);
+		setErrMsg(null);
 	};
 	const handleShow = () => setShow(true);
 	const [channelName, setChannelName] = useState(0);
 	const [errMsg, setErrMsg] = useState("");
 	const [t, sett] = useState({
 		oldest: getUnixTime(startOfWeek(new Date())),
-		latest: getUnixTime(endOfWeek (new Date()))
-	})
+		latest: getUnixTime(endOfWeek(new Date())),
+	});
 
-	const timeFrame = payload => {
-		sett(payload)
-	}
+	const timeFrame = (payload) => {
+		sett(payload);
+	};
 
 	const postChannel = () => {
 		fetch("/api/channel/", {
@@ -52,14 +51,14 @@ const StudentView = () => {
 				}
 			});
 	};
-	
-const handleClick = (e) => {
-	tests = e.target.value
-}
+
+	const handleClick = (e) => {
+		tests = e.target.value;
+	};
 
 	const handleChange = (e) => {
-		timeFrame()
-		setLoading(true)
+		timeFrame();
+		setLoading(true);
 		setDefaultMessage(false);
 		const channelName = e.target.value;
 		console.log(`/api/data/${tests}/${t.oldest}/${t.latest}`);
@@ -68,17 +67,16 @@ const handleClick = (e) => {
 			.then((data) => {
 				if (data.data) {
 					setStudents(data.data);
-					setErrMsg(null)
+					setErrMsg(null);
 				} else {
-					setErrMsg('Please select a valid channel')
+					setErrMsg("Please select a valid channel");
 				}
-				setLoading(false)
+				setLoading(false);
 			})
 			.catch((error) => {
 				console.error("Error:", error);
 			});
 	};
-
 
 	return (
 		<>
@@ -112,10 +110,24 @@ const handleClick = (e) => {
 			</Modal>
 			<Header />
 			<main className="student-view">
-				<ChannelSelect channelName={channelName} handleChange={handleChange} handleShow = {handleShow} handleClick = {handleClick} />
-				<StudentSearch timeFrame = {timeFrame} />
+				<ChannelSelect
+					channelName={channelName}
+					handleChange={handleChange}
+					handleShow={handleShow}
+					handleClick={handleClick}
+				/>
+				<StudentSearch
+					timeFrame={timeFrame}
+					students={students}
+					setStudents={setStudents}
+					handleShow={handleShow}
+				/>
 				<p>{errMsg}</p>
-				<StudentTable students={students} defaultMessage = {defaultMessage} loading = {loading}/>
+				<StudentTable
+					students={students}
+					defaultMessage={defaultMessage}
+					loading={loading}
+				/>
 			</main>
 			<Footer />
 		</>
