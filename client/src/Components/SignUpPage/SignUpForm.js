@@ -31,14 +31,6 @@ const SignUpForm = () => {
 		})
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
-
-		console.log({
-			firstName: firstName.current.value,
-			lastName: lastName.current.value,
-			email: email,
-			password: password,
-			traineeOrMentor: selected,
-		});
 	};
 
 	return (

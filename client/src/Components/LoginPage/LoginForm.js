@@ -21,8 +21,6 @@ const LoginForm = () => {
 		})
 			.then((res) => res.json())
 			.catch((err) => console.log(err));
-
-		console.log({ email: email, password: password });
 	};
 
 	return (
