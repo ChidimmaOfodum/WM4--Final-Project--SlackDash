@@ -24,7 +24,7 @@ const StudentSearch = ({timeFrame, students, setStudents}) => {
 	const handleSort = () => {
 		const reversed = [...students].reverse();
 		setStudents(reversed);
-		setSorted(!sort)
+		setSorted(!sort);
 	};
 
 	const data = {

@@ -9,7 +9,7 @@ import ChannelSelect from "../Components/StudentView/ChannelSelect";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-let tests;
+let channel;
 
 const StudentView = () => {
 	const [show, setShow] = useState(false);
@@ -17,22 +17,21 @@ const StudentView = () => {
 	const [students, setStudents] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [defaultMessage, setDefaultMessage] = useState(true);
-	const handleClose = () => {
-		setShow(false);
-		setErrMsg(null);
-	};
 	const handleShow = () => setShow(true);
 	const [channelName, setChannelName] = useState(0);
 	const [errMsg, setErrMsg] = useState("");
-	const [t, sett] = useState({
+	const [calendarRange, setCalendarRange] = useState({
 		oldest: getUnixTime(startOfWeek(new Date())),
 		latest: getUnixTime(endOfWeek(new Date())),
 	});
 
-	const timeFrame = (payload) => {
-		sett(payload);
+	const handleClose = () => {
+		setShow(false);
+		setErrMsg(null);
 	};
-
+	const timeFrame = (payload) => {
+		setCalendarRange(payload);
+	};
 	const postChannel = () => {
 		fetch("/api/channel/", {
 			method: "POST",
@@ -53,16 +52,19 @@ const StudentView = () => {
 	};
 
 	const handleClick = (e) => {
-		tests = e.target.value;
+		channel = e.target.value;
 	};
 
 	const handleChange = (e) => {
 		timeFrame();
 		setLoading(true);
 		setDefaultMessage(false);
-		const channelName = e.target.value;
-		console.log(`/api/data/${tests}/${t.oldest}/${t.latest}`);
-		fetch(`/api/data/${tests}/${t.oldest}/${t.latest}`)
+		console.log(
+			`/api/data/${channel}/${calendarRange.oldest}/${calendarRange.latest}`
+		);
+		fetch(
+			`/api/data/${channel}/${calendarRange.oldest}/${calendarRange.latest}`
+		)
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.data) {
