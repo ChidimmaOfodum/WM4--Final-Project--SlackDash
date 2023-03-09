@@ -10,7 +10,7 @@ const LoginForm = () => {
 		event.preventDefault();
 		const email = emailRef.current.value;
 		// const password = bcrypt.hashSync(passwordRef.current.value, 10);
-		const password = passwordInputRef
+		const password = passwordInputRef.current.value
 
 
 		fetch("/login", {
