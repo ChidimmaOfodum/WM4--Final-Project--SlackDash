@@ -16,7 +16,8 @@ const SignUpForm = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const email = emailInputRef.current.value;
-		const password = bcrypt.hashSync(passwordInputRef.current.value, 10);
+		// const password = bcrypt.hashSync(passwordInputRef.current.value, 10);
+		const password = passwordInputRef
 
 		fetch("/signUp", {
 			method: "POST",

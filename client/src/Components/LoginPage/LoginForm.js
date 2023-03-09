@@ -9,7 +9,9 @@ const LoginForm = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const email = emailRef.current.value;
-		const password = bcrypt.hashSync(passwordRef.current.value, 10);
+		// const password = bcrypt.hashSync(passwordRef.current.value, 10);
+		const password = passwordInputRef
+
 
 		fetch("/login", {
 			method: "POST",
