@@ -1,54 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import { useRef } from "react";
 import "../../pages/Login.css";
+import bcrypt from "bcryptjs";
 
-function LoginForm() {
-  // I have just added this click handle functions to use for future purposes
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isValidEmail, setIsValidEmail] = useState(false);
-  const [userInputClass, setUserInputClass] = useState("");
-  const [isValidPassword, setIsValidPassword] = useState(false);
-	const [userInputPasswordClass, setUserInputPasswordClass] = useState("");
+const LoginForm = () => {
+	const emailRef = useRef();
+	const passwordRef = useRef();
 
-  const handleEmailChange = (event) => {
-    const emailRegex = /^\S+@\S+\.\S+$/;
-    const inputEmail = event.target.value;
-    setIsValidEmail(emailRegex.test(inputEmail));
-    setEmail(event.target.value);
-    if(isValidEmail){
-      setUserInputClass("userInput")
-    }else{
-      setUserInputClass("userInputWrong")
-    }
-  };
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		const email = emailRef.current.value;
+		// const password = bcrypt.hashSync(passwordRef.current.value, 10);
+		const password = passwordInputRef.current.value
 
-  const handlePasswordChange = (event) => {
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
-	  const inputPassword = event.target.value;
-	  setIsValidPassword(passwordRegex.test(inputPassword));
-    setPassword(event.target.value);
-	  if(isValidPassword){
-		setUserInputPasswordClass("userInputPassword")
-	  }else{
-		setUserInputPasswordClass("userInputPasswordWrong")
-	  }
-  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(`Email: ${email}, Password: ${password}`);
-  };
-  return (
-    <div className='userDetail'>
-     <form onSubmit={handleSubmit} className='loginForm' >
-      <label htmlFor='email'>Email</label>
-      <input type="email" value={email} onChange={handleEmailChange} className={userInputClass===""?"userInput":userInputClass} id='email' required />
-      <label htmlFor='password' >Password</label>
-      <input type="password" value={password} onChange={handlePasswordChange} className={userInputPasswordClass===""?"userInputPassword":userInputPasswordClass} required/>
-      <button type="submit" className='submitBtn' >Continue</button>
-     </form>
-   </div>
-  )
-}
+		fetch("/login", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				email: email,
+				password: password,
+			}),
+		})
+			.then((res) => res.json())
+			.catch((err) => console.log(err));
+	};
 
-export default LoginForm
+	return (
+
+			<form onSubmit={handleSubmit} className="login-form">
+				<label htmlFor="email">Email</label>
+				<input type="email" ref={emailRef} className="userInput" id="email" />
+				<label htmlFor="password">Password</label>
+				<input
+					type="password"
+					ref={passwordRef}
+					className="userInput"
+					id="password"
+				/>
+				<button type="submit" className="btn btn-danger submit-btn">
+					Continue
+				</button>
+			</form>
+	);
+};
+
+export default LoginForm;

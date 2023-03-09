@@ -1,101 +1,109 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState } from "react";
 import "../../pages/SignUp.css";
+import bcrypt from "bcryptjs";
 
-function SignUpForm() {
-    // I have just added this click handle functions to use for future purposes
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-	const [isValidEmail, setIsValidEmail] = useState(false);
-	const [userInputClass, setUserInputClass] = useState("");
-	const [isValidPassword, setIsValidPassword] = useState(false);
-	const [userInputPasswordClass, setUserInputPasswordClass] = useState("");
-  
-    const handleEmailChange = (event) => {
-		const emailRegex = /^\S+@\S+\.\S+$/;
-		const inputEmail = event.target.value;
-		setIsValidEmail(emailRegex.test(inputEmail));
-		setEmail(event.target.value);
-		if(isValidEmail){
-		  setUserInputClass("userInput")
-		}else{
-		  setUserInputClass("userInputWrong")
-		}
-    };
-  
-    const handlePasswordChange = (event) => {
-	  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
-	  const inputPassword = event.target.value;
-	  setIsValidPassword(passwordRegex.test(inputPassword));
-      setPassword(event.target.value);
-	  if(isValidPassword){
-		setUserInputPasswordClass("userInputPassword")
-	  }else{
-		setUserInputPasswordClass("userInputPasswordWrong")
-	  }
-    };
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      console.log(`Email: ${email}, Password: ${password}`);
-    };  
-  return (
-		<div className="userDetail">
-			<form onSubmit={handleSubmit} className="signUpForm">
+const SignUpForm = () => {
+	const firstName = useRef();
+	const lastName = useRef();
+	const emailInputRef = useRef();
+	const passwordInputRef = useRef();
+	const [selected, setSelected] = useState();
+
+	const onRadioSelect = (e) => {
+		setSelected(e.target.value);
+	};
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		const email = emailInputRef.current.value;
+		// const password = bcrypt.hashSync(passwordInputRef.current.value, 10);
+		const password = passwordInputRef.current.value
+
+		fetch("/signUp", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				firstName: firstName.current.value,
+				lastName: lastName.current.value,
+				email: email,
+				password: password,
+				traineeOrMentor: selected,
+			}),
+		})
+			.then((res) => res.json())
+			.catch((err) => console.log(err));
+	};
+
+	return (
+			<form onSubmit={handleSubmit} className="signup-form">
 				<label htmlFor="firstName">First Name</label>
 				<input
 					type="text"
-					value={email}
-					onChange={handleEmailChange}
+					ref={firstName}
 					className="userInput"
 					id="firstName"
+					name="first-name"
 					required
 				/>
 				<label htmlFor="lastName">Last Name</label>
 				<input
 					type="text"
-					value={email}
-					onChange={handleEmailChange}
+					ref={lastName}
 					className="userInput"
 					id="lastName"
+					name="last-name"
 					required
 				/>
 				<label htmlFor="eamil">Email</label>
 				<input
 					type="email"
-					value={email}
-					onChange={handleEmailChange}
-					className={userInputClass===""?"userInput":userInputClass} 
+					ref={emailInputRef}
+					className="userInput"
 					id="email"
+					name="email"
 					required
 				/>
 				<label htmlFor="password">Password</label>
 				<input
 					type="password"
-					value={password}
-					onChange={handlePasswordChange}
-					className={userInputPasswordClass===""?"userInputPassword":userInputPasswordClass}
+					ref={passwordInputRef}
+					className="userInput"
 					id="password"
+					name="password"
 					required
 				/>
 
-        <div className='radioBtnWrapper'>
-          <div className='radioBtn'>
-				<input type="radio" id="mentor" name='input' />
-				<label htmlFor="mentor">Mentor</label>
-          </div>
+				<fieldset className="radioBtnWrapper">
+					<legend>Please select your role</legend>
+					<div className="radio-style-helper">
+					<div className="radioBtn">
+						<input
+							type="radio"
+							id="mentor"
+							name="input"
+							value="mentor"
+							onChange={onRadioSelect}
+						/>
+						<label htmlFor="mentor">Mentor</label>
+					</div>
 
-          <div className='radioBtn'>
-				<input type="radio" id="trainee" name='input'/>
-				<label htmlFor="trainee">Trainee</label>
-          </div>
-
-        </div>
-				<button type="submit" className="signUpBtn">
+					<div className="radioBtn">
+						<input
+							type="radio"
+							id="trainee"
+							name="input"
+							value="trainee"
+							onChange={onRadioSelect}
+						/>
+						<label htmlFor="trainee">Trainee</label>
+					</div>
+					</div>
+				</fieldset>
+				<button type="submit" className="signup-btn btn btn-danger">
 					Continue
 				</button>
 			</form>
-		</div>
 	);
-}
+};
 
-export default SignUpForm
+export default SignUpForm;

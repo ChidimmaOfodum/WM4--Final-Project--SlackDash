@@ -1,5 +1,5 @@
 import db from "../db";
-import { getAllChannels } from "../slackMethods";
+import { getAllChannels, joinChannel } from "../slackMethods";
 
 const addChannel = async (req, res) => {
 	try{
@@ -9,11 +9,12 @@ const addChannel = async (req, res) => {
 		);
 		const id = filteredChannels[0].id;
 		const channelName = filteredChannels[0].name;
-	
-		const query = `INSERT INTO public.channel(channel_id, channel_name) VALUES ($1, $2);`;
-	
-		await db.query(query, [id, channelName]);
-		res.send({ status: "success", data: channelName });
+		const hasJoined = await joinChannel(id);
+		if(hasJoined.ok) {
+			const query = `INSERT INTO public.channel(channel_id, channel_name) VALUES ($1, $2);`;
+			await db.query(query, [id, channelName]);
+			res.send({ status: "success", data: channelName });
+		}
 	}catch(err){
 		if (
 			err.message ===
@@ -36,7 +37,6 @@ const addChannel = async (req, res) => {
 				message: "Something went wrong",
 			});
 		}
-		 
 	}
 };
 

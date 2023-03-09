@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { BsPlusLg } from "react-icons/bs";
 
-const ChannelSelect = ({channelName, handleChange, handleShow}) => {
+const ChannelSelect = ({channelName, handleChange, handleShow, handleClick}) => {
 	const [channels, setChannels] = useState([]);
+
+
 
 	useEffect(() => {
 		fetch("/api/channels")
@@ -13,12 +15,13 @@ const ChannelSelect = ({channelName, handleChange, handleShow}) => {
 
 	return (
 		<div className="channels-section">
-			<select name="channels" id="channels" onChange={handleChange}>
+			<select name="channels" id="channels" onChange={handleClick}>
 				<option selected disabled>Select a channel</option>
 				{channels.map((channel, i) => (
 					<option value={channel} key= {i}>{channel}</option>
 				))}
 			</select>
+			<button className="btn btn-danger" onClick={handleChange}>View Data</button>
 			<span>
 				Add a channel <BsPlusLg onClick={handleShow} />
 			</span>

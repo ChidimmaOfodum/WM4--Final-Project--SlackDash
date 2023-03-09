@@ -1,4 +1,6 @@
-import { useState , useEffect } from "react";
+import { useState } from "react";
+import { startOfWeek, endOfWeek } from "date-fns";
+import { getUnixTime } from "date-fns";
 import StudentTable from "../Components/StudentView/StudentTable";
 import StudentSearch from "../Components/StudentView/StudentSearch";
 import Header from "../Components/Header/Header";
@@ -7,6 +9,7 @@ import ChannelSelect from "../Components/StudentView/ChannelSelect";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+let channel;
 
 const StudentView = () => {
 	const [show, setShow] = useState(false);
@@ -14,119 +17,21 @@ const StudentView = () => {
 	const [students, setStudents] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [defaultMessage, setDefaultMessage] = useState(true);
-	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	const [channelName, setChannelName] = useState(0);
 	const [errMsg, setErrMsg] = useState("");
-    const [updatedPreviousSaturday, setUpdatedPreviousSaturday ] = useState(0);//If prev(starting day which is older) has changed by user this useState keeps track of it
-    const [updatedNextSaturday, setUpdatedNextSaturday ] = useState(0);//If next(ending day which is newer) has changed by user this useState keeps track of it
-	const [isPrevClicked,setIsPrevClicked] = useState(false);
-	const [mountedPrev, setMountedPrev] = useState(false);
-	const [isNextClicked,setIsNextClicked] = useState(false);
-	const [mountedNext, setMountedNext] = useState(false);
+	const [calendarRange, setCalendarRange] = useState({
+		oldest: getUnixTime(startOfWeek(new Date())),
+		latest: getUnixTime(endOfWeek(new Date())),
+	});
 
-
-	// Calculating the timestamps for current Sat to Sat period
-	function getTimestampsOfPreviousAndNextSaturday() {
-		const now = new Date(); // Get the current date and time
-		const dayOfWeek = now.getUTCDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
-		const saturday = new Date(now); // Create a new Date object based on the current date and time
-		saturday.setUTCDate(saturday.getUTCDate() - dayOfWeek + 6); // Set the date to the next Saturday
-		const nextSaturday = new Date(saturday); // Create a new Date object based on the next Saturday
-		const previousSaturday = new Date(saturday); // Create a new Date object based on the next Saturday
-		previousSaturday.setUTCDate(previousSaturday.getUTCDate() - 7); // Set the date to the previous Saturday
-		const timestampOfPreviousSaturday = (previousSaturday.getTime())/1000; // Get the timestamp of the previous Saturday in milliseconds since epoch
-		const timestampOfNextSaturday = (nextSaturday.getTime())/1000; // Get the timestamp of the next Saturday in milliseconds since epoch
-		return [timestampOfPreviousSaturday, timestampOfNextSaturday];
-	}
-    
-	// Calculating timestamp for 7 days ago
-    function getTimestampOfSevenDaysAgo(timeStamp) {
-			const now = timeStamp; // Get the current timestamp in milliseconds
-			const sevenDaysInMs = 7 * 24 * 60 * 60 ; // Calculate 7 days in milliseconds
-			const timestampOfSevenDaysAgo = now - sevenDaysInMs; // Subtract 7 days from the current timestamp
-			return timestampOfSevenDaysAgo;
-	}
-
-	// Calculating timestamp for 7 later
-    function getTimestampOfSevenDaysAfter(timeStamp) {
-		const now = timeStamp; // Get the current timestamp in milliseconds
-		const sevenDaysInMs = 7 * 24 * 60 * 60 ; // Calculate 7 days in milliseconds
-		const timestampOfSevenDaysAgo = now + sevenDaysInMs; // Subtract 7 days from the current timestamp
-		return timestampOfSevenDaysAgo;
-	}
-
-	// Getting data when first page is loaded
-    useEffect( ()=>{
-		// Find current Sat to Sat timestamps where prev is the older Sat
-      	const currentWeekStamps = getTimestampsOfPreviousAndNextSaturday();	
-		setUpdatedPreviousSaturday(currentWeekStamps[0]);
-		setUpdatedNextSaturday(currentWeekStamps[1]);
-        
-		// When it loads for the first time it fetch data for general, we can change it however we want.
-		let URL = `/api/data/general?oldest=${currentWeekStamps[0]}&latest=${currentWeekStamps[1]}`;
-		console.log(URL);
-		fetch(URL)
-			.then((response) => response.json())
-			.then((data) => {
-				setStudents(data.data);
-				setLoading(false);
-			})
-			.catch((error) => {
-				console.error("Error:", error);
-			});
-	},[]);
-
-	// Handle function for  Prev button
-    const prevWeekChangeHandle = (e) =>{
-		setUpdatedPreviousSaturday(getTimestampOfSevenDaysAgo(updatedPreviousSaturday));
-		setUpdatedNextSaturday(getTimestampOfSevenDaysAgo(updatedNextSaturday)) ;
-		setIsPrevClicked(!isPrevClicked);
+	const handleClose = () => {
+		setShow(false);
+		setErrMsg(null);
 	};
-
-    // Handle function for Next button
-    const nextWeekChangeHandle = (e) =>{
-		setUpdatedPreviousSaturday(getTimestampOfSevenDaysAfter(updatedPreviousSaturday));
-		setUpdatedNextSaturday(getTimestampOfSevenDaysAfter(updatedNextSaturday)) ;
-		setIsNextClicked(!isNextClicked);
+	const timeFrame = (payload) => {
+		setCalendarRange(payload);
 	};
-
-	// Getting data when the user update the prev week period 
-    useEffect( ()=>{
-		// mountedPrev is just to avoid this function runs on its first run
-		if(mountedPrev && isPrevClicked){
-			fetch(`/api/data/general?oldest=${updatedPreviousSaturday}&latest=${updatedNextSaturday}`)
-				.then((response) => response.json())
-				.then((data) => {
-					setStudents(data.data);
-					setLoading(false);
-					console.log(`${updatedPreviousSaturday} Previous`);
-					console.log(`${updatedNextSaturday} Previous`);
-				})
-				.catch((error) => {
-					console.error("Error:", error);
-				});
-		}else{setMountedPrev(true)}
-  },[isPrevClicked]);
-
-  	// Getting data when the user update the next week period 
-    useEffect( ()=>{
-		// mountedNext is just to avoid this function runs on its first run
-		if(mountedNext && isNextClicked){
-			fetch(`/api/data/general?oldest=${updatedPreviousSaturday}&latest=${updatedNextSaturday}`)
-				.then((response) => response.json())
-				.then((data) => {
-					setStudents(data.data);
-					setLoading(false);
-					console.log(`${updatedPreviousSaturday} Next`);
-					console.log(`${updatedNextSaturday} Next`);
-				})
-				.catch((error) => {
-					console.error("Error:", error);
-				});
-		}else{setMountedNext(true)}
-  },[isNextClicked]);
-
 	const postChannel = () => {
 		fetch("/api/channel/", {
 			method: "POST",
@@ -146,15 +51,28 @@ const StudentView = () => {
 			});
 	};
 
+	const handleClick = (e) => {
+		channel = e.target.value;
+	};
+
 	const handleChange = (e) => {
+		timeFrame();
 		setLoading(true);
 		setDefaultMessage(false);
-		const channelName = e.target.value;
-		// It fetch the data based on current week which user has selected
-		fetch(`/api/data/${channelName}?oldest=${updatedPreviousSaturday}&latest=${updatedNextSaturday}`)
+		console.log(
+			`/api/data/${channel}/${calendarRange.oldest}/${calendarRange.latest}`
+		);
+		fetch(
+			`/api/data/${channel}/${calendarRange.oldest}/${calendarRange.latest}`
+		)
 			.then((response) => response.json())
 			.then((data) => {
-				setStudents(data.data);
+				if (data.data) {
+					setStudents(data.data);
+					setErrMsg(null);
+				} else {
+					setErrMsg("Please select a valid channel");
+				}
 				setLoading(false);
 			})
 			.catch((error) => {
@@ -197,13 +115,16 @@ const StudentView = () => {
 				<ChannelSelect
 					channelName={channelName}
 					handleChange={handleChange}
-					handleShow={handleShow} 
+					handleShow={handleShow}
+					handleClick={handleClick}
 				/>
 				<StudentSearch
+					timeFrame={timeFrame}
 					students={students}
 					setStudents={setStudents}
-					handleShow={handleShow} prevWeekChangeHandle={prevWeekChangeHandle} nextWeekChangeHandle={nextWeekChangeHandle} updatedPreviousSaturday={updatedPreviousSaturday} updatedNextSaturday={updatedNextSaturday}
+					handleShow={handleShow}
 				/>
+				<p>{errMsg}</p>
 				<StudentTable
 					students={students}
 					defaultMessage={defaultMessage}
