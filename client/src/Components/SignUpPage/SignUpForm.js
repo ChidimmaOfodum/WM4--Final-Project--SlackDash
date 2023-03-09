@@ -8,16 +8,19 @@ const SignUpForm = () => {
 	const emailInputRef = useRef();
 	const passwordInputRef = useRef();
 	const [selected, setSelected] = useState();
+	const [passwordError, setPasswordError] = useState("");
 
 	const onRadioSelect = (e) => {
 		setSelected(e.target.value);
 	};
 
-	const passwordValidation = (event) => {
+	const passwordValidation = () => {
 		const passwordRegex =
 			/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
-		const inputPassword = event.target.value;
-		return passwordRegex.test(inputPassword);
+		passwordRegex.test(passwordInputRef.current.value)
+			? setPasswordError("")
+			: setPasswordError(`Your password must include a minimum of 8 characters, a uppercase, a lowercase, a number, and a
+		special character`);
 	};
 
 	const handleSubmit = (event) => {
@@ -26,24 +29,25 @@ const SignUpForm = () => {
 		// const password = bcrypt.hashSync(passwordInputRef.current.value, 10);
 		const password = passwordInputRef.current.value;
 
-		fetch("/signUp", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				firstName: firstName.current.value,
-				lastName: lastName.current.value,
-				email: email,
-				password: password,
-				traineeOrMentor: selected,
-			}),
-		})
-			.then((res) => res.json())
-			.catch((err) => console.log(err));
+		passwordValidation(password) &&
+			fetch("/signUp", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					firstName: firstName.current.value,
+					lastName: lastName.current.value,
+					email: email,
+					password: password,
+					traineeOrMentor: selected,
+				}),
+			})
+				.then((res) => res.json())
+				.catch((err) => console.log(err));
 	};
 
 	return (
 		<form onSubmit={handleSubmit} className="signup-form">
-			<label htmlFor="firstName">First Name</label>
+			<label htmlFor="firstName">First Name *</label>
 			<input
 				type="text"
 				ref={firstName}
@@ -52,7 +56,7 @@ const SignUpForm = () => {
 				name="first-name"
 				required
 			/>
-			<label htmlFor="lastName">Last Name</label>
+			<label htmlFor="lastName">Last Name *</label>
 			<input
 				type="text"
 				ref={lastName}
@@ -61,7 +65,7 @@ const SignUpForm = () => {
 				name="last-name"
 				required
 			/>
-			<label htmlFor="eamil">Email</label>
+			<label htmlFor="eamil">Email *</label>
 			<input
 				type="email"
 				ref={emailInputRef}
@@ -70,7 +74,8 @@ const SignUpForm = () => {
 				name="email"
 				required
 			/>
-			<label htmlFor="password">Password</label>
+			<label htmlFor="password">Password *</label>
+			<p className="password-rules">{passwordError}</p>
 			<input
 				type="password"
 				ref={passwordInputRef}
@@ -81,7 +86,7 @@ const SignUpForm = () => {
 			/>
 
 			<fieldset className="radioBtnWrapper">
-				<legend>Please select your role</legend>
+				<legend>Please select your role *</legend>
 				<div className="radio-style-helper">
 					<div className="radioBtn">
 						<input
