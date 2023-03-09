@@ -15,7 +15,7 @@ router.get("/", (_, res) => {
 	res.json({ message: "Hello, world!" });
 });
 
-router.get("/data/:channel", getDataPerChannel);
+router.get("/data/:channel/:oldest/:latest", getDataPerChannel);
 router.get("/channels", getChannels)
 router.post("/channel", addChannel )
 router.post("/login", loginUser )

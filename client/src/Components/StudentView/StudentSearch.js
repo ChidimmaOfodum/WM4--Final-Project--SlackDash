@@ -1,36 +1,77 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { BsSortDown } from "react-icons/bs";
 import { BsSortUpAlt } from "react-icons/bs";
+import { DateRangePicker } from "react-date-range";
+import { format } from "date-fns";
+import { startOfWeek, endOfWeek } from "date-fns";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import { getUnixTime } from "date-fns";
 
-const StudentSearch = ({prevWeekChangeHandle , nextWeekChangeHandle, updatedNextSaturday , updatedPreviousSaturday,students, setStudents }) => {
+const StudentSearch = ({timeFrame, students, setStudents}) => {
+	const [open, setOpen] = useState(false);
 	const [sort, setSorted] = useState(<BsSortDown />);
+	const refOne = useRef(null);
 
-	const epochConversion = (timestamp) => {
-		const date = new Date(timestamp*1000);
-		const day = date.getDate();
-		const month = date.getMonth() + 1; // Note: monh values start from 0, so we add 1 to get the correct month value
-		const year = date.getFullYear();
-		let result = `${day}-${month}-${year}`; // Output: "4-3-2022"
-		return result;
-	}
+	const [range, setRange] = useState([
+		{
+			startDate: startOfWeek(new Date()),
+			endDate: endOfWeek(new Date()),
+			key: "selection",
+		},
+	]);
+
 	const handleSort = () => {
 		const reversed = [...students].reverse();
 		setStudents(reversed);
 		setSorted(!sort);
 	};
 
+	const data = {
+		oldest: getUnixTime(range[0].startDate || 0),
+		latest: getUnixTime(range[0].endDate || 0)
+	}
+	useEffect(() => {
+		document.addEventListener("click", hideOnOutsideClick, true);
+		document.addEventListener("load", updateDate, true)
+	}, []);
+
+
+	const updateDate = () => timeFrame(data)
+
+	const hideOnOutsideClick = (e) => {
+		if (refOne.current && !refOne.current.contains(e.target)) {
+			setOpen(false);
+		}
+	};
 	return (
 		<div className="search-sort-buttons">
-			<section className="week-of">
-			   <span className="arrowsUp" onClick={prevWeekChangeHandle} >{"<"}</span>
-				<p>{`Week between: ${epochConversion(updatedPreviousSaturday)} and ${epochConversion(updatedNextSaturday)} `}</p>
-			    <span className="arrowsUp" onClick={nextWeekChangeHandle} >{">"}</span>
+			<section className="calendarWrap">
+				<input
+					value={`${format(range[0].startDate, "dd/MM/yyy")} to ${format(
+						range[0].endDate,
+						"dd/MM/yyy"
+					)}`}
+					className="inputBox"
+					onClick={(open) => setOpen((open) => !open)}
+				/>
+				
+				<div ref={refOne}>
+					{open && (
+						<DateRangePicker
+							className="calendarElement"
+							date={new Date()}
+							onChange={(item) => {
+								setRange([item.selection])
+							updateDate()}}
+							editableDateInputs={true}
+							moveRangeOnFirstSelection={false}
+							ranges={range}
+						/>
+					)}
+				</div>
 			</section>
-			{sort ? (
-				<BsSortDown onClick={handleSort} className="sort" />
-			) : (
-				<BsSortUpAlt onClick={handleSort} className="sort" />
-			)}
+			{sort ? <BsSortDown onClick={handleSort} /> : <BsSortUpAlt onClick={handleSort}/>}
 		</div>
 	);
 };
