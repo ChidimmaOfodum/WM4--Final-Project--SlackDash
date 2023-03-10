@@ -6,7 +6,7 @@ import SlackDashLogo from "../Components/LandingPage/SlackDashLogo.png";
 function Login() {
 	return (
 		<>
-			<Link to="/landingpage">
+			<Link to="/">
 				<img
 					src={SlackDashLogo}
 					alt="SlackDash"

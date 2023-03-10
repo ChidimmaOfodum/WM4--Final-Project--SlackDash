@@ -10,10 +10,10 @@ const LoginForm = () => {
 		event.preventDefault();
 		const email = emailRef.current.value;
 		// const password = bcrypt.hashSync(passwordRef.current.value, 10);
-		const password = passwordInputRef.current.value
+		const password = passwordRef.current.value
 
 
-		fetch("/login", {
+		fetch("api/login", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
