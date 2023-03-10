@@ -38,7 +38,7 @@ const SignUpForm = () => {
 					lastName: lastName.current.value,
 					email: email,
 					password: password,
-					traineeOrMentor: selected,
+					role: selected,
 				}),
 			})
 				.then((res) => res.json())
