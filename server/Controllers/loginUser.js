@@ -28,8 +28,10 @@ const loginUser = async (req,res) => {
     process.env.JWT_SECRET
   );
 
-res.cookie("nToken", jwtToken , { maxAge: 900000, httpOnly: true });
-return res.redirect("/")
+  if (userWithEmail.role === "mentor") {
+    res.cookie("nToken", jwtToken , { maxAge: 900000, httpOnly: true });
+    return res.redirect("/students/table/view");
+  }
     } catch(err){
         console.log(err);
     }
