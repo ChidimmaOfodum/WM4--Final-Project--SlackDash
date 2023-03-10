@@ -10,8 +10,7 @@ const LoginForm = () => {
 		event.preventDefault();
 		const email = emailRef.current.value;
 		// const password = bcrypt.hashSync(passwordRef.current.value, 10);
-		const password = passwordRef.current.value
-
+		const password = passwordRef.current.value;
 
 		fetch("api/login", {
 			method: "POST",
@@ -21,26 +20,29 @@ const LoginForm = () => {
 				password: password,
 			}),
 		})
-			.then((res) => res.json())
+			.then((res) => {
+				if (res.redirected) {
+					window.location.href = res.url;
+				}
+			})
 			.catch((err) => console.log(err));
 	};
 
 	return (
-
-			<form onSubmit={handleSubmit} className="login-form">
-				<label htmlFor="email">Email</label>
-				<input type="email" ref={emailRef} className="userInput" id="email" />
-				<label htmlFor="password">Password</label>
-				<input
-					type="password"
-					ref={passwordRef}
-					className="userInput"
-					id="password"
-				/>
-				<button type="submit" className="btn btn-danger submit-btn">
-					Continue
-				</button>
-			</form>
+		<form onSubmit={handleSubmit} className="login-form">
+			<label htmlFor="email">Email</label>
+			<input type="email" ref={emailRef} className="userInput" id="email" />
+			<label htmlFor="password">Password</label>
+			<input
+				type="password"
+				ref={passwordRef}
+				className="userInput"
+				id="password"
+			/>
+			<button type="submit" className="btn btn-danger submit-btn">
+				Continue
+			</button>
+		</form>
 	);
 };
 
