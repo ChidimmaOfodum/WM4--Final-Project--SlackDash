@@ -6,6 +6,8 @@ import getData from "./Controllers/getData";
 import getStudentProfileData from "./Controllers/getStudentProfileData";
 import addChannel from "./Controllers/addChannel";
 import getChannels from "./Controllers/getChannels";
+import loginUser from "./Controllers/loginUser";
+import signUpUser from "./Controllers/signUpUser";
 
 const router = Router();
 router.get("/", (_, res) => {
@@ -16,6 +18,8 @@ router.get("/", (_, res) => {
 router.get("/data/:channel/:oldest/:latest", getDataPerChannel);
 router.get("/channels", getChannels)
 router.post("/channel", addChannel )
+router.post("/login", loginUser )
+router.post("/signup",signUpUser )
 
 
 router.get("/studentProfileData/:id", getStudentProfileData)
