@@ -1,4 +1,5 @@
 import express from "express";
+import cookieParser from "cookie-parser";
 
 import apiRouter from "./api";
 import config from "./utils/config";
@@ -18,6 +19,8 @@ const app = express();
 app.use(express.json());
 app.use(configuredHelmet());
 app.use(configuredMorgan());
+app.use(cookieParser());
+
 
 if (config.production) {
 	app.enable("trust proxy");

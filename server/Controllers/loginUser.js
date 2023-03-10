@@ -28,13 +28,11 @@ const loginUser = async (req,res) => {
     process.env.JWT_SECRET
   );
 
-  res.json({ message: "Welcome Back!", token: jwtToken });
-
-       
+res.cookie("nToken", jwtToken , { maxAge: 900000, httpOnly: true });
+return res.redirect("/")
     } catch(err){
         console.log(err);
     }
-
 }
 
 export default loginUser;
