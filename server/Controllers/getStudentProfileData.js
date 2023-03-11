@@ -5,7 +5,9 @@ import { studentProfileData } from "./studentProfileData";
 
 const getStudentProfileData = async (req,res) =>{
     const studentID = req.params.id;
-    const studentData = await studentProfileData(studentID);
+    const oldest = req.params.oldest;
+    const latest = req.params.latest
+    const studentData = await studentProfileData(studentID, oldest, latest);
     res.json(studentData) 
 };
 

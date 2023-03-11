@@ -1,7 +1,7 @@
 import db from "../db";
 import { getChannelData, getReplies, getUserInfo } from "../slackMethods";
 
-export async function studentProfileData(userId) {
+export async function studentProfileData(userId, oldest, latest) {
 	try {
 		let totalMessages = 0;
 		var totalCalls = 0;
@@ -15,7 +15,7 @@ export async function studentProfileData(userId) {
 			let channelName = channelDetails.channel_name;
 			var totalMessagesPerChannel = 0;
 			var totalCallsForEachChannel = 0;
-			const rawChannelMessages = await getChannelData(channelID, 0, 0)
+			const rawChannelMessages = await getChannelData(channelID, oldest, latest)
 			const channelMessages = rawChannelMessages.messages;
 
 			// Calculating all calls
@@ -31,7 +31,7 @@ export async function studentProfileData(userId) {
 					totalCallsForEachChannel = totalCallsForEachChannel + 1;
 				}
 			});
-			const ts = channelMessages[0].ts;
+			const ts = channelMessages[0]?.ts;
 			if (finalTs === 0) {
 				finalTs = ts;
 			}
@@ -93,7 +93,7 @@ export async function studentProfileData(userId) {
 		return {
 			traineeName: realName,
 			profilePic: profilePic,
-			finalTime: finalTime,
+		  finalTime: finalTime,
 			messagesStatsForEachChannel: messagesStatsForEachChannel,
 			totalMessages: totalMessages,
 			totalCalls: totalCalls,

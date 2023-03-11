@@ -12,7 +12,8 @@ Chart.register(...registerables);
 
 const Dashboard = () => {
 	const location = useLocation();
-	const { studentid } = location.state;
+	const { studentid, dateRange } = location.state;
+	console.log(location)
 	const [isBar, setIsBar] = useState(true);
 	const pieOrBar = () => {
 		isBar ? setIsBar(false) : setIsBar(true);
@@ -24,7 +25,7 @@ const Dashboard = () => {
 	const [studentProfileImage, setstudentProfileImage] = useState(0);
 	const [lastMessage, setLastMessage] = useState("");
 	useEffect(() => {
-		fetch(`/api/studentProfileData/${studentid}`)
+		fetch(`/api/studentProfileData/${studentid}/${dateRange.oldest}/${dateRange.latest}`)
 			.then((res) => res.json())
 			.then((data) => {
 				setStudentStats(data.messagesStatsForEachChannel);
