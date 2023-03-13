@@ -67,6 +67,7 @@ const StudentSearch = ({timeFrame, students, setStudents}) => {
 							editableDateInputs={true}
 							moveRangeOnFirstSelection={false}
 							ranges={range}
+							maxDate= {new Date()}
 						/>
 					)}
 				</div>
