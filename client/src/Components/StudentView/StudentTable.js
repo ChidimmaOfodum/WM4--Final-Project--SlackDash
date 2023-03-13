@@ -45,7 +45,7 @@ const StudentTable = ({ students, defaultMessage, loading, dateRange }) => {
 						) : loading ? (
 							<Loader />
 						) : (
-							students.slice(startIndex, startIndex + 2).map((student, i) => (
+							students.slice(startIndex, startIndex + 9).map((student, i) => (
 								<tr className="student-table-view" key={i}>
 									<td>
 										<img
