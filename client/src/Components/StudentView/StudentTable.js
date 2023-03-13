@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import PaginationBtns from "./PaginationBtns";
 import "./Students.css";
 
-const StudentTable = ({ students, defaultMessage, loading }) => {
+const StudentTable = ({ students, defaultMessage, loading, dateRange }) => {
 	//const [students, setStudents] = useState([]);
 	const [startIndex, setStartIndex] = useState(0);
 
@@ -57,7 +57,7 @@ const StudentTable = ({ students, defaultMessage, loading }) => {
 									<td>
 										<Link
 											to="/dashboard"
-											state={{ studentid: student.user.id }}
+											state={{ studentid: student.user.id, dateRange: dateRange }}
 											className="profile-link"
 										>
 											{student.user.real_name}
