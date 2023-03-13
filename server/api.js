@@ -8,6 +8,7 @@ import addChannel from "./Controllers/addChannel";
 import getChannels from "./Controllers/getChannels";
 import loginUser from "./Controllers/loginUser";
 import signUpUser from "./Controllers/signUpUser";
+import findUser from "./Controllers/findUser";
 
 const router = Router();
 router.get("/", (_, res) => {
@@ -20,6 +21,7 @@ router.get("/channels", getChannels)
 router.post("/channel", addChannel )
 router.post("/login", loginUser )
 router.post("/signup",signUpUser )
+router.post("/finduserwithemail", findUser )
 
 
 router.get("/studentProfileData/:id/:oldest/:latest", getStudentProfileData)

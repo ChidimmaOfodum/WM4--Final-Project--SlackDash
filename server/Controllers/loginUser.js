@@ -27,9 +27,15 @@ const loginUser = async (req, res) => {
 		);
 
 		if (userWithEmail.role === "mentor") {
-			res.cookie("nToken", jwtToken, { maxAge: 900000, httpOnly: true });
+			await res.cookie("mentor", jwtToken, { maxAge: 900000 });
 			return res.redirect("/students/table/view");
 		}
+
+		if (userWithEmail.role === "trainee") {
+			await res.cookie("trainee", jwtToken, { maxAge: 900000 });
+			return res.redirect("/traineedashboard");
+		}
+
 	} catch (err) {
 		console.log(err);
 	}
