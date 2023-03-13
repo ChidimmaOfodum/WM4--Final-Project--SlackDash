@@ -59,9 +59,6 @@ const StudentView = () => {
 		timeFrame();
 		setLoading(true);
 		setDefaultMessage(false);
-		console.log(
-			`/api/data/${channel}/${calendarRange.oldest}/${calendarRange.latest}`
-		);
 		fetch(
 			`/api/data/${channel}/${calendarRange.oldest}/${calendarRange.latest}`
 		)
@@ -129,6 +126,7 @@ const StudentView = () => {
 					students={students}
 					defaultMessage={defaultMessage}
 					loading={loading}
+					dateRange = {calendarRange}
 				/>
 			</main>
 			<Footer />

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import "../../pages/SignUp.css";
 import bcrypt from "bcryptjs";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
 	const firstName = useRef();
@@ -9,6 +10,7 @@ const SignUpForm = () => {
 	const passwordInputRef = useRef();
 	const [selected, setSelected] = useState();
 	const [passwordError, setPasswordError] = useState("");
+	const navigate = useNavigate();
 
 	const onRadioSelect = (e) => {
 		setSelected(e.target.value);
@@ -17,10 +19,12 @@ const SignUpForm = () => {
 	const passwordValidation = () => {
 		const passwordRegex =
 			/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
-		passwordRegex.test(passwordInputRef.current.value)
+		let isStrongPass = 	passwordRegex.test(passwordInputRef.current.value);
+		    isStrongPass
 			? setPasswordError("")
 			: setPasswordError(`Your password must include a minimum of 8 characters, a uppercase, a lowercase, a number, and a
 		special character`);
+		return isStrongPass
 	};
 
 	const handleSubmit = (event) => {
@@ -30,18 +34,18 @@ const SignUpForm = () => {
 		const password = passwordInputRef.current.value;
 
 		passwordValidation(password) &&
-			fetch("api/signUp", {
+			fetch("api/signup", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
 					firstName: firstName.current.value,
 					lastName: lastName.current.value,
+					role: selected,
 					email: email,
 					password: password,
-					role: selected,
 				}),
 			})
-				.then((res) => res.json())
+				.then((res) => res.json()).then(navigate("/login"))
 				.catch((err) => console.log(err));
 	};
 
@@ -65,7 +69,7 @@ const SignUpForm = () => {
 				name="last-name"
 				required
 			/>
-			<label htmlFor="eamil">Email *</label>
+			<label htmlFor="eamil">{"Email (Slack account email) *"}</label>
 			<input
 				type="email"
 				ref={emailInputRef}
