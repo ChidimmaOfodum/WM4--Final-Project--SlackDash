@@ -13,11 +13,8 @@ Chart.register(...registerables);
 const Dashboard = () => {
 	const location = useLocation();
 	const { studentid, dateRange } = location.state;
-	console.log(location)
 	const [isBar, setIsBar] = useState(true);
-	const pieOrBar = () => {
-		isBar ? setIsBar(false) : setIsBar(true);
-	};
+	const pieOrBar = () => setIsBar(!isBar);
 	const [studentStats, setStudentStats] = useState([]);
 	const [studentName, setStudentName] = useState("");
 	const [studentTotalMessgaes, setstudentTotalMessgaes] = useState(0);
@@ -43,9 +40,9 @@ const Dashboard = () => {
 			<Nav studentProfileImage={studentProfileImage} />
 			<Title traineeName={studentName} />
 			{isBar ? (
-				<BarChart channels={studentStats} />
+				<BarChart channels={studentStats} handleClick = {pieOrBar} />
 			) : (
-				<PieChart channels={studentStats} />
+				<PieChart channels={studentStats} handleClick = {pieOrBar} />
 			)}
 			<MsgStats
 				totalMessages={studentTotalMessgaes}
