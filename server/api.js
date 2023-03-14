@@ -25,6 +25,7 @@ router.post("/finduserwithemail", findUser )
 
 
 router.get("/studentProfileData/:id/:oldest/:latest", getStudentProfileData)
+router.get("/studentProfileData/:id", getStudentProfileData)
 
 router.get("/channels", async(_, res) => {
 	let data = await db.query(`SELECT * FROM public.channel`)
