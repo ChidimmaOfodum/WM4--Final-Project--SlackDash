@@ -55,6 +55,8 @@ body {
   font-style: italic;
 }
 .test{
+  display: flex;
+  justify-content: space-around;
   height: 51vh;
   width: 95vw;
   margin-left: 1rem;

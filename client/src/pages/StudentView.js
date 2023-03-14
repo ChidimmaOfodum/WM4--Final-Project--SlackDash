@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { BsSortDown } from "react-icons/bs";
+import { BsSortUpAlt } from "react-icons/bs";
 import { startOfWeek, endOfWeek } from "date-fns";
 import { getUnixTime } from "date-fns";
+import { DateRangePicker } from "react-date-range";
+import { format } from "date-fns";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
 import StudentTable from "../Components/StudentView/StudentTable";
-import StudentSearch from "../Components/StudentView/StudentSearch";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import ChannelSelect from "../Components/StudentView/ChannelSelect";
@@ -12,26 +17,77 @@ import Form from "react-bootstrap/Form";
 let channel;
 
 const StudentView = () => {
+	//..............UseHooks............................................
 	const [show, setShow] = useState(false);
-	const [channelAdd, setChannelAdd] = useState("");
-	const [students, setStudents] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [defaultMessage, setDefaultMessage] = useState(true);
 	const handleShow = () => setShow(true);
-	const [channelName, setChannelName] = useState(0);
+	const [open, setOpen] = useState(false);
+	const [channelAdd, setChannelAdd] = useState("");
 	const [errMsg, setErrMsg] = useState("");
-	const [calendarRange, setCalendarRange] = useState({
-		oldest: getUnixTime(startOfWeek(new Date())),
-		latest: getUnixTime(endOfWeek(new Date())),
-	});
+	const [channelName, setChannelName] = useState(0);
+	const refOne = useRef(null);
+	const [students, setStudents] = useState([]);
+	const [sort, setSorted] = useState(<BsSortDown />);
+	const [range, setRange] = useState([
+		{
+			startDate: startOfWeek(new Date()),
+			endDate: endOfWeek(new Date()),
+			key: "selection",
+		},
+	]);
+
+	useEffect(() => {
+		document.addEventListener("click", hideOnOutsideClick, true);
+	}, []);
+
+	//.....................helper functions..............................................
+
+	const handleSort = () => {
+		const reversed = [...students].reverse();
+		setStudents(reversed);
+		setSorted(!sort);
+	};
+
+	const hideOnOutsideClick = (e) => {
+		if (refOne.current && !refOne.current.contains(e.target)) {
+			setOpen(false);
+		}
+	};
 
 	const handleClose = () => {
 		setShow(false);
 		setErrMsg(null);
 	};
-	const timeFrame = (payload) => {
-		setCalendarRange(payload);
+
+	const handleChange = (e) => {
+		channel = e.target.value;
 	};
+
+	const handleClick = (e) => {
+		setLoading(true);
+		setDefaultMessage(false);
+
+		fetch(
+			`/api/data/${channel}/${getUnixTime(range[0].startDate)}/${getUnixTime(
+				range[0].endDate
+			)}`
+		)
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.data) {
+					setStudents(data.data);
+					setErrMsg(null);
+				} else {
+					setErrMsg("Please select a valid channel");
+				}
+				setLoading(false);
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+			});
+	};
+
 	const postChannel = () => {
 		fetch("/api/channel/", {
 			method: "POST",
@@ -48,32 +104,6 @@ const StudentView = () => {
 				} else if (data.message) {
 					setErrMsg(data.message);
 				}
-			});
-	};
-
-	const handleClick = (e) => {
-		channel = e.target.value;
-	};
-
-	const handleChange = (e) => {
-		timeFrame();
-		setLoading(true);
-		setDefaultMessage(false);
-		fetch(
-			`/api/data/${channel}/${calendarRange.oldest}/${calendarRange.latest}`
-		)
-			.then((response) => response.json())
-			.then((data) => {
-				if (data.data) {
-					setStudents(data.data);
-					setErrMsg(null);
-				} else {
-					setErrMsg("Please select a valid channel");
-				}
-				setLoading(false);
-			})
-			.catch((error) => {
-				console.error("Error:", error);
 			});
 	};
 
@@ -111,22 +141,53 @@ const StudentView = () => {
 			<main className="student-view">
 				<ChannelSelect
 					channelName={channelName}
-					handleChange={handleChange}
-					handleShow={handleShow}
 					handleClick={handleClick}
-				/>
-				<StudentSearch
-					timeFrame={timeFrame}
-					students={students}
-					setStudents={setStudents}
 					handleShow={handleShow}
+					handleChange={handleChange}
 				/>
-				<p>{errMsg}</p>
+				<div className="search-sort-buttons">
+					<section className="calendarWrap">
+						<input
+							value={`${format(range[0].startDate, "dd/MM/yyy")} to ${format(
+								range[0].endDate,
+								"dd/MM/yyy"
+							)}`}
+							className="inputBox"
+							onClick={() => setOpen((open) => !open)}
+							readOnly
+						/>
+
+						<div ref={refOne}>
+							{open && (
+								<DateRangePicker
+									className="calendarElement"
+									date={new Date()}
+									onChange={(item) => {
+										setRange([item.selection]);
+									}}
+									editableDateInputs={true}
+									moveRangeOnFirstSelection={false}
+									ranges={range}
+									maxDate={new Date()}
+								/>
+							)}
+						</div>
+					</section>
+					{sort ? (
+						<BsSortDown onClick={handleSort} />
+					) : (
+						<BsSortUpAlt onClick={handleSort} />
+					)}
+				</div>
+				<p className="err">{errMsg}</p>
 				<StudentTable
 					students={students}
 					defaultMessage={defaultMessage}
 					loading={loading}
-					dateRange = {calendarRange}
+					dateRange={{
+						oldest: getUnixTime(range[0].startDate),
+						latest: getUnixTime(range[0].endDate),
+					}}
 				/>
 			</main>
 			<Footer />
