@@ -4,7 +4,7 @@ import { AiTwotoneHome } from "react-icons/ai";
 const Footer = () => {
   return (
 		<footer>
-			<Link to="/">
+			<Link to="/students/table/view">
 				<button className="homebtn-wrapper">
 					<AiTwotoneHome size={40} color={"red"}></AiTwotoneHome>
 				</button>

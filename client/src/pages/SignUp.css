@@ -1,27 +1,28 @@
-.signup-page{
+.signup-page {
 	margin: 0 2em;
+	height: 100vh;
 }
-.signup-header{
+.signup-header {
 	display: flex;
 	flex-direction: column;
 	margin-top: 2em;
 }
-.signup-form{
+.signup-form {
 	display: flex;
 	flex-direction: column;
 }
 
-input[type = radio] {
+input[type="radio"] {
 	accent-color: red;
 }
 
-fieldset legend{
+fieldset legend {
 	font-size: 1em;
 	margin: 1em 0 0 0;
 }
 
-.password-rules{
-	font-size: .8em;
+.password-rules {
+	font-size: 0.8em;
 	color: red;
 }
 
@@ -29,35 +30,38 @@ fieldset legend{
 	margin: 1em 0;
 }
 
-.radioBtn label{
-margin-left: .5em;
+.radioBtn label {
+	margin-left: 0.5em;
 }
 
-.radio-style-helper{
+.radio-style-helper {
 	display: flex;
 }
 
-.radioBtn{
+.radioBtn {
 	margin-right: 2em;
 }
 
-.signup-btn{
+.signup-btn {
 	width: 50%;
 	align-self: center;
 	margin-top: 1em;
 }
 
 @media screen and (min-width: 600px) {
-    .signup-page{
+	.signup-page {
 		display: flex;
 		flex-direction: column;
 		width: 100vw;
+		height: 100vh;
 	}
-	.signup-header{
-	align-self: center;
-	width: 50%;
+	.signup-header {
+		align-self: center;
+		width: 50%;
 	}
-	.signup-btn{
+	.signup-btn {
 		width: 25%;
 	}
 }
+
+

@@ -4,8 +4,8 @@
 	text-align: center;
 	display: flex;
 	flex-direction: column;
-	height: 95vh;
-	margin: 2em 1.5em 2em 1.5em;
+	height: 80vh;
+	margin: 2em 1.5em;
 }
 .table-responsive {
 	display: flex;
