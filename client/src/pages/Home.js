@@ -35,19 +35,6 @@ export function Home() {
 				<h1 className="message" data-qa="message">
 					{message}
 				</h1>
-				<Link to="/about/this/site">About</Link>
-				<br />
-				<Link to="/students/table/view">Student Table View</Link>
-				<div>
-				<Link to = "/dashboard">Dashboard</Link>
-				</div>
-				<div>
-				<Link to = "/login">Login to your account</Link>
-				</div>
-				<div>
-				<Link to = "/signup">Create a new account</Link>
-				</div>
-				<Link to="/">Landing Page</Link>
 			</div>
 		</main>
 	);
