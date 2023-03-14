@@ -1,13 +1,27 @@
-.slackdash-logo-sm{
-    max-width: 50%;
-    padding: 1em;
+.login-page-bg {
+	width: 100vw;
+	height: 100vh;
+	background-image: url("https://res.cloudinary.com/meryan/image/upload/v1677450999/SlackDashLandingPageBg_zzhzxc.png");
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.slackdash-logo-sm {
+	max-width: 50%;
+	padding: 1em;
+	float: right;
 }
 .login-page {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 100vw;
-    margin-top: 7em;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
 }
 
 .login-header {
@@ -17,10 +31,12 @@
 .login-form {
 	display: flex;
 	flex-direction: column;
+	width: 80%;
 }
 
 .submit-btn {
-	margin: 1em 5em;
+	margin: 2em 5em;
+	align-self: center;
 }
 
 form label {
@@ -28,26 +44,42 @@ form label {
 }
 
 form input {
-	background-color: rgb(236, 236, 236);
+	background-color: white;
 	padding: 0.7em;
-	border-radius: 10em;
+	border-radius: 2em;
 }
 
 @media screen and (min-width: 600px) {
-    .slackdash-logo-sm{
-        max-width: 20%;
-    }
-    .login-page{
-        height: 65vh;
-        justify-content: center;
-        align-items: center;
-    }
+	.slackdash-logo-sm {
+		max-width: 40%;
+	}
+	.login-page {
+		/* height: 65vh; */
+		justify-content: center;
+		align-items: center;
+	}
+	.login-form {
+		width: 100%;
+	}
+	.submit-btn {
+		margin: 2em 0;
+		align-self: center;
+	}
+}
+@media screen and (min-width: 900px) {
+	.slackdash-logo-sm {
+		max-width: 25%;
+	}
+	.login-page {
+		justify-content: center;
+		align-items: center;
+		width: 100vw;
+	}
 	.login-form {
 		width: 40%;
 	}
 	.submit-btn {
 		margin: 2em 0;
-		width: 35%;
 		align-self: center;
 	}
 }

@@ -113,7 +113,7 @@ const SignUpForm = () => {
 					</div>
 				</div>
 			</fieldset>
-			<button type="submit" className="signup-btn btn btn-danger">
+			<button type="submit" className="signup-btn btn btn-dark">
 				Continue
 			</button>
 		</form>
