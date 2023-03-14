@@ -1,14 +1,20 @@
-import { useState } from "react";
+
 import { startOfWeek, endOfWeek } from "date-fns";
 import { getUnixTime } from "date-fns";
 import StudentTable from "../Components/StudentView/StudentTable";
-import StudentSearch from "../Components/StudentView/StudentSearch";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import ChannelSelect from "../Components/StudentView/ChannelSelect";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useState, useRef, useEffect } from "react";
+import { BsSortDown } from "react-icons/bs";
+import { BsSortUpAlt } from "react-icons/bs";
+import { DateRangePicker } from "react-date-range";
+import { format } from "date-fns";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
 let channel;
 
 const StudentView = () => {
@@ -20,18 +26,40 @@ const StudentView = () => {
 	const handleShow = () => setShow(true);
 	const [channelName, setChannelName] = useState(0);
 	const [errMsg, setErrMsg] = useState("");
-	const [calendarRange, setCalendarRange] = useState({
-		oldest: getUnixTime(startOfWeek(new Date())),
-		latest: getUnixTime(endOfWeek(new Date())),
-	});
+	const [open, setOpen] = useState(false);
+	const [sort, setSorted] = useState(<BsSortDown />);
+	const refOne = useRef(null);
+
+	const [range, setRange] = useState([
+		{
+			startDate: startOfWeek(new Date()),
+			endDate: endOfWeek(new Date()),
+			key: "selection",
+		},
+	]);
+
+	const handleSort = () => {
+		const reversed = [...students].reverse();
+		setStudents(reversed);
+		setSorted(!sort);
+	};
+
+
+	useEffect(() => {
+		document.addEventListener("click", hideOnOutsideClick, true);
+	}, []);
+
+	const hideOnOutsideClick = (e) => {
+		if (refOne.current && !refOne.current.contains(e.target)) {
+			setOpen(false);
+		}
+	};
 
 	const handleClose = () => {
 		setShow(false);
 		setErrMsg(null);
 	};
-	const timeFrame = (payload) => {
-		setCalendarRange(payload);
-	};
+
 	const postChannel = () => {
 		fetch("/api/channel/", {
 			method: "POST",
@@ -53,14 +81,18 @@ const StudentView = () => {
 
 	const handleClick = (e) => {
 		channel = e.target.value;
+		console.log(`/api/data/${channel}/${getUnixTime(range[0].startDate)}/${getUnixTime(range[0].endDate)}`);
 	};
 
 	const handleChange = (e) => {
-		timeFrame();
 		setLoading(true);
 		setDefaultMessage(false);
+		
+
 		fetch(
-			`/api/data/${channel}/${calendarRange.oldest}/${calendarRange.latest}`
+			`/api/data/${channel}/${getUnixTime(range[0].startDate)}/${getUnixTime(
+				range[0].endDate
+			)}`
 		)
 			.then((response) => response.json())
 			.then((data) => {
@@ -115,18 +147,45 @@ const StudentView = () => {
 					handleShow={handleShow}
 					handleClick={handleClick}
 				/>
-				<StudentSearch
-					timeFrame={timeFrame}
-					students={students}
-					setStudents={setStudents}
-					handleShow={handleShow}
-				/>
+				<div className="search-sort-buttons">
+					<section className="calendarWrap">
+						<input
+							value={`${format(range[0].startDate, "dd/MM/yyy")} to ${format(
+								range[0].endDate,
+								"dd/MM/yyy"
+							)}`}
+							className="inputBox"
+							onClick={(open) => setOpen((open) => !open)}
+						/>
+
+						<div ref={refOne}>
+							{open && (
+								<DateRangePicker
+									className="calendarElement"
+									date={new Date()}
+									onChange={(item) => {
+										setRange([item.selection]);
+									}}
+									editableDateInputs={true}
+									moveRangeOnFirstSelection={false}
+									ranges={range}
+									maxDate={new Date()}
+								/>
+							)}
+						</div>
+					</section>
+					{sort ? (
+						<BsSortDown onClick={handleSort} />
+					) : (
+						<BsSortUpAlt onClick={handleSort} />
+					)}
+				</div>
 				<p>{errMsg}</p>
 				<StudentTable
 					students={students}
 					defaultMessage={defaultMessage}
 					loading={loading}
-					dateRange = {calendarRange}
+					dateRange={{oldest: getUnixTime(range[0].startDate), latest: getUnixTime(range[0].endDate)}}
 				/>
 			</main>
 			<Footer />

@@ -8,7 +8,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { getUnixTime } from "date-fns";
 
-const StudentSearch = ({timeFrame, students, setStudents}) => {
+const StudentSearch = ({timeFrame, timeFrame1, students, setStudents}) => {
 	const [open, setOpen] = useState(false);
 	const [sort, setSorted] = useState(<BsSortDown />);
 	const refOne = useRef(null);
@@ -27,17 +27,17 @@ const StudentSearch = ({timeFrame, students, setStudents}) => {
 		setSorted(!sort);
 	};
 
-	const data = {
-		oldest: getUnixTime(range[0].startDate || 0),
-		latest: getUnixTime(range[0].endDate || 0)
-	}
+	const oldest = getUnixTime(range[0].startDate || 0);
+	const latest = getUnixTime(range[0].endDate || 0)
+
 	useEffect(() => {
 		document.addEventListener("click", hideOnOutsideClick, true);
 		document.addEventListener("load", updateDate, true)
 	}, []);
 
 
-	const updateDate = () => timeFrame(data)
+	const updateDate = () => timeFrame(oldest)
+	const updateDate1 = ()=> timeFrame1(latest)
 
 	const hideOnOutsideClick = (e) => {
 		if (refOne.current && !refOne.current.contains(e.target)) {
@@ -63,9 +63,11 @@ const StudentSearch = ({timeFrame, students, setStudents}) => {
 							date={new Date()}
 							onChange={(item) => {
 								setRange([item.selection])
-							updateDate()}}
+								console.log(range)
+							updateDate()
+					   	updateDate1()}}
 							editableDateInputs={true}
-							moveRangeOnFirstSelection={false}
+							moveRangeOnFirstSelection={true}
 							ranges={range}
 							maxDate= {new Date()}
 						/>
