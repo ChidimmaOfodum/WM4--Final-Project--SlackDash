@@ -2,7 +2,7 @@ import React from "react";
 import { Bar } from "react-chartjs-2";
 
 
-const BarChart = ({ channels }) => {
+const BarChart = ({ channels, handleClick }) => {
 	return (
 		<div className="test">
 			<Bar
@@ -38,6 +38,7 @@ const BarChart = ({ channels }) => {
 					responsive: true,
 					maintainAspectRatio: false,
 				}}
+				onClick = {handleClick}
 			/>
 		</div>
 	);
