@@ -33,4 +33,10 @@ module.exports = {
 			template: "./client/src/index.html",
 		}),
 	],
+	resolve: {
+        fallback: {
+            crypto: require.resolve('crypto-browserify'),
+			buffer: false,
+        },
+    },
 };

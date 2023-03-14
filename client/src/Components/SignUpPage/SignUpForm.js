@@ -1,77 +1,123 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState } from "react";
 import "../../pages/SignUp.css";
+import { useNavigate } from "react-router-dom";
 
-function SignUpForm() {
-    // I have just added this click handle functions to use for future purposes
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-  
-    const handleEmailChange = (event) => {
-      setEmail(event.target.value);
-    };
-  
-    const handlePasswordChange = (event) => {
-      setPassword(event.target.value);
-    };
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      console.log(`Email: ${email}, Password: ${password}`);
-    };  
-  return (
-		<div className="userDetail">
-			<form onSubmit={handleSubmit} className="signUpForm">
-				<label htmlFor="firstName">First Name</label>
-				<input
-					type="text"
-					value={email}
-					onChange={handleEmailChange}
-					className="userInput"
-					id="firstName"
-				/>
-				<label htmlFor="lastName">Last Name</label>
-				<input
-					type="text"
-					value={email}
-					onChange={handleEmailChange}
-					className="userInput"
-					id="lastName"
-				/>
-				<label htmlFor="eamil">Email</label>
-				<input
-					type="email"
-					value={email}
-					onChange={handleEmailChange}
-					className="userInput"
-					id="email"
-				/>
-				<label htmlFor="password">Password</label>
-				<input
-					type="password"
-					value={password}
-					onChange={handlePasswordChange}
-					className="userInput"
-					id="password"
-				/>
+const SignUpForm = () => {
+	const firstName = useRef();
+	const lastName = useRef();
+	const emailInputRef = useRef();
+	const passwordInputRef = useRef();
+	const [selected, setSelected] = useState();
+	const [passwordError, setPasswordError] = useState("");
+	const navigate = useNavigate();
 
-        <div className='radioBtnWrapper'>
-          <div className='radioBtn'>
-				<input type="radio" id="mentor" name='input' />
-				<label htmlFor="mentor">Mentor</label>
-          </div>
+	const onRadioSelect = (e) => {
+		setSelected(e.target.value);
+	};
 
-          <div className='radioBtn'>
-				<input type="radio" id="trainee" name='input'/>
-				<label htmlFor="trainee">Trainee</label>
-          </div>
+	const passwordValidation = () => {
+		const passwordRegex =
+			/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
+		let isStrongPass = 	passwordRegex.test(passwordInputRef.current.value);
+		    isStrongPass
+			? setPasswordError("")
+			: setPasswordError(`Your password must include a minimum of 8 characters, a uppercase, a lowercase, a number, and a
+		special character`);
+		return isStrongPass
+	};
 
-        </div>
-				<button type="submit" className="signUpBtn">
-					Continue
-				</button>
-			</form>
-		</div>
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		const email = emailInputRef.current.value;
+		const password = passwordInputRef.current.value;
+
+		passwordValidation(password) &&
+			fetch("api/signup", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					firstName: firstName.current.value,
+					lastName: lastName.current.value,
+					role: selected,
+					email: email,
+					password: password,
+				}),
+			})
+				.then((res) => res.json()).then(navigate("/login"))
+				.catch((err) => console.log(err));
+	};
+
+	return (
+		<form onSubmit={handleSubmit} className="signup-form">
+			<label htmlFor="firstName">First Name *</label>
+			<input
+				type="text"
+				ref={firstName}
+				className="userInput"
+				id="firstName"
+				name="first-name"
+				required
+			/>
+			<label htmlFor="lastName">Last Name *</label>
+			<input
+				type="text"
+				ref={lastName}
+				className="userInput"
+				id="lastName"
+				name="last-name"
+				required
+			/>
+			<label htmlFor="eamil">{"Email (Slack account email) *"}</label>
+			<input
+				type="email"
+				ref={emailInputRef}
+				className="userInput"
+				id="email"
+				name="email"
+				required
+			/>
+			<label htmlFor="password">Password *</label>
+			<p className="password-rules">{passwordError}</p>
+			<input
+				type="password"
+				ref={passwordInputRef}
+				className="userInput"
+				id="password"
+				name="password"
+				required
+			/>
+
+			<fieldset className="radioBtnWrapper">
+				<legend>Please select your role *</legend>
+				<div className="radio-style-helper">
+					<div className="radioBtn">
+						<input
+							type="radio"
+							id="mentor"
+							name="input"
+							value="mentor"
+							onChange={onRadioSelect}
+						/>
+						<label htmlFor="mentor">Mentor</label>
+					</div>
+
+					<div className="radioBtn">
+						<input
+							type="radio"
+							id="trainee"
+							name="input"
+							value="trainee"
+							onChange={onRadioSelect}
+						/>
+						<label htmlFor="trainee">Trainee</label>
+					</div>
+				</div>
+			</fieldset>
+			<button type="submit" className="signup-btn btn btn-dark">
+				Continue
+			</button>
+		</form>
 	);
-}
+};
 
-export default SignUpForm
+export default SignUpForm;

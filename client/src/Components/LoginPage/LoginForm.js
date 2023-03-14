@@ -1,34 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import { useRef } from "react";
 import "../../pages/Login.css";
 
-function LoginForm() {
-  // I have just added this click handle functions to use for future purposes
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const LoginForm = () => {
+	const emailRef = useRef();
+	const passwordRef = useRef();
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		const email = emailRef.current.value;
+		const password = passwordRef.current.value;
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+		fetch("api/login", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				email: email,
+				password: password,
+			}),
+		})
+			.then((res) => {
+				if (res.redirected) {
+					window.location.href = res.url;
+				}
+			})
+			.catch((err) => console.log(err));
+	};
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(`Email: ${email}, Password: ${password}`);
-  };
-  return (
-    <div className='userDetail'>
-     <form onSubmit={handleSubmit} className='loginForm' >
-      <label htmlFor='email'>Email</label>
-      <input type="email" value={email} onChange={handleEmailChange} className="userInput" id='email' />
-      <label htmlFor='password' >Password</label>
-      <input type="password" value={password} onChange={handlePasswordChange} className="userInput" id='password'/>
-      <button type="submit" className='submitBtn' >Continue</button>
-     </form>
-   </div>
-  )
-}
+	return (
+		<form onSubmit={handleSubmit} className="login-form">
+			<label htmlFor="email">Email</label>
+			<input type="email" ref={emailRef} className="userInput" id="email" />
+			<label htmlFor="password">Password</label>
+			<input
+				type="password"
+				ref={passwordRef}
+				className="userInput"
+				id="password"
+			/>
+			<button type="submit" className="btn btn-danger submit-btn">
+				Continue
+			</button>
+		</form>
+	);
+};
 
-export default LoginForm
+export default LoginForm;
