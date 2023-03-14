@@ -1,13 +1,13 @@
 .navbar {
 	background-color: red;
-    padding: 1em;
+	padding: 1em;
 }
-.site-header{
-    color: white;
-    font-weight: bold;
+.site-header {
+	color: white;
+	font-weight: bold;
 }
 
-.profile-pic{
+.profile-pic {
 	border-radius: 50%;
 }
 
@@ -33,4 +33,9 @@ nav ul li a {
 .btn-close {
 	color: white;
 	font-size: 2em;
+}
+
+.profile-pic-logo {
+	height: 40px;
+	width: 40px;
 }

@@ -50,6 +50,7 @@ const TraineeDashboard = () => {
 			.catch((err) => console.log(err));
     },[userSlackID])
 	return (
+		<div>
 		<div className="Dashboard">
 			<Nav studentProfileImage={studentProfileImage} />
 			<Title traineeName={studentName} />
@@ -63,7 +64,8 @@ const TraineeDashboard = () => {
 				totalCalls={studentTotalCalls}
 				lastMessage={lastMessage}
 			/>
-			<TraineeFooter />
+		</div>
+		<TraineeFooter />
 		</div>
 	);
 };
