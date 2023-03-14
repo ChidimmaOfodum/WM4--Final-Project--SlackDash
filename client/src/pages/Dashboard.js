@@ -38,6 +38,7 @@ const Dashboard = () => {
 			.catch((err) => console.log(err));
 	}, []);
 	return (
+		<>
 		<div className="Dashboard">
 			<Nav studentProfileImage={studentProfileImage} />
 			<Title traineeName={studentName} />
@@ -51,8 +52,9 @@ const Dashboard = () => {
 				totalCalls={studentTotalCalls}
 				lastMessage={lastMessage}
 			/>
-			<Footer />
 		</div>
+		<Footer />
+		</>
 	);
 };
 

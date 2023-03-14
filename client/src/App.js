@@ -8,15 +8,19 @@ import TraineeDashboard from "./pages/TraineeDashboard";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import LandingPage from "./pages/LandingPage";
+import PrivateRouteForTrainee from "./PrivateRouteForTrainee";
+import PrivateRouteForMentor from "./PrivateRouteForMentor";
 
 const App = () => (
 	<CookiesProvider>
 	<Routes>
+		<Route path="/traineedashboard" element={<PrivateRouteForTrainee />} />
+		<Route path="/traineedashboardloggedin" element={<TraineeDashboard />} />
+		<Route path="/students/table/view" element={<PrivateRouteForMentor />} />
+		<Route path="/mentordashboardloggedin" element={<StudentView />} />
 		<Route path="/" element={<LandingPage />} />
 		<Route path="/about/this/site" element={<About />} />
-		<Route path="/students/table/view" element={<StudentView />} />
 		<Route path="/dashboard" element={<Dashboard />} />
-		<Route path="/traineedashboard" element={<TraineeDashboard />} />
 		<Route path="/login" element={<Login />} />
 		<Route path="/signup" element={<SignUp />} />
 	</Routes>
