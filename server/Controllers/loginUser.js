@@ -16,7 +16,8 @@ const loginUser = async (req, res) => {
 				.status(400)
 				.json({ message: "Email or password does not match!" });
 
-		if (userWithEmail.password !== password)
+		
+		if (await !userWithEmail.comparePassword(password))
 			return res
 				.status(400)
 				.json({ message: "Email or password does not match!" });
