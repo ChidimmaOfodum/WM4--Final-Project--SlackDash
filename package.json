@@ -94,6 +94,7 @@
 		"morgan": "^1.10.0",
 		"pg": "^8.10.0",
 		"pg-hstore": "^2.3.4",
+		"react-auth-kit": "^2.8.2",
 		"react-bootstrap": "^2.7.2",
 		"react-chartjs-2": "^5.2.0",
 		"react-cookie": "^4.1.1",
