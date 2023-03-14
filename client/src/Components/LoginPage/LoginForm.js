@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import "../../pages/Login.css";
-import bcrypt from "bcryptjs";
+// import bcrypt from "bcryptjs";
 
 const LoginForm = () => {
 	const emailRef = useRef();
@@ -9,7 +9,7 @@ const LoginForm = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const email = emailRef.current.value;
-		// const password = bcrypt.hashSync(passwordRef.current.value, 10);
+		// const passwordHashed = bcrypt.hashSync(passwordRef.current.value, 10);
 		const password = passwordRef.current.value;
 
 		fetch("api/login", {
