@@ -179,7 +179,7 @@ const StudentView = () => {
 						<BsSortUpAlt onClick={handleSort} />
 					)}
 				</div>
-				<p>{errMsg}</p>
+				<p className="err">{errMsg}</p>
 				<StudentTable
 					students={students}
 					defaultMessage={defaultMessage}
