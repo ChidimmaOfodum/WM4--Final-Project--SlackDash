@@ -5,7 +5,7 @@ import SlackDashLogo from "../Components/LandingPage/SlackDashLogo.png";
 
 function Login() {
 	return (
-		<>
+		<div className="login-page-bg">
 			<Link to="/">
 				<img
 					src={SlackDashLogo}
@@ -19,7 +19,7 @@ function Login() {
 				</div>
 				<LoginForm />
 			</main>
-		</>
+		</div>
 	);
 }
 

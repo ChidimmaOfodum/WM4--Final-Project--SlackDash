@@ -26,8 +26,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 2em;
-  margin-bottom: 1rem;
+  gap: 0.5em;
+  margin-top: .5em;
 }
 
 #lastMessageText {
@@ -55,6 +55,8 @@ body {
   font-style: italic;
 }
 .test{
+  display: flex;
+  justify-content: space-around;
   height: 51vh;
   width: 95vw;
   margin-left: 1rem;
@@ -80,6 +82,8 @@ footer {
   justify-content: space-around;
   align-items: center;
   padding: .5em;
+  margin-top: 1em;;
 }
+
 
 

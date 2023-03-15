@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import "../../pages/SignUp.css";
-import bcrypt from "bcryptjs";
 import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
@@ -30,7 +29,6 @@ const SignUpForm = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const email = emailInputRef.current.value;
-		// const password = bcrypt.hashSync(passwordInputRef.current.value, 10);
 		const password = passwordInputRef.current.value;
 
 		passwordValidation(password) &&
@@ -115,7 +113,7 @@ const SignUpForm = () => {
 					</div>
 				</div>
 			</fieldset>
-			<button type="submit" className="signup-btn btn btn-danger">
+			<button type="submit" className="signup-btn btn btn-dark">
 				Continue
 			</button>
 		</form>
