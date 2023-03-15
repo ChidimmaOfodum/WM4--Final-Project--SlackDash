@@ -31,13 +31,13 @@ export async function studentProfileData(userId, oldest, latest) {
 					totalCallsForEachChannel = totalCallsForEachChannel + 1;
 				}
 			});
-			const ts = channelMessages[0]?.ts;
-			if (finalTs === 0) {
-				finalTs = ts;
-			}
-			if ( ts > finalTs) {
-				finalTs = ts;
-			}
+			// const ts = channelMessages[0]?.ts;
+			// // if (finalTs === 0) {
+			// // 	finalTs = ts;
+			// // }
+			// if ( ts > finalTs) {
+			// 	finalTs = ts;
+			// }
 			for (let j = 0; j < channelMessages.length; j++) {
 				let channelMessage = channelMessages[j];
 				let threadTs = channelMessage.ts;
@@ -81,19 +81,18 @@ export async function studentProfileData(userId, oldest, latest) {
 			day: "numeric",
 		};
 		const dOLM =  new Date(finalTs * 1000);
-		const finalTime =
-			(`${dOLM.toLocaleDateString(
-				"en-GB",
-				options
-			)}, ${dOLM.toLocaleTimeString([], {
-				hour: "2-digit",
-				minute: "2-digit",
-			})}`) || "Nill";
+		// const finalTime =
+		// 	(`${dOLM.toLocaleDateString(
+		// 		"en-GB",
+		// 		options
+		// 	)}, ${dOLM.toLocaleTimeString([], {
+		// 		hour: "2-digit",
+		// 		minute: "2-digit",
+		// 	})}`) || "Nill";
 
 		return {
 			traineeName: realName,
 			profilePic: profilePic,
-		  finalTime: finalTime,
 			messagesStatsForEachChannel: messagesStatsForEachChannel,
 			totalMessages: totalMessages,
 			totalCalls: totalCalls,

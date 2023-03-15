@@ -47,7 +47,6 @@ const Dashboard = () => {
 			<MsgStats
 				totalMessages={studentTotalMessgaes}
 				totalCalls={studentTotalCalls}
-				lastMessage={lastMessage}
 			/>
 		</div>
 		<Footer />
