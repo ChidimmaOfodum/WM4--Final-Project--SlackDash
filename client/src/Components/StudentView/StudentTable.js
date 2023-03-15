@@ -6,7 +6,6 @@ import PaginationBtns from "./PaginationBtns";
 import "./Students.css";
 
 const StudentTable = ({ students, defaultMessage, loading, dateRange }) => {
-	//const [students, setStudents] = useState([]);
 	const [startIndex, setStartIndex] = useState(0);
 
 	const epochConversion = (epochTime) => {
@@ -25,6 +24,18 @@ const StudentTable = ({ students, defaultMessage, loading, dateRange }) => {
 		);
 	};
 
+	const compareMessageReply = (student) => {
+		let messages;
+		let replies;
+		if (student.messages.length > 0) {
+			messages = new Date(student.messages[0].ts);
+		}
+
+		if (student.replies.length > 0) {
+			replies = new Date(student.replies[student.replies.length - 1].ts);
+		}
+		return messages || 0 > replies || 0;
+	};
 
 	return (
 		<>
@@ -57,7 +68,10 @@ const StudentTable = ({ students, defaultMessage, loading, dateRange }) => {
 									<td>
 										<Link
 											to="/dashboard"
-											state={{ studentid: student.user.id, dateRange: dateRange }}
+											state={{
+												studentid: student.user.id,
+												dateRange: dateRange,
+											}}
 											className="profile-link"
 										>
 											{student.user.real_name}
@@ -66,9 +80,14 @@ const StudentTable = ({ students, defaultMessage, loading, dateRange }) => {
 									<td>{student.messages.length + student.replies.length}</td>
 									<td>{student.totalCalls}</td>
 									<td>
-										{student.messages.length === 0
+										{student.messages.length === 0 &&
+										student.replies.length === 0
 											? "Nill"
-											: epochConversion(student.messages[0].ts)}
+											: compareMessageReply(student)
+											? epochConversion(student.messages[0].ts)
+											: epochConversion(
+													student.replies[student.replies.length - 1].ts
+											  )}
 									</td>
 								</tr>
 							))

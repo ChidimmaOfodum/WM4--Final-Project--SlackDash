@@ -54,9 +54,9 @@ const TraineeDashboard = () => {
 			<Nav studentProfileImage={studentProfileImage} />
 			<Title traineeName={studentName} />
 			{isBar ? (
-				<BarChart channels={studentStats} />
+				<BarChart channels={studentStats} handleClick = {pieOrBar}/>
 			) : (
-				<PieChart channels={studentStats} />
+				<PieChart channels={studentStats} handleClick = {pieOrBar} />
 			)}
 			<MsgStats
 				totalMessages={studentTotalMessgaes}
