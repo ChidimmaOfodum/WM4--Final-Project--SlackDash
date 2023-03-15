@@ -21,6 +21,11 @@ nav ul li {
 	padding: 1em 0;
 }
 
+#logoutBtn:hover{
+	cursor: pointer;
+	color: rgb(211, 204, 204);
+}
+
 nav ul li a {
 	text-decoration: none;
 	color: white;
