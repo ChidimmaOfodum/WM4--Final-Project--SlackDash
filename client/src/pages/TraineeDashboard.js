@@ -82,7 +82,8 @@ const TraineeDashboard = () => {
 			<Nav studentProfileImage={studentProfileImage} />
 			<Title traineeName={studentName} />
 			<div className="search-sort-buttons">
-				<section className="calendarWrap">
+				<section className="calendarWrapTrainee">
+					<h6>Select more dates below</h6>
 					<input
 						value={`${format(range[0].startDate, "dd/MM/yyy")} to ${format(
 							range[0].endDate,
