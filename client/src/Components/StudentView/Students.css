@@ -23,8 +23,16 @@
 .search-sort-buttons,
 .channels-section {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	flex-direction: column;
+}
+
+.view-add-btns{
+	display: flex;
+	flex-direction: column;
+}
+
+.view-add-btns button{
+	margin: .5em 0;
 }
 
 .week-of {
@@ -39,7 +47,6 @@
 }
 
 #channels {
-	width: 25%;
 	margin: 1em 0;
 }
 
@@ -155,6 +162,7 @@
 /* loader animation styles ends */
 
 @media only screen and (max-width: 480px) {
+
 	/* Force table to not be like tables anymore */
 	table,
 	thead,
@@ -220,6 +228,23 @@
 		content: "Last Message";
 		text-align: left;
 		font-size: .9em;
+	}
+}
+
+@media only screen and (min-width: 480px) {
+	.channels-section {
+		display: flex;
+		justify-content: space-between;
+	}
+	.search-sort-buttons{
+		flex-direction: row;
+	}
+	.view-add-btns{
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	#channels{
+		max-width: 25%;
 	}
 }
 
