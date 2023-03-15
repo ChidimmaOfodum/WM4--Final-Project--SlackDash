@@ -40,7 +40,7 @@ const Nav = ({studentProfileImage}) => {
 					</div>
 
 					<div className="offcanvas-body">
-						{window.location.pathname === "/students/table/view" ? (
+						{window.location.pathname === "/mentordashboardloggedin" ? (
 							<MentorUl />
 						) : (
 							<TraineeUl />

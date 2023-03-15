@@ -1,7 +1,14 @@
 
 import React from "react";
+import "./Nav.css";
+import Cookies from 'js-cookie';
 
 const MentorUl = () => {
+	
+	const logoutHandle = () => {
+		Cookies.remove('mentor');
+		window.location.href = '/login';
+	};
 
 	return (
 
@@ -9,7 +16,7 @@ const MentorUl = () => {
 				<li className="nav-item">
 					{/* <a href="#" onClick={handleShow}>Add a Cohort</a> */}
 				</li>
-				<li className="nav-item">Logout</li>
+				<li className="nav-item" id="logoutBtn" onClick={logoutHandle} > Logout </li>
 			</ul>
 	);
 };
