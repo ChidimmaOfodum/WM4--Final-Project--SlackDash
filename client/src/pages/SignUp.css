@@ -4,7 +4,8 @@
 }
 .sign-page-bg {
 	background-image: url("https://res.cloudinary.com/meryan/image/upload/v1677450999/SlackDashLandingPageBg_zzhzxc.png");
-	background-repeat: repeat;
+	/* background-repeat: repeat; */
+	background-size: cover;
 	background-position: center;
 	width: 100vw;
 	height: 140vh;
