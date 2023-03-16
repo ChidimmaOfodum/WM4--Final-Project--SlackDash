@@ -1,6 +1,13 @@
 .signup-page {
-	margin: 0 2em;
 	height: 100vh;
+	width: 100%;
+}
+.sign-page-bg {
+	background-image: url("https://res.cloudinary.com/meryan/image/upload/v1677450999/SlackDashLandingPageBg_zzhzxc.png");
+	background-repeat: repeat;
+	background-position: center;
+	width: 100vw;
+	height: 140vh;
 }
 .signup-header {
 	display: flex;
@@ -10,6 +17,8 @@
 .signup-form {
 	display: flex;
 	flex-direction: column;
+	height: 102vh;
+	padding-bottom: 1em;
 }
 
 input[type="radio"] {
@@ -63,5 +72,3 @@ fieldset legend {
 		width: 25%;
 	}
 }
-
-

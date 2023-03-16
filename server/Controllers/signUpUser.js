@@ -1,6 +1,4 @@
-import getSlackClient from "../slackClient";
 import { getUsersByEmail } from "../slackMethods";
-const client = getSlackClient();
 const User = require("./models/user");
 
 const signUpUser = async (req, res) => {
@@ -16,7 +14,7 @@ const signUpUser = async (req, res) => {
 		if (alreadyExistsUser) {
 			return res
 				.status(409)
-				.json({ error: "User with email already exists!" });
+				.json({ error: " 😅 User with email already exists!" });
 		}
 
 		const userData = await getUsersByEmail(email);
@@ -25,11 +23,15 @@ const signUpUser = async (req, res) => {
 			const newUser = new User({ firstName, lastName, role, email, password });
 			await newUser.save().catch((err) => {
 				console.log("Error: ", err);
-				res.status(500).json({ error: "Cannot register user at the moment!" });
+				res
+					.status(500)
+					.json({ error: " 😟 Cannot register user at the moment!" });
 			});
 			res.json({ message: "Thanks for registering", email: email });
 		} else {
-			res.status(401).json({ error: "Please register with your slack email" });
+			res
+				.status(401)
+				.json({ error: "😟 Please register with your slack email" });
 		}
 	} catch (err) {
 		console.log(err);
