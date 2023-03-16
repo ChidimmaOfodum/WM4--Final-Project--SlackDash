@@ -1,9 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import "../../pages/Login.css";
 
 const LoginForm = () => {
 	const emailRef = useRef();
 	const passwordRef = useRef();
+	const [err, setErr] = useState("");
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -21,6 +22,8 @@ const LoginForm = () => {
 			.then((res) => {
 				if (res.redirected) {
 					window.location.href = res.url;
+				} else {
+					setErr("***Email or Password does not match");
 				}
 			})
 			.catch((err) => console.log(err));
@@ -37,6 +40,7 @@ const LoginForm = () => {
 				className="userInput"
 				id="password"
 			/>
+			<p>{err}</p>
 			<button type="submit" className="btn btn-danger submit-btn">
 				Continue
 			</button>

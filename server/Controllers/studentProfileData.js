@@ -15,29 +15,26 @@ export async function studentProfileData(userId, oldest, latest) {
 			let channelName = channelDetails.channel_name;
 			var totalMessagesPerChannel = 0;
 			var totalCallsForEachChannel = 0;
-			const rawChannelMessages = await getChannelData(channelID, oldest, latest)
+			const rawChannelMessages = await getChannelData(
+				channelID,
+				oldest,
+				latest
+			);
 			const channelMessages = rawChannelMessages.messages;
-
+			let replies = [];
 			// Calculating all calls
 			let calls = channelMessages.filter((call) => call.room);
 			let callers = calls
 				.map((c) => c.room)
 				.map((p) => p.participant_history)
 				.flat();
-			 callers.map(async (trainee) => {
-				let isSelectedTrainee = (trainee) === userId;
+			callers.map(async (trainee) => {
+				let isSelectedTrainee = trainee === userId;
 				if (isSelectedTrainee) {
 					totalCalls = totalCalls + 1;
 					totalCallsForEachChannel = totalCallsForEachChannel + 1;
 				}
 			});
-			// const ts = channelMessages[0]?.ts;
-			// // if (finalTs === 0) {
-			// // 	finalTs = ts;
-			// // }
-			// if ( ts > finalTs) {
-			// 	finalTs = ts;
-			// }
 			for (let j = 0; j < channelMessages.length; j++) {
 				let channelMessage = channelMessages[j];
 				let threadTs = channelMessage.ts;
@@ -47,6 +44,8 @@ export async function studentProfileData(userId, oldest, latest) {
 				if (isSelectedTrainee && isBotOrNot) {
 					totalMessages = totalMessages + 1;
 					totalMessagesPerChannel = totalMessagesPerChannel + 1;
+					let ts = channelMessages[j].ts;
+					if (ts > finalTs) finalTs = ts;
 				}
 				if (isThereReply) {
 					let replyThread = await getReplies(channelID, threadTs);
@@ -57,6 +56,8 @@ export async function studentProfileData(userId, oldest, latest) {
 						if (isSelectedTrainee) {
 							totalMessages = totalMessages + 1;
 							totalMessagesPerChannel = totalMessagesPerChannel + 1;
+							let tsReplies = replyMessage.ts;
+							if (tsReplies > finalTs) finalTs = tsReplies;
 						}
 					}
 				}
@@ -80,21 +81,22 @@ export async function studentProfileData(userId, oldest, latest) {
 			month: "short",
 			day: "numeric",
 		};
-		const dOLM =  new Date(finalTs * 1000);
-		// const finalTime =
-		// 	(`${dOLM.toLocaleDateString(
-		// 		"en-GB",
-		// 		options
-		// 	)}, ${dOLM.toLocaleTimeString([], {
-		// 		hour: "2-digit",
-		// 		minute: "2-digit",
-		// 	})}`) || "Nill";
+		const dOLM = new Date(finalTs * 1000);
+		const finalTime =
+			`${dOLM.toLocaleDateString("en-GB", options)}, ${dOLM.toLocaleTimeString(
+				[],
+				{
+					hour: "2-digit",
+					minute: "2-digit",
+				}
+			)}` || "Nill";
 
 		return {
 			traineeName: realName,
 			profilePic: profilePic,
 			messagesStatsForEachChannel: messagesStatsForEachChannel,
 			totalMessages: totalMessages,
+			finalTime: finalTime,
 			totalCalls: totalCalls,
 		};
 	} catch (err) {
