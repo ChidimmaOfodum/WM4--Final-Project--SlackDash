@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { AiTwotoneHome } from "react-icons/ai";
 
-const Footer = () => {
-  return (
-		<footer>
+const MentorFooter = () => {
+	return (
+		<footer className="trainee-footer">
 			<Link to="/mentordashboardloggedin">
 				<button className="homebtn-wrapper">
 					<AiTwotoneHome size={40} color={"red"}></AiTwotoneHome>
@@ -13,4 +13,4 @@ const Footer = () => {
 	);
 };
 
-export default Footer;
+export default MentorFooter;

@@ -7,7 +7,7 @@ import BarChart from "../Components/Dashboard/Bar";
 import PieChart from "../Components/Dashboard/Pie";
 import Title from "../Components/Dashboard/Title";
 import MsgStats from "../Components/Dashboard/MsgStats";
-import TraineeFooter from "../Components/Footer/TraineeFooter";
+import MentorFooter from "../Components/Footer/MentorFooter";
 Chart.register(...registerables);
 
 const Dashboard = () => {
@@ -49,7 +49,7 @@ const Dashboard = () => {
 				totalCalls={studentTotalCalls}
 			/>
 		</div>
-		<TraineeFooter/>
+		<MentorFooter/>
 		</>
 	);
 };
