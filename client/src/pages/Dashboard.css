@@ -85,5 +85,33 @@ footer {
   margin-top: 1em;;
 }
 
+.calendarWrapTrainee {
+  text-align: center;
+  /* display: flex; */
+  /* flex-direction: column;
+  justify-content: center;
+  width: 100%; */
+  margin: 0 auto;
+} 
+
+.calendarElement{
+  flex-direction: column;
+  position: relative;
+  float: left;
+}
+
+@media screen and (min-width: 700px) {
+	.calendarElement {
+    flex-direction: row;
+    position: absolute;
+    float: none;
+  }
+
+  .calendarWrapTrainee{
+    margin: 0 2em;
+  }
+}
+
+
 
 

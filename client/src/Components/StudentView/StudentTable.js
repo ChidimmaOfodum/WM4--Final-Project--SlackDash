@@ -32,9 +32,9 @@ const StudentTable = ({ students, defaultMessage, loading, dateRange }) => {
 		}
 
 		if (student.replies.length > 0) {
-			replies = new Date(student.replies[student.replies.length - 1].ts);
+			replies = new Date(student.replies[(student.replies.length) - 1].ts);
 		}
-		return messages || 0 > replies || 0;
+		return messages || 0 > replies || 0 ;
 	};
 
 	return (

@@ -2,10 +2,9 @@ import { BsTelephoneFill } from "react-icons/bs";
 import { TiMessages } from "react-icons/ti";
 
 
-const MsgStats = ({totalMessages,totalCalls,lastMessage}) => {
+const MsgStats = ({totalMessages,totalCalls}) => {
 	return (
 		<div className="msg-stats">
-			<div id="lastMessageText">Last message sent: {lastMessage}</div>
 			<div className="icons">
 				<TiMessages size={80} color={"green"} />
 				<p>{totalMessages}</p>
