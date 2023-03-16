@@ -81,3 +81,15 @@ export async function joinChannel(channelId) {
 		console.log(error);
 	}
 }
+
+
+export async function getUsersByEmail(email) {
+	try {
+		return await client.users.lookupByEmail({ 
+        token: process.env.TOKEN,
+        email: email
+    });
+		} catch (error) {
+		console.log(error);
+	}
+}

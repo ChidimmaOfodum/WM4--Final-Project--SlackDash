@@ -9,6 +9,7 @@ const SignUpForm = () => {
 	const passwordInputRef = useRef();
 	const [selected, setSelected] = useState();
 	const [passwordError, setPasswordError] = useState("");
+	const [err, setErr] = useState("")
 	const navigate = useNavigate();
 
 	const onRadioSelect = (e) => {
@@ -43,7 +44,14 @@ const SignUpForm = () => {
 					password: password,
 				}),
 			})
-				.then((res) => res.json()).then(navigate("/login"))
+				.then((res) => res.json())
+				.then((data) => {
+					if (data.error) {
+						setErr(data.error)
+					} else {
+						navigate("/login");
+					}
+				})
 				.catch((err) => console.log(err));
 	};
 
@@ -113,10 +121,12 @@ const SignUpForm = () => {
 					</div>
 				</div>
 			</fieldset>
+			<p>{err}</p>
 			<button type="submit" className="signup-btn btn btn-dark">
 				Continue
 			</button>
 		</form>
+		
 	);
 };
 
