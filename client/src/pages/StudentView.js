@@ -182,6 +182,7 @@ const StudentView = () => {
 				<p className="err">{errMsg}</p>
 				<StudentTable
 					students={students}
+					errMsg={errMsg}
 					defaultMessage={defaultMessage}
 					loading={loading}
 					dateRange={{

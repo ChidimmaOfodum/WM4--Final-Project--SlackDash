@@ -7,7 +7,7 @@ const TraineeFooter = () => {
 	};
 
 	return (
-		<footer>
+		<footer className="trainee-footer">
 			<button className="homebtn-wrapper" onClick={refresh}>
 				<FiRefreshCw size={40} color={"red"}></FiRefreshCw>
 			</button>

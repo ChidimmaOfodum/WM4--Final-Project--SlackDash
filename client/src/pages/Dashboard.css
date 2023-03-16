@@ -28,6 +28,7 @@ body {
   align-items: center;
   gap: 0.5em;
   margin-top: .5em;
+  margin-bottom: 1em;
 }
 
 #lastMessageText {
@@ -84,12 +85,12 @@ footer {
   bottom: 0;
 }
 
+.trainee-footer{
+  position: static;
+}
+
 .calendarWrapTrainee {
   text-align: center;
-  /* display: flex; */
-  /* flex-direction: column;
-  justify-content: center;
-  width: 100%; */
   margin: 0 auto;
 } 
 
@@ -111,21 +112,6 @@ footer {
   }
 }
 
-.calendarWrapTrainee {
-  text-align: center;
-  /* display: flex; */
-  /* flex-direction: column;
-  justify-content: center;
-  width: 100%; */
-  margin: 0 auto;
-} 
-
-.calendarElement{
-  flex-direction: column;
-  position: relative;
-  float: left;
-}
-
 @media screen and (min-width: 700px) {
 	.calendarElement {
     flex-direction: row;
@@ -137,7 +123,6 @@ footer {
     margin: 0 2em;
   }
 }
-
 
 
 
