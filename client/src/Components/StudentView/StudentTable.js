@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import PaginationBtns from "./PaginationBtns";
 import "./Students.css";
 
-const StudentTable = ({ students, defaultMessage, loading, dateRange }) => {
+const StudentTable = ({ students, defaultMessage, loading, dateRange, errMsg }) => {
 	const [startIndex, setStartIndex] = useState(0);
 
 	const epochConversion = (epochTime) => {
@@ -98,10 +98,12 @@ const StudentTable = ({ students, defaultMessage, loading, dateRange }) => {
 
 			<PaginationBtns
 				defaultMessage={defaultMessage}
+				errMsg = {errMsg}
 				loading={loading}
 				students={students}
 				startIndex={startIndex}
 				setStartIndex={setStartIndex}
+
 			/>
 		</>
 	);

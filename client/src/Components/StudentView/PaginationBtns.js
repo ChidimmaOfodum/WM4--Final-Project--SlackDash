@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const PaginationBtns = ({ students, startIndex, setStartIndex, defaultMessage, loading }) => {
+const PaginationBtns = ({ students, startIndex, setStartIndex, defaultMessage, loading, errMsg }) => {
 	// const [startIndex, setStartIndex] = useState(0);
 
 	const nexthandleClick = (e) => {
@@ -16,7 +16,7 @@ const PaginationBtns = ({ students, startIndex, setStartIndex, defaultMessage, l
 		}
 	};
 	return (
-		<div className={defaultMessage || loading ? "hidden": "pagination-btns"}>
+		<div className={defaultMessage || loading || errMsg ? "hidden": "pagination-btns"}>
 			<button className="btn btn-dark" onClick={prevhandleClick}>
 				Previous
 			</button>
