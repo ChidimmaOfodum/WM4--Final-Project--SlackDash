@@ -62,9 +62,6 @@ body {
   margin-left: 1rem;
 }
 
-.test1{
-  border: 2px solid green;
-}
 
 .homebtn-wrapper{
   background-color: white;
@@ -82,7 +79,9 @@ footer {
   justify-content: space-around;
   align-items: center;
   padding: .5em;
-  margin-top: 1em;;
+  margin-top: 1em;
+  position: fixed;
+  bottom: 0;
 }
 
 .calendarWrapTrainee {
@@ -111,6 +110,34 @@ footer {
     margin: 0 2em;
   }
 }
+
+.calendarWrapTrainee {
+  text-align: center;
+  /* display: flex; */
+  /* flex-direction: column;
+  justify-content: center;
+  width: 100%; */
+  margin: 0 auto;
+} 
+
+.calendarElement{
+  flex-direction: column;
+  position: relative;
+  float: left;
+}
+
+@media screen and (min-width: 700px) {
+	.calendarElement {
+    flex-direction: row;
+    position: absolute;
+    float: none;
+  }
+
+  .calendarWrapTrainee{
+    margin: 0 2em;
+  }
+}
+
 
 
 
