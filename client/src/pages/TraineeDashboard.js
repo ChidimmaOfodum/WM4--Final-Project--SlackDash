@@ -112,9 +112,9 @@ const TraineeDashboard = () => {
 				</section>
 			</div>
 			{isBar ? (
-				<BarChart channels={studentStats} />
+				<BarChart channels={studentStats} handleClick = {pieOrBar}/>
 			) : (
-				<PieChart channels={studentStats} />
+				<PieChart channels={studentStats} handleClick = {pieOrBar} />
 			)}
 			<MsgStats
 				totalMessages={studentTotalMessgaes}
