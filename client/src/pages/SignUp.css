@@ -3,8 +3,9 @@
 	width: 100%;
 }
 .sign-page-bg {
+	display: flex;
+	flex-direction: column;
 	background-image: url("https://res.cloudinary.com/meryan/image/upload/v1677450999/SlackDashLandingPageBg_zzhzxc.png");
-	/* background-repeat: repeat; */
 	background-size: cover;
 	background-position: center;
 	width: 100vw;
@@ -13,7 +14,7 @@
 .signup-header {
 	display: flex;
 	flex-direction: column;
-	margin-top: 2em;
+	padding: 2em;
 }
 .signup-form {
 	display: flex;
@@ -67,9 +68,25 @@ fieldset legend {
 	}
 	.signup-header {
 		align-self: center;
+		width: 70%;
+	}
+
+}
+
+@media screen and (max-width: 600px) {
+	.sign-page-bg{
+		height: 115vh;
+	}
+
+	.signup-form {
+		height: 75vh;
+	}
+	
+}
+
+@media screen and (min-width: 1200px) {
+	.signup-header{
 		width: 50%;
 	}
-	.signup-btn {
-		width: 25%;
-	}
+	
 }
