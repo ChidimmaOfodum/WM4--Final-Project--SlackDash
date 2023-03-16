@@ -34,10 +34,10 @@ const ChannelSelect = ({
 				))}
 			</select>
 			<section className="view-add-btns">
-				<button className="btn btn-danger" onClick={handleClick}>
+				<button className="btn btn-dark" onClick={handleClick}>
 					View Data
 				</button>
-				<button className="btn btn-danger" onClick={handleShow}>
+				<button className="btn btn-dark" onClick={handleShow}>
 					Add a channel <BsPlusLg />
 				</button>
 			</section>
